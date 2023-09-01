@@ -1,1 +1,30 @@
-<p>login works!</p>
+
+
+<div>
+  <input type="text" #username >
+  <input type="text" #password>
+
+  <button (click)="testLogin(username.value,password.value)" >login</button>
+</div>
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<button (click)="testGetDeparteemnt()" >departements</button>
+
+
+<ul>
+  <li *ngFor="let test of departements"> {{test.name}}</li>
+</ul>
+<button (click)="testEmploye()" >employes</button>
+
+
+<ul>
+  <li *ngFor="let employe of employes"> {{employe.firstName}} {{employe.password}}</li>
+</ul>
