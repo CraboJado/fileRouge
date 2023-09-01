@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import {LoginService} from "../../shared/service/loginService";
-import {DepartementService} from "../../shared/service/departementService";
-import {Departement} from "../../shared/model/departement";
-import {EmployeService} from "../../shared/service/employeService";
-import {Employe} from "../../shared/model/employe";
+import {Departement} from "../../../shared/model/departement";
+import {Employe} from "../../../shared/model/employe";
+import {LoginService} from "../../../shared/service/loginService";
+import {DepartementService} from "../../../shared/service/departementService";
+import {EmployeService} from "../../../shared/service/employeService";
+
 
 @Component({
   selector: 'app-login',

@@ -10,6 +10,7 @@ import { JoursOffComponent } from './component/pages/jours-off/jours-off.compone
 import { EmployesComponent } from './component/pages/employes/employes.component';
 import { AbsencesComponent } from './component/pages/absences/absences.component';
 import { NotFoundComponent } from './component/pages/not-found/not-found.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
