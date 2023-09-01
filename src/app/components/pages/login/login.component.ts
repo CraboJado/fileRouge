@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import {Departement} from "../../../shared/model/departement";
 import {Employe} from "../../../shared/model/employe";
-import {LoginService} from "../../../shared/service/loginService";
-import {DepartementService} from "../../../shared/service/departementService";
-import {EmployeService} from "../../../shared/service/employeService";
+import {LoginService} from "../../../shared/service/login.service";
+import {DepartementService} from "../../../shared/service/departement.service";
+import {EmployeService} from "../../../shared/service/employe.service";
 
 
 @Component({
