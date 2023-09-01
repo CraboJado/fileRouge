@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {DepartementsComponent} from "./components/pages/departements/departements.component";
 import {JoursOffComponent} from "./components/pages/jours-off/jours-off.component";
 import {LoginComponent} from "./components/pages/login/login.component";
 import {NotFoundComponent} from "./components/pages/not-found/not-found.component";
@@ -14,8 +13,8 @@ import {RapportsVueTwoComponent} from "./components/pages/rapports-vue-two/rappo
 const routes: Routes = [
   { path: 'login',component : LoginComponent},
   { path: 'home',component : HomeComponent},
-  { path: 'demandeAbs',component : DemandeAbsComponent},
-  { path: 'validationAbs',component : ValidationAbsComponent},
+  { path: 'demande',component : DemandeAbsComponent},
+  { path: 'validation',component : ValidationAbsComponent},
   { path: 'rapports',component : RapportsComponent ,
     children:[
       {
@@ -29,8 +28,7 @@ const routes: Routes = [
       },
     ]
   },
-  { path: 'departements',component : DepartementsComponent},
-  { path: 'joursOff',component : JoursOffComponent},
+  { path: 'jours-off',component : JoursOffComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**',component : NotFoundComponent},
 ];
