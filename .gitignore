@@ -19,8 +19,14 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
+/.angular
+.angular/
+.angular/*
 
 # Visual Studio Code
+/.vscode
+.vscode
+.vscode/
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
