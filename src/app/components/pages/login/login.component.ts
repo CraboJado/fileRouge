@@ -19,9 +19,9 @@ export class LoginComponent {
   constructor(private loginService:LoginService, private departementService:DepartementService, private employeService:EmployeService) {
   }
 
-  testLogin(username:string,password:string){
+  testLogin(email:string,password:string){
     console.log("connecté")
-    this.loginService.login(username,password)
+    this.loginService.login(email,password)
   }
 
 

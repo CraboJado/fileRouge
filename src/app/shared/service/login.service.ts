@@ -28,8 +28,6 @@ export class LoginService{
 
     return this.http.post(this._baseUrl, body,{'headers': headers})
       .subscribe((response)=> console.log(response));
-
-
   }
 
 

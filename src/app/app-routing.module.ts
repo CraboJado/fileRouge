@@ -9,20 +9,22 @@ import {HomeComponent} from "./components/pages/home/home.component";
 import {RapportsComponent} from "./components/pages/rapports/rapports.component";
 import {RapportsVueOneComponent} from "./components/pages/rapports-vue-one/rapports-vue-one.component";
 import {RapportsVueTwoComponent} from "./components/pages/rapports-vue-two/rapports-vue-two.component";
+import {CalendrierComponent} from "./components/pages/calendrier/calendrier.component";
 
 const routes: Routes = [
   { path: 'login',component : LoginComponent},
   { path: 'home',component : HomeComponent},
+  { path: 'calendrier',component : CalendrierComponent},
   { path: 'demande',component : DemandeAbsComponent},
   { path: 'validation',component : ValidationAbsComponent},
   { path: 'rapports',component : RapportsComponent ,
     children:[
       {
-        path:"vueOne",
+        path:"vue-one",
         component:RapportsVueOneComponent
       },
       {
-        path:"vueTwo",
+        path:"vue-two",
         component:RapportsVueTwoComponent
 
       },

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/pages/login/login.component';
-import { DepartementsComponent } from './components/pages/departements/departements.component';
+import { CalendrierComponent } from './components/pages/calendrier/calendrier.component';
 import { JoursOffComponent } from './components/pages/jours-off/jours-off.component';
 import { NotFoundComponent } from './components/pages/not-found/not-found.component';
 import { ValidationAbsComponent } from './components/pages/validation-abs/validation-abs.component';
@@ -15,6 +15,8 @@ import { RapportsVueTwoComponent } from './components/pages/rapports-vue-two/rap
 import {HttpClientModule} from "@angular/common/http";
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { MainNavComponent } from './components/header/main-nav/main-nav.component';
+import { SubNavComponent } from './components/header/sub-nav/sub-nav.component';
 
 
 @NgModule({
@@ -22,7 +24,7 @@ import { FooterComponent } from './components/footer/footer.component';
     AppComponent,
     LoginComponent,
     NotFoundComponent,
-    DepartementsComponent,
+    CalendrierComponent,
     JoursOffComponent,
     ValidationAbsComponent,
     DemandeAbsComponent,
@@ -31,7 +33,9 @@ import { FooterComponent } from './components/footer/footer.component';
     RapportsVueOneComponent,
     RapportsVueTwoComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    MainNavComponent,
+    SubNavComponent
   ],
   imports: [
     BrowserModule,

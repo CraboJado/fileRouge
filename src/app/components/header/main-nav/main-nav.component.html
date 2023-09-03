@@ -1,0 +1,49 @@
+<nav aria-label="Main Navigation" class="navbar navbar-expand-lg shadow-sm ">
+  <div class="container px-lg-4">
+    <li class="col-lg-3 me-0">
+      <a class="navbar-brand fw-bold" routerLink="/home">Redwire</a>
+    </li>
+
+    <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler "
+            data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <div class="collapse navbar-collapse d-lg-flex" id="navbar">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            aria-current="page"
+            class="nav-link active" routerLink="/home">Dashboard</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Absences</a>
+          <ul class="dropdown-menu">
+            <li>
+              <a
+                class="dropdown-item"
+                href="#" routerLink="/demande">Demande d'absence</a></li>
+            <li><a
+              class="dropdown-item"
+              href="#" routerLink="/validation">Validation des absences (M)</a></li>
+            <li><a
+              class="dropdown-item"
+              href="#" routerLink="/rapports">Rapports (M)</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/calendrier">Calendrier</a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="#" routerLink="/jours-off">Jours officiels</a>
+        </li>
+      </ul>
+      <li class="me-3">Bonjour Admin</li>
+      <button class="btn btn-outline-primary rounded-pill px-3">Déconnexion</button>
+    </div>
+  </div>
+</nav>

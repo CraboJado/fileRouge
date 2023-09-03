@@ -1,31 +1,49 @@
-
-<div clas="container">
-<div>
-  <input type="text" #username >
-  <input type="text" #password>
-
-  <button (click)="testLogin(username.value,password.value)" >login</button>
-</div>
-
-
-
-<br>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<button (click)="testGetDeparteemnt()" >departements</button>
-
-
-<ul>
-  <li *ngFor="let test of departements"> {{test.name}}</li>
-</ul>
-<button (click)="testEmploye()" >employes</button>
-
-
-<ul>
-  <li *ngFor="let employe of employes"> {{employe.firstName}} {{employe.password}}</li>
-</ul>
-</div>
+<section class="container col-xl-12 col-xxl-12 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+        <div class="col-lg-7 text-center text-lg-start">
+            <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Projet Fil Rouge : Gestion des congés et jours
+                feriés</h1>
+            <div class="col-lg-10 ">
+                <h2 class="lead fs-4">Groupe #1</h2>
+                <ul class="p-0 m-0">
+                    <li>Antoine LiGEROT</li>
+                    <li>Kamella VERGNAUD</li>
+                    <li>Liting QIU</li>
+                    <li>Guito SAMEDI</li>
+                </ul>
+                <div class="pt-4">
+                    <button (click)="testGetDeparteemnt()">departements</button>
+                    <ul>
+                        <!--<li *ngFor="let test of departements"> {{test.name}}</li>-->
+                        <li *ngFor="let test of departements"> {{test|json}}</li>
+                    </ul>
+                    <button (click)="testEmploye()">employes</button>
+                    <ul>
+                        <!--<li *ngFor="let employe of employes"> {{employe.firstName}} {{employe.password}}</li>-->
+                        <li *ngFor="let employe of employes"> {{employe|json}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10 mx-auto col-lg-5">
+            <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+                <div class="form-floating mb-3">
+                    <input type="email" name="email" class="form-control" id="floatingInput"
+                        placeholder="name@example.com" #email>
+                    <label for="floatingInput">Email</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Mot de passe"
+                        #password>
+                    <label for="floatingPassword">Mot de passe</label>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit"
+                    (click)="testLogin(email.value,password.value)">Se connecter</button>
+                <hr class="my-4">
+                <h6>Démo Admin</h6>
+                <p><small class="text-body-secondary">exampletout@gmail.com | pass: passwordtout</small>
+                </p>
+            </form>
+        </div>
+    </div>
+</section>
