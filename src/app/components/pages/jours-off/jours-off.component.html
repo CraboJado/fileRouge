@@ -1,4 +1,10 @@
 <app-sub-nav></app-sub-nav>
 <section class="container col-xl-12 col-xxl-12 py-5">
-    <p>jours-off works!</p>
+  <h1 class="lead fw-bold lh-1 text-body-emphasis mb-3">Jours fériés et RTT</h1>
+    <full-calendar [options]="calendarOptions"></full-calendar>
+
+    <button (click)="testJouOff()">Jours Officiels</button>
+    <ul>
+        <li *ngFor="let jo of joursOffs"> {{jo|json}}</li>
+    </ul>
 </section>
