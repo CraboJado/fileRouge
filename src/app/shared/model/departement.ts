@@ -1,8 +1,5 @@
-export class Departement{
-  id:number=0;
-  name:string="";
-
-
-  constructor() {
-  }
+export interface Departement{
+  id?:number;
+  name?:string;
+  
 }
