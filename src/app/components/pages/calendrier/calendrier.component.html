@@ -1,7 +1,15 @@
 <app-sub-nav></app-sub-nav>
 <section class="container col-xl-12 col-xxl-12 py-5">
     <p>calendrier works!</p>
-    <div>
-        <full-calendar [options]="calendarOptions"></full-calendar>
-      </div>
+    <div class="calendar-container position-relative">
+        <full-calendar 
+        #fullcalendar
+        [options]="calendarOptions"></full-calendar>
+        <div 
+        *ngIf="showForm"
+        class="form position-absolute top-50 start-50 bg-light translate-middle">
+          <app-absence-form></app-absence-form>
+        </div>
+    </div>
+
 </section>
