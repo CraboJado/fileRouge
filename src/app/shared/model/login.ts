@@ -1,9 +1,6 @@
-export class Login{
-  email:string="";
-  password:string="";
-
-  constructor() {
-  }
-
+export interface Login{
+  email?:string;
+  password?:string;
+  
 
 }
