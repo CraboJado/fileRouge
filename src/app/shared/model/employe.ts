@@ -10,7 +10,7 @@ soldeConge?:number;
 soldeRTT?:number;
 email?:string;
 
-departements?:Departement[]
+departement?:Departement
 
   manager?:Employe;
 

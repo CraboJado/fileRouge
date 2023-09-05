@@ -1,3 +1,19 @@
 <section class="container col-xl-12 col-xxl-12 py-5">
   <p>rapports-vue-one works!</p>
+
+  <button (click)="employeByDepartement(1)"></button>
+
+
+  <button (click)="changeMonth(-1)">mois précédent</button>
+  <button (click)="changeMonth(1)">mois suivant</button>
+
+  <div style="display: block">
+    <canvas baseChart
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [legend]="lineChartLegend"
+    ></canvas>
+  </div>
+
 </section>
