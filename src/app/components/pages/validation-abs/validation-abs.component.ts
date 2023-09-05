@@ -37,23 +37,6 @@ export class ValidationAbsComponent {
     absence.statut = "INITIALE"
   }
 
-
-
-
-  // updateAbs() {
-  //   const istreated = this.absences.every(absence => {
-  //     return absence.statut === 'VALIDEE' || absence.statut === 'REJETEE';
-  //   });
-  //   if (istreated) {
-  //     this.absences.forEach(absence => {
-  //       this._absenceService
-  //       .update(absence).subscribe(() => this._init());
-
-  //     });
-  //   } else {
-  //     this.errorMessage = "Toutes les absences doivent être traitées pour être envoyées.";
-  //   }
-  // }
   clearMessages() {
     setTimeout(() => {
       this.okMessage = '';
@@ -66,9 +49,7 @@ export class ValidationAbsComponent {
     const isTreated = this.absences.every(absence => {
       return absence.statut === 'VALIDEE' || absence.statut === 'REJETEE';
     });
-
     if (isTreated) {
-
       this.absences.forEach(absence => {
         this._absenceService.update(absence).subscribe(() => {
           this._init()
@@ -81,9 +62,6 @@ export class ValidationAbsComponent {
       this.clearMessages();
     }
   }
-
-
-
 }
 
 
