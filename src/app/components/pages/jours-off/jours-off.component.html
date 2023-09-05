@@ -1,10 +1,26 @@
 <app-sub-nav></app-sub-nav>
 <section class="container col-xl-12 col-xxl-12 py-5">
   <h1 class="lead fw-bold lh-1 text-body-emphasis mb-3">Jours fériés et RTT</h1>
-    <full-calendar [options]="calendarOptions"></full-calendar>
 
-    <button (click)="testJouOff()">Jours Officiels</button>
+  <div *ngIf="showPopover" class="dropdown">
+  <ng-template #popContent>
+
+      <select (change)="handleDropdownChange()" [(ngModel)]="selectedOption">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+      </select>
+
+  </ng-template>
+  <ng-template #popTitle>Title with Fancy <b> bold</b>, <i>italics</i> and <u>underlined</u> text</ng-template>
+  <button [ngbPopover]="popContent" [popoverTitle]="popTitle" class="btn btn-outline-secondary" type="button">
+    Popover Button
+  </button>
+  </div>
+  <full-calendar [options]="calendarOptions" id="calendar"></full-calendar>
+
+  <!--<button (click)="handleGetJoursOffJson()">Jours Officiels</button>
     <ul>
         <li *ngFor="let jo of joursOffs"> {{jo|json}}</li>
-    </ul>
+    </ul>-->
 </section>
