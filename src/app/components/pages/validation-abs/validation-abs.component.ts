@@ -9,9 +9,8 @@ import { AbsenceService } from 'src/app/shared/service/absence.service';
 })
 export class ValidationAbsComponent {
   absences: Absence[] = [];
-  // isActive: boolean = false;
-
-
+  errorMessage: string = '';
+  okMessage: string = "";
 
   constructor(private _absenceService: AbsenceService) { }
 
@@ -24,27 +23,68 @@ export class ValidationAbsComponent {
       .findAll()
       .subscribe(absenceReceived => {
         this.absences = absenceReceived;
-        
-      })
-      
-  }
 
+      })
+  }
 
   validStatut(absence: Absence) {
     absence.statut = "VALIDEE";
-    this._absenceService
-      .update(absence)
-      .subscribe(() => this._init)
   }
-
-
   rejectStatut(absence: Absence) {
     absence.statut = "REJETEE"
-  
-    this._absenceService
-      .update(absence)
-      .subscribe(() => this._init)
   }
-  
+  eraseStatut(absence: Absence) {
+    absence.statut = "INITIALE"
+  }
+
+
+
+
+  // updateAbs() {
+  //   const istreated = this.absences.every(absence => {
+  //     return absence.statut === 'VALIDEE' || absence.statut === 'REJETEE';
+  //   });
+  //   if (istreated) {
+  //     this.absences.forEach(absence => {
+  //       this._absenceService
+  //       .update(absence).subscribe(() => this._init());
+
+  //     });
+  //   } else {
+  //     this.errorMessage = "Toutes les absences doivent être traitées pour être envoyées.";
+  //   }
+  // }
+  clearMessages() {
+    setTimeout(() => {
+      this.okMessage = '';
+      this.errorMessage = '';
+    }, 3000); 
+  }
+
+
+  updateAbs() {
+    const isTreated = this.absences.every(absence => {
+      return absence.statut === 'VALIDEE' || absence.statut === 'REJETEE';
+    });
+
+    if (isTreated) {
+
+      this.absences.forEach(absence => {
+        this._absenceService.update(absence).subscribe(() => {
+          this._init()
+        });
+        this.okMessage = "Toutes les absences ont bien été envoyées.";
+        this.clearMessages();
+      });
+    } else {
+      this.errorMessage = "Toutes les absences doivent être traitées pour être envoyées.";
+      this.clearMessages();
+    }
+  }
+
+
+
 }
+
+
 
