@@ -1,7 +1,20 @@
 <app-sub-nav></app-sub-nav>
-<section class="container col-xl-12 col-xxl-12 py-5">
-    <p>calendrier works!</p>
-    <div>
-        <full-calendar [options]="calendarOptions"></full-calendar>
-      </div>
+<section class="container col-xl-12 col-xxl-12 py-5 d-flex gap-5 justify-content-between">
+    <div class="d-flex flex-column justify-content-center gap-3 color-instruction">
+      <div class="conge-valide">congé validé</div>
+      <div class="rtt-valide">Rtt validé</div>
+      <div class="en-attente">en attente de validation</div>
+      <div class="refuse">demande refusé</div>
+    </div>
+    <div class="calendar-container position-relative flex-grow-1">
+        <full-calendar 
+        #fullcalendar
+        [options]="calendarOptions"></full-calendar>
+        <div 
+        *ngIf="showForm"
+        class="form position-absolute top-50 start-50 bg-light translate-middle">
+          <app-form></app-form>
+        </div>
+    </div>
+
 </section>

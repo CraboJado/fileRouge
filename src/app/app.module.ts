@@ -18,6 +18,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MainNavComponent } from './components/header/main-nav/main-nav.component';
 import { SubNavComponent } from './components/header/sub-nav/sub-nav.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { FormComponent } from './components/form/form.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     HeaderComponent,
     FooterComponent,
     MainNavComponent,
-    SubNavComponent
+    SubNavComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,

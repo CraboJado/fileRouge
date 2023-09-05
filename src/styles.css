@@ -5,3 +5,8 @@ li {
   margin:0;
   list-style-type: none;
 }
+
+.fc .fc-bg-event {
+  opacity: unset; 
+  background: none;
+}
