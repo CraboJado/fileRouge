@@ -1,4 +1,53 @@
 <app-sub-nav></app-sub-nav>
 <section class="container col-xl-12 col-xxl-12 py-5">
-  <p>validation-abs works!</p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nom</th>
+        <th scope="col">Date creation</th>
+        <th scope="col">Date début</th>
+        <th scope="col">Date fin</th>
+        <th scope="col">Type</th>
+        <th scope="col">Motif</th>
+        <th scope="col">Statut</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let absence of absences">
+        <th scope="row"> {{absence.employe?.lastName}} {{absence.employe?.firstName}}</th>
+        <td>{{absence.dateCreation}}</td>
+        <td>{{absence.dateDebut}}</td>
+        <td>{{absence.dateFin}}</td>
+        <td>{{absence.typeAbsence}}</td>
+        <td>{{absence.motif}}</td>
+        <td>{{absence.statut}}</td>
+        
+
+        <td>
+          <button class="me-1" type="submit" class="btn btn-outline-success"
+            (click)="validStatut(absence)" *ngIf="absence.statut =='INITIALE'"> 
+            valide
+          </button>
+
+          <i class="bi bi-check-lg text-success"  
+          *ngIf="absence.statut=='VALIDEE'">
+            
+          </i>
+
+          <button class="" type="submit" class="btn btn-outline-danger"
+            (click)="rejectStatut(absence)" *ngIf="absence.statut=='INITIALE'"
+           >
+            reject
+          </button>
+
+          <i class="bi bi-x-lg text-danger" *ngIf="absence.statut =='REJETEE'">
+          </i>
+  
+
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
 </section>
