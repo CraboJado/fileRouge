@@ -1,25 +1,27 @@
-<app-sub-nav></app-sub-nav>
+
 <section class="container col-xl-12 col-xxl-12 py-5">
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">Nom</th>
-        <th scope="col">Date creation</th>
-        <th scope="col">Date début</th>
+        <th scope="col text-">Nom</th>
+        <th scope="col"> <a class="link-body-emphasis link-offset-2  link-opacity-50-hover text-decoration-none"(click)="DateCreationSort()">Date creation  <i class="bi bi-arrow-down-up"></i></a></th>
+        <th scope="col"><a class="link-body-emphasis link-offset-2  link-opacity-50-hover text-decoration-none"(click)="DateDebutSort()">Date Début  <i class="bi bi-arrow-down-up"></i></a></th>
         <th scope="col">Date fin</th>
         <th scope="col">Type</th>
         <th scope="col">Motif</th>
         <th scope="col">Statut</th>
-        <th scope="col">Action</th>
+        <th scope="col d-flex">Action</th>
+        <th scope="col">Annuler</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let absence of absences">
-        <th scope="row"> {{absence.employe?.lastName}} {{absence.employe?.firstName}}</th>
-        <td>{{absence.dateCreation}}</td>
-        <td>{{absence.dateDebut}}</td>
-        <td>{{absence.dateFin}}</td>
-        <td>{{absence.typeAbsence}}</td>
+        <th scope="row">{{absence.employe?.lastName}} {{absence.employe?.firstName}}</th>
+        <td>{{absence.dateCreation | date:'dd/MM/yyyy à HH:mm '}}</td>
+
+        <td >{{absence.dateDebut | date:'dd/MM/yyyy'}}</td>
+        <td>{{absence.dateFin | date:'dd/MM/yyyy'}}</td>
+        <td>{{absence.typeAbsence }}</td>
         <td>{{absence.motif}}</td>
         <td>{{absence.statut}}</td>
 
@@ -39,6 +41,9 @@
 
           <i class="bi bi-x-lg text-danger" *ngIf="absence.statut =='REJETEE'">
           </i>
+          
+        </td>
+        <td>
           <button type="submit" class="btn btn-outline-black ms-3" (click)="eraseStatut(absence)">
             <i class="bi bi-eraser"></i>
           </button>
