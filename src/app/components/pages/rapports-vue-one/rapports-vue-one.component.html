@@ -1,11 +1,17 @@
 <section class="container col-xl-12 col-xxl-12 py-5">
   <p>rapports-vue-one works!</p>
 
-  <button (click)="employeByDepartement(1)"></button>
+  <button (click)="employeByDepartement(departementId.value)"></button>
 
 
   <button (click)="changeMonth(-1)">mois précédent</button>
   <button (click)="changeMonth(1)">mois suivant</button>
+
+
+  <select #departementId >
+    <option *ngFor="let departement of departements"  [value]="departement.id"  [defaultSelected]="departementGeneral">{{departement.name}}</option>
+  </select>
+
 
   <div style="display: block">
     <canvas baseChart
