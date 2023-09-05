@@ -1,22 +1,19 @@
 import {Departement} from "./departement";
 
-export class Employe{
+export interface Employe{
 
-  id:number=0;
-firstName:string="";
-lastName:string="";
-password:string="";
-soldeConge:number=0;
-soldeRTT:number=0;
-email:string="";
+  id?:number;
+firstName?:string;
+lastName?:string;
+password?:string;
+soldeConge?:number;
+soldeRTT?:number;
+email?:string;
 
-departements:Departement[]= []
+departements?:Departement[]
 
-  manager:Employe= new Employe();
+  manager?:Employe;
 
-roles:string[]=[];
+roles?:string[];
 
-
-  constructor() {
-  }
 }
