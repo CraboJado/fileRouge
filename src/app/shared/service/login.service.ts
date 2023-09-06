@@ -20,12 +20,8 @@ export class LoginService{
       email:username,
       password:password
     }
-
-
     const headers = { 'content-type': 'application/json'}
     const body=JSON.stringify(logindata);
-
-
     return this.http.post(this._baseUrl, body,{'headers': headers})
       .subscribe((response)=> console.log(response));
   }

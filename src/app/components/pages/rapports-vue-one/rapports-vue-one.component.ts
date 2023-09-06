@@ -19,6 +19,8 @@ import {JoursOff} from "../../../shared/model/joursOff";
 export class RapportsVueOneComponent implements  OnInit{
 
 
+  annees:number[]=[]
+
   absences:Absence[]=[]
   employes:Employe[]=[]
   departements:Departement[]=[]
@@ -146,6 +148,11 @@ export class RapportsVueOneComponent implements  OnInit{
       this.departements.push(this.departementGeneral)
     })
 
+
+    for (let i = 1980; i < 2050; i++) {
+      this.annees.push(i)
+    }
+
   }
 
 
@@ -179,6 +186,12 @@ export class RapportsVueOneComponent implements  OnInit{
   }
 
 
+
+  changeCurrentYear(year:string){
+    this.currentYear=parseInt(year)
+    this.updateLineChartLabels()
+
+  }
 
 
 }
