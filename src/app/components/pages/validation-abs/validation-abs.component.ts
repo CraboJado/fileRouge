@@ -56,7 +56,6 @@ export class ValidationAbsComponent {
         return 0; 
       }
     });
-  
     this.triDateCreationAscendant = !this.triDateCreationAscendant;
   }
   
@@ -65,7 +64,7 @@ export class ValidationAbsComponent {
       if (a.dateDebut && b.dateDebut) {
         const dateA = new Date(a.dateDebut);
         const dateB = new Date(b.dateDebut);
-  
+
         return this.triDateDebutAscendant
           ? dateA.getTime() - dateB.getTime()
           : dateB.getTime() - dateA.getTime();
@@ -86,12 +85,12 @@ export class ValidationAbsComponent {
 
   updateAbs() {
       this.absences.forEach(absence => {
-        this._absenceService.update(absence).subscribe(() => {
-          this._init()
-        });
+        this._absenceService.update(absence).subscribe();
         this.okMessage = "Les absences ont bien été enregistrées.";
         this.clearMessages();
+            this._init
       });
+  
   }
 }
 

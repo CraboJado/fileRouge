@@ -20,7 +20,9 @@ export class AbsenceService{
   }
 
   public update(updated: Absence) {
+    const headers = { 'content-type': 'application/json'}
     return  this._http
-      .put(`${this._baseUrl}/statut/${updated.id}`, updated) 
+   .put<Absence>(`${this._baseUrl}/statut/${updated.id}`, updated,{'headers': headers}) 
+
   }
 }
