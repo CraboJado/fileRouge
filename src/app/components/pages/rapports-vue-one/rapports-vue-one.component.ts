@@ -82,6 +82,7 @@ export class RapportsVueOneComponent implements  OnInit{
 
 
     for(let absence of this.absences) {
+      //@ts-ignore
       for(let dateTempo of this.getDates(absence.dateDebut, absence.dateFin)){
         if (date == dateTempo && absence.employe?.id == employe.id) {
           nbTotal++;
