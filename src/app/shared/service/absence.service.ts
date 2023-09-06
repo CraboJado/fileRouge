@@ -11,7 +11,6 @@ export class AbsenceService{
 
   private _baseUrl = "http://localhost:8080/absence";
 
-
   constructor(private _http: HttpClient) {}
 
 
@@ -25,4 +24,6 @@ export class AbsenceService{
    .put<Absence>(`${this._baseUrl}/statut/${updated.id}`, updated,{'headers': headers}) 
 
   }
+
+ 
 }

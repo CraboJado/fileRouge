@@ -22,6 +22,16 @@
                         <!--<li *ngFor="let employe of employes"> {{employe.firstName}} {{employe.password}}</li>-->
                         <li *ngFor="let employe of employes"> {{employe|json}}</li>
                     </ul>
+                  <button (click)="testGetAbsence()">absences</button>
+                    <ul>
+                        <!--<li *ngFor="let employe of employes"> {{employe.firstName}} {{employe.password}}</li>-->
+                        <li *ngFor="let absence of absences"> {{absence|json}}</li>
+                    </ul>
+                  <button (click)="testGetJoursOff()">joursOff</button>
+                    <ul>
+                        <!--<li *ngFor="let employe of employes"> {{employe.firstName}} {{employe.password}}</li>-->
+                        <li *ngFor="let joursOff of joursOffs"> {{joursOff|json}}</li>
+                    </ul>
                 </div>
             </div>
         </div>

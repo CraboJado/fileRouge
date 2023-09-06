@@ -9,5 +9,6 @@ export interface Absence{
   typeAbsence?:string;
   statut?:string;
   employe?:Employe;
-
 }
+
+
