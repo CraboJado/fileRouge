@@ -32,6 +32,7 @@
                         <!--<li *ngFor="let employe of employes"> {{employe.firstName}} {{employe.password}}</li>-->
                         <li *ngFor="let joursOff of joursOffs"> {{joursOff|json}}</li>
                     </ul>
+                  <button (click)="testtetst()">employes</button>
                 </div>
             </div>
         </div>
@@ -50,6 +51,8 @@
                 <button class="w-100 btn btn-lg btn-primary" type="submit"
                     (click)="testLogin(email.value,password.value)">Se connecter</button>
                 <hr class="my-4">
+
+
                 <h6>Démo Admin</h6>
                 <p><small class="text-body-secondary">exampletout@gmail.com | pass: passwordtout</small>
                 </p>
