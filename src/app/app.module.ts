@@ -41,7 +41,8 @@ import { SubNavComponent } from './components/header/sub-nav/sub-nav.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
