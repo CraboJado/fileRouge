@@ -7,13 +7,29 @@
       <div class="refuse">demande refusé</div>
     </div>
     <div class="calendar-container position-relative flex-grow-1">
-        <full-calendar 
+        <full-calendar
         #fullcalendar
         [options]="calendarOptions"></full-calendar>
-        <div 
+
+        <div
         *ngIf="showForm"
-        class="form position-absolute top-50 start-50 bg-light translate-middle">
-          <app-form></app-form>
+        class="form position-absolute top-50 start-50 bg-white translate-middle d-flex justify-content-center p-sm-1 p-md-4 border border-2 rounded">
+          <app-form
+          (emitter)="handleSubmit($event)"
+          (emitterAnnulation)="handleAnnulation()"
+          [event] ="event"
+          ></app-form>
+        </div>
+
+        <div
+        *ngIf="showButton"
+        class="form position-absolute top-50 start-50 bg-white translate-middle d-flex justify-content-center flex-column p-sm-1 p-md-4 border border-2 rounded gap-3">
+        <button
+        (click)="annulerDemandeAbs()"
+        class="btn btn-danger ">Annuler la demande</button>
+        <button
+        (click)="handleShowForm()"
+        class="btn btn-primary ">Modifer la demande</button>
         </div>
     </div>
 

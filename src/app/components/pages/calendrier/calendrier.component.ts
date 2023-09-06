@@ -18,18 +18,16 @@ import { AbsenceService } from 'src/app/shared/service/absence.service';
   styleUrls: ['./calendrier.component.css'],
 })
 export class CalendrierComponent implements OnInit {
+
   @ViewChild('fullcalendar') calendarComponent!: FullCalendarComponent;
 
   showForm = false;
+  showButton = false;
+  isDelete:boolean = false;
   absences: Absence[] = [];
   event:any = {}
 
-  constructor(private _absenceService: AbsenceService) {}
 
-  ngOnInit(): void {
-    this._init();
-  
-  }
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
@@ -39,11 +37,17 @@ export class CalendrierComponent implements OnInit {
     events: [],
   };
 
+  constructor(private _absenceService: AbsenceService) {}
+
+  ngOnInit(): void {
+    this._init();
+
+  }
+
   private _init() {
     this._absenceService.findAll().subscribe((absencesReceived) => {
       this.absences = absencesReceived;
       this.calendarOptions.events = this.absences.map((abs) => {
-
         let color = '#e398a2';
         if (abs.statut == 'EN_ATTENTE') color = '#fcba03';
         if (abs.statut == 'VALIDEE' && abs.typeAbsence =='RTT') color = '#98e1e3';
@@ -56,28 +60,98 @@ export class CalendrierComponent implements OnInit {
           id: id,
           start:abs.dateDebut,
           end: abs.dateFin,
+          type:abs.typeAbsence,
+          motif:abs.motif,
           display: 'background',
           color: color,
         };
       });
     });
   }
+
   handleEventClick(info:any){
     info.jsEvent.preventDefault();
-    this.event = info.event
+    console.log('affecter valeur à event')
+    this.event = info.event;
   }
 
   handleDateClick(arg: any) {
+    console.log('date click function')
     console.log(this.event.id)
     if(this.event.id){
       console.log("update or delete")
-      this.event={};
+      this.showButton = !this.showButton
+
     }else{
+      this.showForm = !this.showForm;
       console.log("creer")
     }
+
+  }
+
+  handleShowForm(){
+    this.showForm = !this.showForm;
+    this.showButton = !this.showButton;
   }
 
 
+ handleAnnulation(){
+   this.showForm = !this.showForm;
+   if(this.event.id && this.isDelete){
+     this.isDelete = false;
+   }
 
+   this.event = {};
+ }
+
+  annulerDemandeAbs(){
+    this.isDelete = true;
+    this.showForm = !this.showForm;
+    this.showButton = !this.showButton;
+
+  }
+
+
+  handleSubmit(data:any){
+    // ajoute une absence
+    if(!this.event.id){
+
+      const absence: Absence = {
+        dateDebut:data.value.start,
+        dateFin:data.value.end,
+        typeAbsence:data.value.type,
+        motif:data.value.motif,
+        employeId:1,
+        statut:"INITIALE"
+      }
+      this._absenceService.create(absence).subscribe(()=> {
+        this._init();
+        console.log('absence creé')
+      })
+      this.showForm = !this.showForm;
+      this.event = {};
+      return
+    }
+
+    // annuler une absence
+    if(this.isDelete){
+      this._absenceService.delete(this.event.id)
+        .subscribe(()=>{
+          this._init();
+          console.log('absence supprimé')
+        })
+      this.showForm = !this.showForm;
+      this.event = {};
+      this.isDelete = false;
+      return
+    }
+
+    // modifier une absence
+
+    // this._absenceService.update()
+    console.log('modifier une demande absence dans bbd')
+    this.showForm = !this.showForm;
+    this.event = {};
+  }
 
 }

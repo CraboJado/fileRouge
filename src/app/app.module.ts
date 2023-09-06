@@ -19,6 +19,8 @@ import { MainNavComponent } from './components/header/main-nav/main-nav.componen
 import { SubNavComponent } from './components/header/sub-nav/sub-nav.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { FormComponent } from './components/form/form.component';
+import { FormsModule } from '@angular/forms';
+import {DatePipe} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -43,9 +45,10 @@ import { FormComponent } from './components/form/form.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FullCalendarModule 
+    FullCalendarModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

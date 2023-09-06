@@ -11,6 +11,7 @@ export interface Absence{
 
   statut?:string;
 
-  employe?:Employe;
+  // employe?:Employe;
+  employeId?:number;
 
 }

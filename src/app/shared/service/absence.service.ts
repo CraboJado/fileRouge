@@ -19,5 +19,18 @@ export class AbsenceService{
     return this.http.get<Absence[]>(this._baseUrl)
   }
 
+  public create(absence: Absence) {
+    return this.http.post<Absence>(this._baseUrl, absence)
+  }
+
+  public delete(id: string) {
+    return this.http
+      .delete<Absence>(this._baseUrl + "/" + id)
+
+  }
+
+  public update(absence: Absence) {
+    return this.http.put<Absence>(this._baseUrl + "/" +  absence.id, absence)
+  }
 
 }

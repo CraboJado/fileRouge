@@ -27,3 +27,7 @@
 .refuse::before{
     background-color:#fc0324;
 }
+
+.form{
+    z-index: 3;
+}
