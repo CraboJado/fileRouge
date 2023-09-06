@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Absence } from 'src/app/shared/model/absence';
+import { AbsenceService } from 'src/app/shared/service/absence.service';
+
 
 @Component({
   selector: 'app-validation-abs',
@@ -6,5 +9,90 @@ import { Component } from '@angular/core';
   styleUrls: ['./validation-abs.component.css']
 })
 export class ValidationAbsComponent {
+  absences: Absence[] = [];
+  errorMessage: string = '';
+  okMessage: string = "";
 
+  triDateCreationAscendant: boolean = false;
+  triDateDebutAscendant: boolean = false;
+
+
+  constructor(private _absenceService: AbsenceService) { }
+
+  ngOnInit(): void {
+    this._init()
+  }
+
+  private _init() {
+    this._absenceService
+      .findAll()
+      .subscribe(absenceReceived => {
+        this.absences = absenceReceived;
+
+      })
+  }
+
+  validStatut(absence: Absence) {
+    absence.statut = "VALIDEE";
+  }
+  rejectStatut(absence: Absence) {
+    absence.statut = "REJETEE"
+  }
+  eraseStatut(absence: Absence) {
+    absence.statut = "INITIALE"
+  }
+
+
+  DateCreationSort() {
+    this.absences.sort((a, b) => {
+      if (a.dateCreation && b.dateCreation) {
+        const dateA = new Date(a.dateCreation);
+        const dateB = new Date(b.dateCreation);
+  
+        return this.triDateCreationAscendant
+          ? dateA.getTime() - dateB.getTime()
+          : dateB.getTime() - dateA.getTime();
+      } else {
+        return 0; 
+      }
+    });
+    this.triDateCreationAscendant = !this.triDateCreationAscendant;
+  }
+  
+  DateDebutSort() {
+    this.absences.sort((a, b) => {
+      if (a.dateDebut && b.dateDebut) {
+        const dateA = new Date(a.dateDebut);
+        const dateB = new Date(b.dateDebut);
+
+        return this.triDateDebutAscendant
+          ? dateA.getTime() - dateB.getTime()
+          : dateB.getTime() - dateA.getTime();
+      } else {
+        return 0; 
+      }
+    });
+  
+    this.triDateDebutAscendant = !this.triDateDebutAscendant;
+  }
+
+  clearMessages() {
+    setTimeout(() => {
+      this.okMessage = '';
+      this.errorMessage = '';
+    }, 3000);
+  }
+
+  updateAbs() {
+      this.absences.forEach(absence => {
+        this._absenceService.update(absence).subscribe();
+        this.okMessage = "Les absences ont bien été enregistrées.";
+        this.clearMessages();
+            this._init
+      });
+  
+  }
 }
+
+
+
