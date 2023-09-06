@@ -106,8 +106,12 @@ export class RapportsVueOneComponent implements  OnInit{
           currentDate.setDate(currentDate.getDate() + 1);
         }
       }
+      if(currentDate.getDay()==0 || currentDate.getDay()==6){
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
       dates.push(formatDate(currentDate, 'yyyy-MM-dd', 'en-US'));
       currentDate.setDate(currentDate.getDate() + 1);
+
       }
     return dates;
   }
