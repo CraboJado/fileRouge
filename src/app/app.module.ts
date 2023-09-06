@@ -17,6 +17,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MainNavComponent } from './components/header/main-nav/main-nav.component';
 import { SubNavComponent } from './components/header/sub-nav/sub-nav.component';
+import { NgChartsModule } from 'ng2-charts';
+import {DateAdapter} from "@angular/material/core";
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import { SubNavComponent } from './components/header/sub-nav/sub-nav.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

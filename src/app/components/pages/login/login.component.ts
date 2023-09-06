@@ -51,5 +51,8 @@ export class LoginComponent {
   }
 
 
+  testtetst(){
+   console.log(this.employes.find(t=>t.id==1));
+  }
 
 }

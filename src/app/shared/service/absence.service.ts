@@ -11,13 +11,18 @@ export class AbsenceService{
 
   private _baseUrl = "http://localhost:8080/absence";
 
-
-  constructor(private http: HttpClient) {}
+  constructor(private _http: HttpClient) {}
 
 
   public findAll(){
-    return this.http.get<Absence[]>(this._baseUrl)
+    return this._http.get<Absence[]>(this._baseUrl)
   }
 
+  public update(updated: Absence) {
+    const headers = { 'content-type': 'application/json'}
+    return  this._http
+   .put<Absence>(`${this._baseUrl}/statut/${updated.id}`, updated,{'headers': headers}) 
+
+  }
 
 }
