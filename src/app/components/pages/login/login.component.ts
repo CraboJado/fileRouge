@@ -59,7 +59,7 @@ export class LoginComponent {
 
 
   postDepartement(nom:string){
-    this.departementService.create()
+    this.departementService.create(nom)
   }
 
 }
