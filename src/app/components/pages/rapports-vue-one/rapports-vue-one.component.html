@@ -12,7 +12,7 @@
     <option *ngFor="let departement of departements"  [value]="departement.id" (click)="employeByDepartement(departementId.value)"  [defaultSelected]="departementGeneral">{{departement.name}}</option>
   </select>
   <select id="year" name="year"   #year>
-    <option *ngFor="let annee of annees"  (click)="changeCurrentYear(year.value)"  [defaultSelected]="currentYear"> {{annee}} </option>
+    <option *ngFor="let annee of annees"  (click)="changeCurrentYear(year.value)"  [defaultSelected]="2023"> {{annee}} </option>
   </select>
   <div style="display: block">
     <canvas baseChart

@@ -106,7 +106,11 @@ export class RapportsVueOneComponent implements  OnInit{
           currentDate.setDate(currentDate.getDate() + 1);
         }
       }
-      dates.push(formatDate(currentDate, 'yyyy-MM-dd', 'en-US'));
+      if(currentDate.getDay()==0 || currentDate.getDay()==6){
+        currentDate.setDate(currentDate.getDate() + 1);
+      }else {
+        dates.push(formatDate(currentDate, 'yyyy-MM-dd', 'en-US'));
+      }
       currentDate.setDate(currentDate.getDate() + 1);
       }
     return dates;
@@ -118,6 +122,12 @@ export class RapportsVueOneComponent implements  OnInit{
 
   lineChartOptions: ChartConfiguration['options'] = {
     responsive:true,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'bottom' // Set the legend position to 'bottom'
+      }
+    },
     scales: {
       // We use this empty structure as a placeholder for dynamic theming.
       y: {
@@ -126,7 +136,7 @@ export class RapportsVueOneComponent implements  OnInit{
       },
     },
   };
-  lineChartLegend = true;
+  lineChartLegend = true
   lineChartType = 'line';
 
   ngOnInit(): void {
@@ -155,6 +165,7 @@ export class RapportsVueOneComponent implements  OnInit{
     }
 
   }
+
 
 
 

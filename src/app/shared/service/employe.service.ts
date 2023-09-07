@@ -22,4 +22,8 @@ export class EmployeService{
     return this.http.get<Employe>(this._baseUrl)
    }
 
+
+
+
+
 }

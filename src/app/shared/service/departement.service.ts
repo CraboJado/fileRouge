@@ -19,4 +19,18 @@ public findAll(){
 }
 
 
+  public postDepartement(){
+
+    const logindata={
+      name:"departement test",
+
+    }
+    const head = { 'content-type': 'application/json'}
+    const body=JSON.stringify(logindata);
+
+    this.http.post<string>(this._baseUrl, body, { observe: "response", headers:head, withCredentials:true})
+      .subscribe(response=> {
+        console.log(response)
+      })
+  }
 }
