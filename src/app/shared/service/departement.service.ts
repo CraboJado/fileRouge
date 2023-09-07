@@ -15,14 +15,14 @@ export class DepartementService{
 
 
 public findAll(){
-    return this.http.get<Departement[]>(this._baseUrl)
+    return this.http.get<Departement[]>(this._baseUrl,{withCredentials:true})
 }
 
 
-  public postDepartement(){
+  public create(nom:string){
 
     const logindata={
-      name:"departement test",
+      name:nom,
 
     }
     const head = { 'content-type': 'application/json'}

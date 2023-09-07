@@ -58,8 +58,8 @@ export class LoginComponent {
   }
 
 
-  postDepartement(){
-    this.departementService.postDepartement()
+  postDepartement(nom:string){
+    this.departementService.create()
   }
 
 }

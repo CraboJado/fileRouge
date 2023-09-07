@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Login} from "../model/login";
 import {Departement} from "../model/departement";
 import {Absence} from "../model/absence";
+import {Employe} from "../model/employe";
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +20,40 @@ export class AbsenceService{
   }
 
   public update(updated: Absence) {
+
+    const newAbsence={
+      dateCreation:updated.dateCreation,
+      dateDebut:updated.dateDebut,
+      dateFin:updated.dateFin,
+      motif:updated.motif,
+      typeAbsence:updated.typeAbsence,
+      statut:updated.statut,
+      employeId:updated.employe?.id
+    }
     const headers = { 'content-type': 'application/json'}
     return  this._http
-   .put<Absence>(`${this._baseUrl}/statut/${updated.id}`, updated,{'headers': headers})
+   .put(`${this._baseUrl}/statut/${updated.id}`, newAbsence,{headers: headers,withCredentials:true})
 
   }
+  public create(updated: Absence) {
+
+    const newAbsence={
+      dateCreation:updated.dateCreation,
+      dateDebut:updated.dateDebut,
+      dateFin:updated.dateFin,
+      motif:updated.motif,
+      typeAbsence:updated.typeAbsence,
+      statut:updated.statut,
+      employeId:updated.employe?.id
+    }
+    const headers = { 'content-type': 'application/json'}
+    return  this._http
+   .post(`${this._baseUrl}/statut/${updated.id}`, newAbsence,{headers: headers,withCredentials:true})
+
+  }
+
+
+
+
 
 }
