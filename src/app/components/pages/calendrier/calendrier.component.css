@@ -1,0 +1,33 @@
+.color-instruction > div {
+    position: relative;
+    margin: 1rem;
+}
+
+.color-instruction > div::before {
+  content:'';
+  display:block;
+  width:40px;
+  height:40px;
+  position: absolute;
+  left: -3rem;
+}
+
+.conge-valide::before {
+    background-color:#03fc90;
+}
+
+.rtt-valide::before  {
+    background-color:#98e1e3;
+}
+
+.en-attente::before{
+    background-color:#fcba03;
+}
+
+.refuse::before{
+    background-color:#fc0324;
+}
+
+.form{
+    z-index: 3;
+}

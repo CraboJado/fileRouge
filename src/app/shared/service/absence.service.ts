@@ -19,6 +19,20 @@ export class AbsenceService{
     return this._http.get<Absence[]>(this._baseUrl,{withCredentials:true})
   }
 
+  public create(absence: Absence) {
+    return this._http.post<Absence>(this._baseUrl, absence)
+  }
+
+  public delete(id: string) {
+    return this._http
+      .delete<Absence>(this._baseUrl + "/" + id)
+
+  }
+
+  public modifier(absence: Absence) {
+    return this._http.put<Absence>(this._baseUrl + "/" +  absence.id, absence)
+  }
+
   public update(updated: Absence) {
 
     const newAbsence={
@@ -35,25 +49,6 @@ export class AbsenceService{
    .put(`${this._baseUrl}/statut/${updated.id}`, newAbsence,{headers: headers,withCredentials:true})
 
   }
-  public create(updated: Absence) {
-
-    const newAbsence={
-      dateCreation:updated.dateCreation,
-      dateDebut:updated.dateDebut,
-      dateFin:updated.dateFin,
-      motif:updated.motif,
-      typeAbsence:updated.typeAbsence,
-      statut:updated.statut,
-      employeId:updated.employe?.id
-    }
-    const headers = { 'content-type': 'application/json'}
-    return  this._http
-   .post(`${this._baseUrl}/statut/${updated.id}`, newAbsence,{headers: headers,withCredentials:true})
-
-  }
-
-
-
 
 
 }

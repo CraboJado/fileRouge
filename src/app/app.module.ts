@@ -17,6 +17,9 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MainNavComponent } from './components/header/main-nav/main-nav.component';
 import { SubNavComponent } from './components/header/sub-nav/sub-nav.component';
+import { FormComponent } from './components/form/form.component';
+import { FormsModule } from '@angular/forms';
+import {DatePipe} from "@angular/common";
 import { NgChartsModule } from 'ng2-charts';
 import {DateAdapter} from "@angular/material/core";
 import {FullCalendarModule} from "@fullcalendar/angular";
@@ -38,13 +41,17 @@ import {FullCalendarModule} from "@fullcalendar/angular";
     HeaderComponent,
     FooterComponent,
     MainNavComponent,
-    SubNavComponent
+    SubNavComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     AppRoutingModule,
+    FormsModule,
+    FullCalendarModule,
+    DatePipe,
     NgChartsModule,
     FullCalendarModule
   ],
