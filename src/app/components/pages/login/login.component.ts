@@ -21,6 +21,7 @@ export class LoginComponent {
   employes:Employe[]=[];
   absences:Absence[]=[];
   joursOffs:JoursOff[]=[];
+  cookie:string="";
 
   constructor(private loginService:LoginService,
               private departementService:DepartementService,
@@ -32,8 +33,9 @@ export class LoginComponent {
 
   testLogin(email:string,password:string){
     console.log("connecté")
-    this.loginService.login(email,password)
+    this.loginService.loging(email,password)
   }
+
 
 
   testEmploye(){
@@ -53,6 +55,11 @@ export class LoginComponent {
 
   testtetst(){
    console.log(this.employes.find(t=>t.id==1));
+  }
+
+
+  postDepartement(nom:string){
+    this.departementService.create(nom)
   }
 
 }
