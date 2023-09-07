@@ -26,18 +26,14 @@ export class JoursOffService {
     return this._http.post(this._baseUrl, created);
   }
 
-  public findTypesJour() {
-    return this._http.get<string[]>(`${this._baseUrl}/distinct-types-jour`);
-  }
-  /* TODO FIX BACKEND ???
-    public update(updated: JoursOff) {
+  public update(updated: JoursOff) {
       return this._http
         .put(`${this._baseUrl}/${updated.id}`, updated);
-    }*/
-  public update(updated: JoursOff) {
+    }
+ /* public update(updated: JoursOff) {
     return this._http
       .put(`${this._baseUrl}`, updated);
-  }
+  }*/
   public delete(id?: number) {
     return this._http.delete(`${this._baseUrl}/${id}`);
   }

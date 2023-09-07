@@ -19,11 +19,12 @@ import {DatePipe} from '@angular/common';
 export class JoursOffComponent implements OnInit {
 
   joursOffs: JoursOff[] = [];
-  jo: JoursOff = {};
+  jo: any = {};
   typesJour: string[] = [];
   showPopover: boolean = false;
   selectedEvent: JoursOff | null = null;
   editable: boolean = false;
+
   calendarOptions: CalendarOptions = {
     locale: frLocale,
     plugins: [
@@ -81,39 +82,68 @@ export class JoursOffComponent implements OnInit {
     const clickedDate = this.datePipe.transform(clickInfo.date, 'yyyy-MM-dd');
     console.log('Date séléctionnée :', clickedDate);
 
-    const foundedJourOff = this.joursOffs.find(jourOff => {
+    const existedJourOff = this.joursOffs.find(jourOff => {
       const joDate = this.datePipe.transform(jourOff.jour, 'yyyy-MM-dd');
       return joDate === clickedDate;
     });
 
-    if (foundedJourOff) {
+    console.log('Date jo :', this.jo.jour);
+    if (existedJourOff) {
       console.log('Formulaire Edition');
       this.editable = true;
-      this.selectedEvent = foundedJourOff;
+      this.selectedEvent = existedJourOff;
       console.log('Evenement :', this.selectedEvent);
-      this.jo = {...foundedJourOff};
+      this.jo = {...existedJourOff};
     } else {
       console.log('Formulaire Création');
       this.editable = false;
       this.selectedEvent = null;
-      this.jo = {};
+      //clickedDate =
+      //this.jo = {};
     }
 
     this.showPopover = true;
   }
 
   createOrUpdateJourOff() {
+    /*
     if (this.editable) {
       this.updateJourOff(this.selectedEvent);
+      this.reInitJourOff();
+      this._init();
     } else {
       this.createJourOff();
+      this.reInitJourOff();
+      this._init();
+    }
+*/
+    if (!this.jo.id) {
+      this._jourOffService.create(this.jo)
+        .subscribe(() => {
+            this._init();
+            this.reInitJourOff();
+          }, (error) => {
+            console.error("Erreur lors de la création du jour officiel", error);
+          }
+        );
+    } else {
+      this._jourOffService.update(this.jo)
+        .subscribe(
+          () => {
+            this._init();
+            this.reInitJourOff();
+          },
+          (error) => {
+            console.error("Erreur lors de la modification du jour officiel", error);
+          }
+        );
     }
   }
 
+  /*
   createJourOff() {
     this._jourOffService.create(this.jo)
       .subscribe(() => {
-        this.reInitJourOff();
         this._init();
       });
   }
@@ -123,16 +153,14 @@ export class JoursOffComponent implements OnInit {
       this._jourOffService.update(event)
         .subscribe(
           () => {
-            this.reInitJourOff();
             this._init();
-            this.selectedEvent = null;
           },
           (error) => {
             console.error("Erreur lors de la modification du jour officiel", error);
           }
         );
     }
-  }
+  }*/
 
   deleteJourOff(id?: number) {
     if (id) {

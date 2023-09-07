@@ -1,5 +1,5 @@
 <div *ngIf="showPopover">
-  <form (ngSubmit)="createOrUpdateJourOff()" class="form">
+  <form (ngSubmit)="createOrUpdateJourOff()" #form="ngForm" class="form">
     <div>
       <label>Type de jour:</label>
       <div *ngFor="let type of typesJour">
