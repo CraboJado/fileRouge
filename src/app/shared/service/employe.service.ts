@@ -18,7 +18,8 @@ export class EmployeService{
   }
 
   public findById(){
+    let thiduedyes="bonjour";
     return this.http.get<Employe>(this._baseUrl)
-  }
+   }
 
 }

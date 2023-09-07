@@ -12,25 +12,31 @@ export class AbsenceService{
   private _baseUrl = "http://localhost:8080/absence";
 
 
-  constructor(private http: HttpClient) {}
+  constructor(private _http: HttpClient) {}
 
 
   public findAll(){
-    return this.http.get<Absence[]>(this._baseUrl)
+    return this._http.get<Absence[]>(this._baseUrl)
   }
 
   public create(absence: Absence) {
-    return this.http.post<Absence>(this._baseUrl, absence)
+    return this._http.post<Absence>(this._baseUrl, absence)
   }
 
   public delete(id: string) {
-    return this.http
+    return this._http
       .delete<Absence>(this._baseUrl + "/" + id)
 
   }
 
-  public update(absence: Absence) {
-    return this.http.put<Absence>(this._baseUrl + "/" +  absence.id, absence)
+  public modifier(absence: Absence) {
+    return this._http.put<Absence>(this._baseUrl + "/" +  absence.id, absence)
+  }
+  public update(updated: Absence) {
+    const headers = { 'content-type': 'application/json'}
+    return  this._http
+   .put<Absence>(`${this._baseUrl}/statut/${updated.id}`, updated,{'headers': headers})
+
   }
 
 }

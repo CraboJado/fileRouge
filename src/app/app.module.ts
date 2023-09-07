@@ -21,6 +21,9 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { FormComponent } from './components/form/form.component';
 import { FormsModule } from '@angular/forms';
 import {DatePipe} from "@angular/common";
+import { NgChartsModule } from 'ng2-charts';
+import {DateAdapter} from "@angular/material/core";
+
 
 @NgModule({
   declarations: [
@@ -38,17 +41,15 @@ import {DatePipe} from "@angular/common";
     HeaderComponent,
     FooterComponent,
     MainNavComponent,
-    SubNavComponent,
-    FormComponent
+    SubNavComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FullCalendarModule,
-    FormsModule
+    AppRoutingModule
   ],
-  providers: [DatePipe],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
