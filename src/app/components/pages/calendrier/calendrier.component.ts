@@ -116,7 +116,7 @@ export class CalendrierComponent implements OnInit {
     // ajoute une absence
     if(!this.event.id){
 
-      const absence: Absence = {
+      const absence = {
         dateDebut:data.value.start,
         dateFin:data.value.end,
         typeAbsence:data.value.type,

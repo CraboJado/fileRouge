@@ -41,13 +41,18 @@ import {DateAdapter} from "@angular/material/core";
     HeaderComponent,
     FooterComponent,
     MainNavComponent,
-    SubNavComponent
+    SubNavComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    FullCalendarModule,
+    DatePipe,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
