@@ -21,7 +21,7 @@ export class CalendrierComponent implements OnInit {
 
   @ViewChild('fullcalendar') calendarComponent!: FullCalendarComponent;
 
-  showForm = true;
+  showForm = false;
   showButton = false;
   isDelete:boolean = false;
   absences: Absence[] = [];
@@ -74,6 +74,7 @@ export class CalendrierComponent implements OnInit {
     info.jsEvent.preventDefault();
     console.log('affecter valeur à event')
     this.event = info.event;
+
   }
 
   handleDateClick(arg: any) {
