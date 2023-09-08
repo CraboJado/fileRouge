@@ -1,9 +1,10 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import 'node_modules/bootstrap-icons/font/bootstrap-icons.css';
 
 ul,
 li {
   padding: 0;
-  margin:0;
+  margin: 0;
   list-style-type: none;
 }
 

@@ -29,19 +29,17 @@
         <td>
           <button type="submit" class="btn btn-outline-success me-2" (click)="validStatut(absence)"
             *ngIf="absence.statut =='INITIALE'">
-            <i class="bi bi-check-lg text-success"> </i>
+            <i class="bi bi-check-lg"> </i>
           </button>
 
           <i class="bi bi-check-lg text-success" *ngIf="absence.statut=='VALIDEE'"></i>
 
           <button type="submit" class="btn btn-outline-danger" (click)="rejectStatut(absence)"
             *ngIf="absence.statut=='INITIALE'">
-            <i class="bi bi-x-lg text-danger"> </i>
+            <i class="bi bi-x-lg"> </i>
           </button>
-
-          <i class="bi bi-x-lg text-danger" *ngIf="absence.statut =='REJETEE'">
+          <i class="bi bi-x-lg" *ngIf="absence.statut =='REJETEE'">
           </i>
-          
         </td>
         <td>
           <button type="submit" class="btn btn-outline-black ms-3" (click)="eraseStatut(absence)">
