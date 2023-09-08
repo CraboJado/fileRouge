@@ -20,8 +20,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MainNavComponent } from './components/header/main-nav/main-nav.component';
 import { SubNavComponent } from './components/header/sub-nav/sub-nav.component';
-import { DatePipe } from '@angular/common';
-
+import { FormComponent } from './components/form/form.component';
+import {DatePipe} from "@angular/common";
+import { NgChartsModule } from 'ng2-charts';
+import {DateAdapter} from "@angular/material/core";
 
 
 @NgModule({
@@ -40,7 +42,8 @@ import { DatePipe } from '@angular/common';
     HeaderComponent,
     FooterComponent,
     MainNavComponent,
-    SubNavComponent
+    SubNavComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,9 @@ import { DatePipe } from '@angular/common';
     NgbModule,
     NgbCollapseModule,
     FormsModule,
-    FullCalendarModule
+    FullCalendarModule,
+    DatePipe,
+    NgChartsModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

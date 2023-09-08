@@ -15,7 +15,7 @@ export class JoursOffService {
   }
 
   public findAll() {
-    return this._http.get<JoursOff[]>(this._baseUrl)
+    return this._http.get<JoursOff[]>(this._baseUrl,{withCredentials:true})
   }
 
   public findById(id?: number) {
@@ -23,18 +23,21 @@ export class JoursOffService {
   }
 
   public create(created: JoursOff) {
-    return this._http.post(this._baseUrl, created);
+    const headers = { 'content-type': 'application/json'}
+    return this._http.post(this._baseUrl, created,{headers: headers,withCredentials:true})
   }
 
   public update(updated: JoursOff) {
+    const headers = { 'content-type': 'application/json'}
       return this._http
-        .put(`${this._baseUrl}/${updated.id}`, updated);
+        .put(`${this._baseUrl}/${updated.id}`, updated,{headers: headers,withCredentials:true})
     }
  /* public update(updated: JoursOff) {
     return this._http
       .put(`${this._baseUrl}`, updated);
   }*/
   public delete(id?: number) {
-    return this._http.delete(`${this._baseUrl}/${id}`);
+    const headers = { 'content-type': 'application/json'}
+    return this._http.delete(`${this._baseUrl}/${id}`,{headers: headers,withCredentials:true})
   }
 }

@@ -1,9 +1,8 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {Login} from "../model/login";
-import {Departement} from "../model/departement";
 import {Absence} from "../model/absence";
 import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +11,41 @@ export class AbsenceService{
 
   private _baseUrl = environment.urlApi.absences;
 
-  constructor(private http: HttpClient) {}
-
+  constructor(private _http: HttpClient) {}
 
   public findAll(){
-    return this.http.get<Absence[]>(this._baseUrl)
+    return this._http.get<Absence[]>(this._baseUrl,{withCredentials:true})
   }
 
+  public create(absence: Absence) {
+    return this._http.post<Absence>(this._baseUrl, absence)
+  }
+
+  public delete(id: string) {
+    return this._http
+      .delete<Absence>(this._baseUrl + "/" + id)
+
+  }
+
+  public modifier(absence: Absence) {
+    return this._http.put<Absence>(this._baseUrl + "/" +  absence.id, absence)
+  }
+
+  public update(updated: Absence) {
+
+    const newAbsence={
+      dateCreation:updated.dateCreation,
+      dateDebut:updated.dateDebut,
+      dateFin:updated.dateFin,
+      motif:updated.motif,
+      typeAbsence:updated.typeAbsence,
+      statut:updated.statut,
+      employeId:updated.employe?.id
+    }
+    const headers = { 'content-type': 'application/json'}
+    return  this._http
+   .put(`${this._baseUrl}/statut/${updated.id}`, newAbsence,{headers: headers,withCredentials:true})
+
+  }
 
 }

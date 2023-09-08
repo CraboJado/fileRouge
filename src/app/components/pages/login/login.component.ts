@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
-import { Departement } from "../../../shared/model/departement";
-import { Employe } from "../../../shared/model/employe";
-import { LoginService } from "../../../shared/service/login.service";
-import { DepartementService } from "../../../shared/service/departement.service";
-import { EmployeService } from "../../../shared/service/employe.service";
-import { AbsenceService } from "../../../shared/service/absence.service";
-import { JoursOffService } from "../../../shared/service/jours-off.service";
-import { JoursOff } from "../../../shared/model/jours-off";
-import { Absence } from "../../../shared/model/absence";
+import {Component} from '@angular/core';
+import {Departement} from "../../../shared/model/departement";
+import {Employe} from "../../../shared/model/employe";
+import {LoginService} from "../../../shared/service/login.service";
+import {DepartementService} from "../../../shared/service/departement.service";
+import {EmployeService} from "../../../shared/service/employe.service";
+import {AbsenceService} from "../../../shared/service/absence.service";
+import {JoursOffService} from "../../../shared/service/jours-off.service";
+import {JoursOff} from "../../../shared/model/jours-off";
+import {Absence} from "../../../shared/model/absence";
 
 
 @Component({
@@ -21,6 +21,8 @@ export class LoginComponent {
   employes: Employe[] = [];
   absences: Absence[] = [];
   joursOffs: JoursOff[] = [];
+  cookie: string = "";
+
 
   constructor(
     private loginService: LoginService,
@@ -44,13 +46,23 @@ export class LoginComponent {
   testGetDeparteemnt() {
     this.departementService.findAll().subscribe(t => this.departements = t)
   }
+
   testGetAbsence() {
     this.absenceService.findAll().subscribe(t => this.absences = t)
   }
+
   testGetJoursOff() {
     this.jourOffService.findAll().subscribe(t => this.joursOffs = t)
   }
 
 
+  testtetst() {
+    console.log(this.employes.find(t => t.id == 1));
+  }
+
+
+  postDepartement(nom: string) {
+    this.departementService.create(nom)
+  }
 
 }

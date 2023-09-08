@@ -31,10 +31,8 @@ export class JoursOffComponent implements OnInit {
       interactionPlugin,
       dayGridPlugin,
       timeGridPlugin,
-      listPlugin,
-      bootstrap5Plugin
+      listPlugin
     ],
-    themeSystem: 'bootstrap5',
     headerToolbar: {
       left: 'prev,next,prevYear,nextYear,today',
       center: 'title',
@@ -86,7 +84,7 @@ export class JoursOffComponent implements OnInit {
       const joDate = this.datePipe.transform(jourOff.jour, 'yyyy-MM-dd');
       return joDate === clickedDate;
     });
-
+    this.jo.jour =  clickedDate
     console.log('Date jo :', this.jo.jour);
     if (existedJourOff) {
       console.log('Formulaire Edition');
@@ -98,25 +96,12 @@ export class JoursOffComponent implements OnInit {
       console.log('Formulaire Création');
       this.editable = false;
       this.selectedEvent = null;
-      //clickedDate =
-      //this.jo = {};
     }
 
     this.showPopover = true;
   }
 
   createOrUpdateJourOff() {
-    /*
-    if (this.editable) {
-      this.updateJourOff(this.selectedEvent);
-      this.reInitJourOff();
-      this._init();
-    } else {
-      this.createJourOff();
-      this.reInitJourOff();
-      this._init();
-    }
-*/
     if (!this.jo.id) {
       this._jourOffService.create(this.jo)
         .subscribe(() => {
@@ -139,28 +124,6 @@ export class JoursOffComponent implements OnInit {
         );
     }
   }
-
-  /*
-  createJourOff() {
-    this._jourOffService.create(this.jo)
-      .subscribe(() => {
-        this._init();
-      });
-  }
-
-  updateJourOff(event: JoursOff | null) {
-    if (event) {
-      this._jourOffService.update(event)
-        .subscribe(
-          () => {
-            this._init();
-          },
-          (error) => {
-            console.error("Erreur lors de la modification du jour officiel", error);
-          }
-        );
-    }
-  }*/
 
   deleteJourOff(id?: number) {
     if (id) {
