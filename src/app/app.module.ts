@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
+import {NgbCollapseModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {HttpClientModule} from "@angular/common/http";
+import { FullCalendarModule } from '@fullcalendar/angular';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/pages/login/login.component';
 import { CalendrierComponent } from './components/pages/calendrier/calendrier.component';
@@ -12,17 +16,14 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { RapportsComponent } from './components/pages/rapports/rapports.component';
 import { RapportsVueOneComponent } from './components/pages/rapports-vue-one/rapports-vue-one.component';
 import { RapportsVueTwoComponent } from './components/pages/rapports-vue-two/rapports-vue-two.component';
-import {HttpClientModule} from "@angular/common/http";
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MainNavComponent } from './components/header/main-nav/main-nav.component';
 import { SubNavComponent } from './components/header/sub-nav/sub-nav.component';
 import { FormComponent } from './components/form/form.component';
-import { FormsModule } from '@angular/forms';
 import {DatePipe} from "@angular/common";
 import { NgChartsModule } from 'ng2-charts';
 import {DateAdapter} from "@angular/material/core";
-import {FullCalendarModule} from "@fullcalendar/angular";
 
 
 @NgModule({
@@ -48,12 +49,12 @@ import {FullCalendarModule} from "@fullcalendar/angular";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    AppRoutingModule,
+    NgbModule,
+    NgbCollapseModule,
     FormsModule,
     FullCalendarModule,
     DatePipe,
     NgChartsModule,
-    FullCalendarModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
