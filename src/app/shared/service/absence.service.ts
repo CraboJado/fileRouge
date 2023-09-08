@@ -17,8 +17,12 @@ export class AbsenceService{
     return this._http.get<Absence[]>(this._baseUrl,{withCredentials:true})
   }
 
+  public findAllByEmploye(){
+    return this._http.get<Absence[]>(this._baseUrl + '/employe',{withCredentials:true})
+  }
+
   public create(absence: Absence) {
-    return this._http.post<Absence>(this._baseUrl, absence)
+    return this._http.post<Absence>(this._baseUrl, absence,{withCredentials:true})
   }
 
   public delete(id: string) {

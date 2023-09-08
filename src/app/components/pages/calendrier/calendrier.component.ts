@@ -44,7 +44,7 @@ export class CalendrierComponent implements OnInit {
   }
 
   private _init() {
-    this._absenceService.findAll().subscribe((absencesReceived) => {
+    this._absenceService.findAllByEmploye().subscribe((absencesReceived) => {
       this.absences = absencesReceived;
       this.calendarOptions.events = this.absences.map((abs) => {
         let color = '#e398a2';
@@ -69,6 +69,7 @@ export class CalendrierComponent implements OnInit {
           color: color
         };
       });
+      console.log(this.calendarOptions.events)
     });
   }
 
@@ -81,16 +82,14 @@ export class CalendrierComponent implements OnInit {
 
   handleDateClick(arg: any) {
     console.log('date click function')
-    console.log(this.event.id)
+    console.log("event.id === ",this.event.id)
     if(this.event.id){
-      console.log("update or delete")
+      console.log("update or delete, showButton")
       this.showButton = !this.showButton
-
     }else{
+      console.log("No event, show Form to creer")
       this.showForm = !this.showForm;
-      console.log("creer")
     }
-
   }
 
   handleShowForm(){
@@ -100,15 +99,16 @@ export class CalendrierComponent implements OnInit {
 
 
  handleAnnulation(){
+    console.log("turn off Form, re-initial the state as beginning : isDelete false, event = {}")
    this.showForm = !this.showForm;
    if(this.event.id && this.isDelete){
      this.isDelete = false;
    }
-
    this.event = {};
  }
 
   annulerDemandeAbs(){
+    console.log("set isDelete true, show Form and hide button")
     this.isDelete = true;
     this.showForm = !this.showForm;
     this.showButton = !this.showButton;
@@ -119,7 +119,7 @@ export class CalendrierComponent implements OnInit {
   handleSubmit(data:any){
     // ajoute une absence
     if(!this.event.id){
-
+      console.log('creer absence, turnoff form')
       const absence = {
         dateDebut:data.value.start,
         dateFin:data.value.end,
@@ -128,9 +128,11 @@ export class CalendrierComponent implements OnInit {
         employeId:1,
         statut:"INITIALE"
       }
-      this._absenceService.create(absence).subscribe(()=> {
-        this._init();
-        console.log('absence creé')
+      //TODO à regler le problem de error , mais code 201 dans la réponse,
+      this._absenceService.create(absence).subscribe({
+        next: ()=> { console.log('creer')},
+        error :()=>{ this._init() },
+        complete : ()=> console.log("complete")
       })
       this.showForm = !this.showForm;
       this.event = {};
