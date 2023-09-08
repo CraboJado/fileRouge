@@ -38,10 +38,13 @@
     <p class="fw-bold fs-2 text-center">{{month.value}}</p>
     <p class="fw-bold fs-2 text-center ms-2">{{year.value}}</p>
   </div>
-
   <div style="display: block">
-    <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
-            [legend]="lineChartLegend"></canvas>
+    <canvas baseChart
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [legend]="lineChartLegend"
+    ></canvas>
   </div>
 
 </section>

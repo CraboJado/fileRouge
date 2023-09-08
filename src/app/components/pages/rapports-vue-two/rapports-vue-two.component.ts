@@ -111,9 +111,9 @@ export class RapportsVueTwoComponent implements  OnInit{
         currentDate.setDate(currentDate.getDate() + 1);
       }else {
         dates.push(formatDate(currentDate, 'yyyy-MM-dd', 'en-US'));
-      }
+
       currentDate.setDate(currentDate.getDate() + 1);
-    }
+    }}
     return dates;
   }
 
