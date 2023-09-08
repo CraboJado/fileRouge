@@ -3,7 +3,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import {
   Calendar,
-  CalendarOptions,
+  CalendarOptions, DateInput,
   EventSourceInput,
 } from '@fullcalendar/core';
 import frLocale from '@fullcalendar/core/locales/fr';
@@ -11,6 +11,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { Absence } from 'src/app/shared/model/absence';
 import { AbsenceService } from 'src/app/shared/service/absence.service';
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-departements',
@@ -26,15 +27,17 @@ export class CalendrierComponent implements OnInit {
   isDelete:boolean = false;
   absences: Absence[] = [];
   event:any = {}
+
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
     plugins: [dayGridPlugin, interactionPlugin],
     dateClick: this.handleDateClick.bind(this),
     eventClick: this.handleEventClick.bind(this),
-    events: []
-  }
+    events: [],
+    weekends:false,
 
-  constructor(private _absenceService: AbsenceService) {}
+  }
+  constructor(private _absenceService: AbsenceService,private _datePipe: DatePipe) {}
 
   ngOnInit(): void {
     this._init();
@@ -52,14 +55,18 @@ export class CalendrierComponent implements OnInit {
 
         const id:string = abs.id+'';
 
+        let endDate = new Date(abs.dateFin as Date)
+        endDate.setDate(endDate.getDate() + 1)
+        let dateFin = this._datePipe.transform(endDate, 'yyyy-MM-dd') as DateInput ;
+
         return {
           id: id,
           start:abs.dateDebut,
-          end: abs.dateFin,
+          end: dateFin ,
           type:abs.typeAbsence,
           motif:abs.motif,
           display: 'background',
-          color: color,
+          color: color
         };
       });
     });
