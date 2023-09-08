@@ -26,23 +26,18 @@ export class CalendrierComponent implements OnInit {
   isDelete:boolean = false;
   absences: Absence[] = [];
   event:any = {}
-
-
-
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
     plugins: [dayGridPlugin, interactionPlugin],
-    dateClick: this.handleDateClick.bind(this), // MUST ensure `this` context is maintained
+    dateClick: this.handleDateClick.bind(this),
     eventClick: this.handleEventClick.bind(this),
-    events: [],
-
-  };
+    events: []
+  }
 
   constructor(private _absenceService: AbsenceService) {}
 
   ngOnInit(): void {
     this._init();
-
   }
 
   private _init() {

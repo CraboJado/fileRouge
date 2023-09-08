@@ -21,12 +21,12 @@ public findAll(){
 
   public create(nom:string){
 
-    const logindata={
+    const newDepartement={
       name:nom,
 
     }
     const head = { 'content-type': 'application/json'}
-    const body=JSON.stringify(logindata);
+    const body=JSON.stringify(newDepartement);
 
     this.http.post<string>(this._baseUrl, body, { observe: "response", headers:head, withCredentials:true})
       .subscribe(response=> {

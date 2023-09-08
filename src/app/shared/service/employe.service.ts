@@ -58,11 +58,8 @@ export class EmployeService{
        soldeConge :employe.soldeConge,
        soldeRTT : employe.soldeRTT,
        email :employe.email,
-
        departement :employe.departement,
-
        manager :employe.manager,
-
        roles :employe.roles
      }
 

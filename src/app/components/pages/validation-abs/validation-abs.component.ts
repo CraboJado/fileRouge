@@ -89,7 +89,6 @@ export class ValidationAbsComponent {
         this.okMessage = "Les absences ont bien été enregistrées.";
         this.clearMessages();
       });
-
   }
 }
 
