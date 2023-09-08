@@ -153,6 +153,22 @@ export class CalendrierComponent implements OnInit {
     }
 
     // modifier une absence
+    const absence = {
+      id:this.event.id,
+      dateDebut:data.value.start,
+      dateFin:data.value.end,
+      typeAbsence:data.value.type,
+      motif:data.value.motif,
+      statut:"INITIALE"
+    }
+
+    //TODO à regler le problem de error , mais code 201 dans la réponse,
+    this._absenceService.modify(absence).subscribe(
+      {
+        next:()=>{},
+        error:()=> {this._init() }
+      }
+    )
 
     // this._absenceService.update()
     console.log('modifier une demande absence dans bbd')

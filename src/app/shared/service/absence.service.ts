@@ -31,8 +31,8 @@ export class AbsenceService{
 
   }
 
-  public modifier(absence: Absence) {
-    return this._http.put<Absence>(this._baseUrl + "/" +  absence.id, absence)
+  public modify(absence: Absence) {
+    return this._http.put<Absence>(this._baseUrl + "/" +  absence.id, absence,{withCredentials:true})
   }
 
   public update(updated: Absence) {
