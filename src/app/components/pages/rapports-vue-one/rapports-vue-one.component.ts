@@ -99,9 +99,9 @@ export class RapportsVueOneComponent implements OnInit {
         currentDate.setDate(currentDate.getDate() + 1);
       } else {
         dates.push(formatDate(currentDate, 'yyyy-MMMM-dd', 'en-US'));
+        currentDate.setDate(currentDate.getDate() + 1);
       }
 
-      currentDate.setDate(currentDate.getDate() + 1);
     }
     return dates;
   }
