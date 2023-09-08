@@ -1,19 +1,17 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {Login} from "../model/login";
-import {Departement} from "../model/departement";
 import {Absence} from "../model/absence";
-import {Employe} from "../model/employe";
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AbsenceService{
 
-  private _baseUrl = "http://localhost:8080/absence";
+  private _baseUrl = environment.urlApi.absences;
 
   constructor(private _http: HttpClient) {}
-
 
   public findAll(){
     return this._http.get<Absence[]>(this._baseUrl,{withCredentials:true})
@@ -49,6 +47,5 @@ export class AbsenceService{
    .put(`${this._baseUrl}/statut/${updated.id}`, newAbsence,{headers: headers,withCredentials:true})
 
   }
-
 
 }

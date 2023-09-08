@@ -1,49 +1,33 @@
-<nav aria-label="Main Navigation" class="navbar navbar-expand-lg shadow-sm ">
-  <div class="container px-lg-4">
-    <li class="col-lg-3 me-0">
-      <a class="navbar-brand fw-bold" routerLink="/home">Redwire</a>
-    </li>
-
-    <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler "
-            data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
-      <i class="bi bi-list"></i>
-    </button>
-
-    <div class="collapse navbar-collapse d-lg-flex" id="navbar">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a
-            aria-current="page"
-            class="nav-link active" routerLink="/home">Dashboard</a>
+<nav class="navbar navbar-expand-lg navbar-light mb-3">
+  <div class="container">
+    <span class="navbar-brand fw-bold" [routerLink]="'/home'">Redwire</span>
+    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">&#9776;</button>
+    <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="'/home'" (click)="isMenuCollapsed = true">Dashboard</a>
         </li>
-        <li class="nav-item dropdown">
-          <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Absences</a>
-          <ul class="dropdown-menu">
-            <li>
-              <a
-                class="dropdown-item"
-                href="#" routerLink="/demande">Demande d'absence</a></li>
-            <li><a
-              class="dropdown-item"
-              href="#" routerLink="/validation">Validation des absences (M)</a></li>
-            <li><a
-              class="dropdown-item"
-              href="#" routerLink="/rapports">Rapports (M)</a></li>
-          </ul>
+        <li class="nav-item" ngbDropdown>
+          <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button"> Absences </a>
+          <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
+            <a ngbDropdownItem [routerLink]="'/demande'" (click)="$event.preventDefault()">Demande d'absence</a>
+            <a ngbDropdownItem [routerLink]="'/validation'" (click)="$event.preventDefault()">Validation des absences (M)</a>
+            <a ngbDropdownItem [routerLink]="'/rapports'" (click)="$event.preventDefault()">Rapports (M)</a>
+          </div>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            routerLink="/calendrier">Calendrier</a>
+          <a class="nav-link" [routerLink]="'/calendrier'" (click)="isMenuCollapsed = true">Calendrier</a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            href="#" routerLink="/jours-off">Jours officiels</a>
+          <a class="nav-link" [routerLink]="'jours-off'" (click)="isMenuCollapsed = true">Jours officiels</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">Bonjour, Admin</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-outline-primary rounded-pill px-3" [routerLink]="'jours-off'" (click)="isMenuCollapsed = true">Déconnexion</a>
         </li>
       </ul>
-      <li class="me-3">Bonjour Admin</li>
-      <button class="btn btn-outline-primary rounded-pill px-3">Déconnexion</button>
     </div>
   </div>
 </nav>

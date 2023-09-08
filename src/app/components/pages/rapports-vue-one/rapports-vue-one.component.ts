@@ -8,8 +8,8 @@ import {EmployeService} from "../../../shared/service/employe.service";
 import {Departement} from "../../../shared/model/departement";
 import {Employe} from "../../../shared/model/employe";
 import {switchMap} from "rxjs";
-import {JoursOffService} from "../../../shared/service/joursOff.service";
-import {JoursOff} from "../../../shared/model/joursOff";
+import {JoursOffService} from "../../../shared/service/jours-off.service";
+import {JoursOff} from "../../../shared/model/jours-off";
 
 @Component({
   selector: 'app-rapports-vue-one',
@@ -112,7 +112,7 @@ export class RapportsVueOneComponent implements  OnInit{
         dates.push(formatDate(currentDate, 'yyyy-MM-dd', 'en-US'));
         currentDate.setDate(currentDate.getDate() + 1);
       }
-      
+
 
       }
     return dates;

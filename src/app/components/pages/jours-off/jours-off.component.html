@@ -1,4 +1,24 @@
-<app-sub-nav></app-sub-nav>
-<section class="container col-xl-12 col-xxl-12 py-5">
-    <p>jours-off works!</p>
-</section>
+<div *ngIf="showPopover">
+  <form (ngSubmit)="createOrUpdateJourOff()" #form="ngForm" class="form">
+    <div>
+      <label>Type de jour:</label>
+      <div *ngFor="let type of typesJour">
+        <input type="radio" [(ngModel)]="jo.typeJour" [value]="type" name="typeJour">
+        {{ type }}
+      </div>
+    </div>
+    <label>Description:</label>
+    <input type="text" [(ngModel)]="jo.description" name="description" placeholder="Description">
+    <label>Date:</label>
+    <input type="date" [(ngModel)]="jo.jour" name="jour" placeholder="Date">
+    <button type="submit" class="btn btn-outline-primary">
+      {{ selectedEvent ? 'Modifier' : 'Créer' }}
+    </button>
+    <button *ngIf="editable && selectedEvent" (click)="deleteJourOff(selectedEvent.id)" type="button" class="btn btn-outline-danger">
+      Supprimer
+    </button>
+  </form>
+</div>
+
+
+<full-calendar [options]="calendarOptions" id="calendar"></full-calendar>
