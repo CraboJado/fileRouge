@@ -206,8 +206,6 @@ export class RapportsVueTwoComponent implements  OnInit{
     this.updateLineChartData()
   }
 
-
-
   changeCurrentYear(year:string){
     this.currentYear=parseInt(year)
     this.updateLineChartLabels()

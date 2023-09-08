@@ -1,36 +1,32 @@
 <section class="container col-xl-12 col-xxl-12 py-5">
-  <p>rapports-vue-two works!</p>
-</section>
+  <button (click)="changeMonth(-1)">mois précédent</button>
+  <button (click)="changeMonth(1)">mois suivant</button>
+  <select #departementId >
+    <option *ngFor="let departement of departements"  [value]="departement.id" (click)="employeByDepartement(departementId.value)"  [defaultSelected]="departementGeneral">{{departement.name}}</option>
+  </select>
+  <select id="year" name="year"   #year>
+    <option *ngFor="let annee of annees"  (click)="changeCurrentYear(year.value)"  [defaultSelected]="currentYear"> {{annee}} </option>
+  </select>
 
-<button (click)="changeMonth(-1)">mois précédent</button>
-<button (click)="changeMonth(1)">mois suivant</button>
-
-
-<select #departementId >
-  <option *ngFor="let departement of departements"  [value]="departement.id" (click)="employeByDepartement(departementId.value)"  [defaultSelected]="departementGeneral">{{departement.name}}</option>
-</select>
-<select id="year" name="year"   #year>
-  <option *ngFor="let annee of annees"  (click)="changeCurrentYear(year.value)"  [defaultSelected]="currentYear"> {{annee}} </option>
-</select>
-
-<table>
-  <thead>
-  <tr>
-    <th>name</th>
-    <th *ngFor="let label of lineChartLabels">{{ label }}</th>
-  </tr>
-  </thead>
-  <tbody>
-  <ng-container *ngFor="let dataset of lineChartData; let i = index">
+  <table>
+    <thead>
     <tr>
-      <td>{{ dataset.label }}</td>
-      <td *ngFor="let value of dataset.data; let j = index">
-        <span *ngIf="value === 1 && !isWeekEnd(lineChartLabels[j]) && !isJourOff(lineChartLabels[j]) ">C</span>
-        <span *ngIf="value === 0 && !isWeekEnd(lineChartLabels[j]) && !isJourOff(lineChartLabels[j])">&nbsp;</span>
-        <span *ngIf=" isWeekEnd(lineChartLabels[j])">t</span>
-        <span *ngIf=" isJourOff(lineChartLabels[j])">R</span>
-      </td>
+      <th>name</th>
+      <th *ngFor="let label of lineChartLabels">{{ label }}</th>
     </tr>
-  </ng-container>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+    <ng-container *ngFor="let dataset of lineChartData; let i = index">
+      <tr>
+        <td>{{ dataset.label }}</td>
+        <td *ngFor="let value of dataset.data; let j = index">
+          <span *ngIf="value === 1 && !isWeekEnd(lineChartLabels[j]) && !isJourOff(lineChartLabels[j]) ">C</span>
+          <span *ngIf="value === 0 && !isWeekEnd(lineChartLabels[j]) && !isJourOff(lineChartLabels[j])">&nbsp;</span>
+          <span *ngIf=" isWeekEnd(lineChartLabels[j])">t</span>
+          <span *ngIf=" isJourOff(lineChartLabels[j])">R</span>
+        </td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+</section>

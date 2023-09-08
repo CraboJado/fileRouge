@@ -1,71 +1,66 @@
-import {Component, OnInit} from '@angular/core';
-import {AbsenceService} from "../../../shared/service/absence.service";
-import {Absence} from "../../../shared/model/absence";
-import {ChartConfiguration, ChartOptions} from "chart.js";
-import {formatDate} from "@angular/common";
-import {DepartementService} from "../../../shared/service/departement.service";
-import {EmployeService} from "../../../shared/service/employe.service";
-import {Departement} from "../../../shared/model/departement";
-import {Employe} from "../../../shared/model/employe";
-import {switchMap} from "rxjs";
-import {JoursOffService} from "../../../shared/service/jours-off.service";
-import {JoursOff} from "../../../shared/model/jours-off";
+import { Component, OnInit } from '@angular/core';
+import { AbsenceService } from "../../../shared/service/absence.service";
+import { Absence } from "../../../shared/model/absence";
+import { ChartConfiguration, ChartOptions } from "chart.js";
+import { formatDate } from "@angular/common";
+import { DepartementService } from "../../../shared/service/departement.service";
+import { EmployeService } from "../../../shared/service/employe.service";
+import { Departement } from "../../../shared/model/departement";
+import { Employe } from "../../../shared/model/employe";
+import { switchMap } from "rxjs";
+import { JoursOffService } from "../../../shared/service/jours-off.service";
+import { JoursOff } from "../../../shared/model/jours-off";
 
 @Component({
   selector: 'app-rapports-vue-one',
   templateUrl: './rapports-vue-one.component.html',
   styleUrls: ['./rapports-vue-one.component.css']
 })
-export class RapportsVueOneComponent implements  OnInit{
+export class RapportsVueOneComponent implements OnInit {
 
-
-  annees:number[]=[]
-
-  absences:Absence[]=[]
-  employes:Employe[]=[]
-  departements:Departement[]=[]
-
-  joursOffs:JoursOff[]=[]
-
-  departementGeneral:Departement={id:0,name:"tout le monde"}
-
-  currentMonth:number = new Date().getMonth();
-
-  currentYear:number=new Date().getFullYear()
-
-
-
-
-  lineChartData: any[]=[]
+  selectMonth: string = "";
+  annees: number[] = []
+  absences: Absence[] = []
+  employes: Employe[] = []
+  departements: Departement[] = []
+  joursOffs: JoursOff[] = []
+  departementGeneral: Departement = { id: 0, name: "tout le monde" }
+  currentMonth: number = new Date().getMonth();
+  currentYear: number = new Date().getFullYear()
+  currentMonthString: string = "";
+  months: number[] = [];
+  lineChartData: any[] = []
   lineChartLabels: string[] = []
-  constructor(private absenceService:AbsenceService,
-              private departementService:DepartementService,
-              private employeService:EmployeService,
-              private jourOffService:JoursOffService) {
-  }
-  employeByDepartement(departementId:string){
 
-    if(parseInt(departementId)==0) {
-      this.employeService.findAll().subscribe(list=>{
-        this.employes=list
+  constructor(private absenceService: AbsenceService,
+              private departementService: DepartementService,
+              private employeService: EmployeService,
+              private jourOffService: JoursOffService) {
+  }
+
+
+  employeByDepartement(departementId: string) {
+
+    if (parseInt(departementId) == 0) {
+      this.employeService.findAll().subscribe(list => {
+        this.employes = list
         this.updateLineChartLabels()
       })
-    }else{
-    this.employeService.findAll().subscribe(list=>{
-      this.employes=list.filter(employe=>employe.departement?.id==parseInt(departementId));
-      this.updateLineChartLabels()
-    })
+    } else {
+      this.employeService.findAll().subscribe(list => {
+        this.employes = list.filter(employe => employe.departement?.id == parseInt(departementId));
+        this.updateLineChartLabels()
+      })
     }
 
   }
 
-
-  updateLineChartData(){
+  updateLineChartData() {
     this.lineChartData = this.employes.map((employe, index) => {
       const dataPoints = this.lineChartLabels.map((label) =>
         this.nbAbsencePerDayPerEmploye(label, employe)
       );
-      const hue=(index / this.employes.length) * 360;
+      const hue = (index / this.employes.length) * 360;
       return {
         data: dataPoints, // Array of data points for the dataset
         label: employe.firstName,
@@ -74,16 +69,13 @@ export class RapportsVueOneComponent implements  OnInit{
       };
     });
   }
+  nbAbsencePerDayPerEmploye(date: string, employe: Employe) {
+    let nbTotal = 0;
 
 
-
-  nbAbsencePerDayPerEmploye(date:string,employe:Employe){
-    let nbTotal=0;
-
-
-    for(let absence of this.absences) {
+    for (let absence of this.absences) {
       //@ts-ignore
-      for(let dateTempo of this.getDates(absence.dateDebut, absence.dateFin)){
+      for (let dateTempo of this.getDates(absence.dateDebut, absence.dateFin)) {
         if (date == dateTempo && absence.employe?.id == employe.id) {
           nbTotal++;
         }
@@ -92,53 +84,46 @@ export class RapportsVueOneComponent implements  OnInit{
     }
     return nbTotal
   }
-
-
-
-   getDates(startDate: Date, endDate: Date) {
+  getDates(startDate: Date, endDate: Date) {
     const dates: string[] = [];
     let currentDate = new Date(startDate);
-    let maxDate= new Date(endDate)
-    while (currentDate<=new Date(endDate)) {
-      for(let jours of this.joursOffs){
+    // let maxDate= new Date(endDate)
+    while (currentDate <= new Date(endDate)) {
+      for (let jours of this.joursOffs) {
 
-        if(jours.jour==currentDate) {
+        if (jours.jour == currentDate) {
           currentDate.setDate(currentDate.getDate() + 1);
         }
       }
-      if(currentDate.getDay()==0 || currentDate.getDay()==6){
+      if (currentDate.getDay() == 0 || currentDate.getDay() == 6) {
         currentDate.setDate(currentDate.getDate() + 1);
-      }else {
-        dates.push(formatDate(currentDate, 'yyyy-MM-dd', 'en-US'));
-        currentDate.setDate(currentDate.getDate() + 1);
+      } else {
+        dates.push(formatDate(currentDate, 'yyyy-MMMM-dd', 'en-US'));
       }
 
-
-      }
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
     return dates;
   }
 
-
-
-
-
   lineChartOptions: ChartConfiguration['options'] = {
-    responsive:true,
+    responsive: true,
     plugins: {
       legend: {
         display: true,
-        position: 'bottom' // Set the legend position to 'bottom'
+        position: 'bottom'
       }
     },
     scales: {
       // We use this empty structure as a placeholder for dynamic theming.
       y: {
         position: 'left',
-        suggestedMax:5,
+        suggestedMax: 5,
       },
     },
   };
-  lineChartLegend = true
+
+  lineChartLegend = true;
   lineChartType = 'line';
 
   ngOnInit(): void {
@@ -156,56 +141,77 @@ export class RapportsVueOneComponent implements  OnInit{
       this.updateLineChartLabels();
     });
 
-    this.departementService.findAll().subscribe(t=>{
-      this.departements=t
+    this.departementService.findAll().subscribe(t => {
+      this.departements = t
       this.departements.push(this.departementGeneral)
     })
-
 
     for (let i = 1980; i < 2050; i++) {
       this.annees.push(i)
     }
-
   }
 
-
-
-
-
-  changeMonth(change: number) {
-    this.currentMonth += change;
-
-    if (this.currentMonth > 11) {
-      this.currentMonth = 0;
-      this.currentYear+=1
-    } else if (this.currentMonth < 0) {
-      this.currentMonth = 11;
-      this.currentYear+=-1
-    }
-
-   this.updateLineChartLabels()
-  }
   updateLineChartLabels() {
     this.lineChartLabels = Array.from({ length: 31 }, (_, i) => {
       const date = new Date();
       date.setMonth(this.currentMonth);
       date.setDate(i + 1);
       date.setFullYear(this.currentYear)
-      return formatDate(date, 'yyyy-MM-dd', 'en-US');
-
+      return formatDate(date, 'dd-MM-yyyy', 'en-US');
 
     });
 
-      this.updateLineChartData()
+    this.updateLineChartData()
   }
 
-
-
-  changeCurrentYear(year:string){
-    this.currentYear=parseInt(year)
+  changeCurrentYear(year: string) {
+    this.currentYear = parseInt(year)
     this.updateLineChartLabels()
 
   }
 
+  getMonthValue(monthName: string){
+    switch (monthName) {
+      case "Janvier":
+        this.currentMonth = 0;
+        console.log(  this.currentMonth);
+
+        break;
+      case "Fevrier":
+        this.currentMonth = 1;
+        break;
+      case "Mars":
+        this.currentMonth = 2;
+        break;
+      case "Avril":
+        this.currentMonth = 3;
+        break;
+      case "Mai":
+        this.currentMonth = 4;
+        break;
+      case "Juin":
+        this.currentMonth = 5;
+        break;
+      case "Juillet":
+        this.currentMonth = 6;
+        break;
+      case "Août":
+        this.currentMonth = 7;
+        break;
+      case "Septembre":
+        this.currentMonth = 8;
+        break;
+      case "Octobre":
+        this.currentMonth = 9;
+        break;
+      case "Novembre":
+        this.currentMonth = 10;
+        break;
+      case "Décembre":
+        this.currentMonth = 11;
+        break;
+    }
+    this.updateLineChartLabels()
+  }
 
 }

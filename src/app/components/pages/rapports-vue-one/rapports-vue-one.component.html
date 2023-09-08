@@ -1,26 +1,42 @@
-<section class="container col-xl-12 col-xxl-12 py-5">
-  <p>rapports-vue-one works!</p>
+<section>
+  <div class="container">
+    <div class="row ">
+      <select #departementId class="form-select  align-self-end">
+        <option (click)="employeByDepartement(departementId.value)" *ngFor="let departement of departements"
+                [defaultSelected]="departementGeneral" [value]="departement.id">
+          {{departement.name}}
+        </option>
+      </select>
 
+      <select #month aria-label="Default select example" class="form-select ">
+        <option (click)="getMonthValue(month.value)" value="Janvier">Janvier</option>
+        <option (click)="getMonthValue(month.value)" value="Fevrier">Fevrier</option>
+        <option (click)="getMonthValue(month.value)" value="Mars">Mars</option>
+        <option (click)="getMonthValue(month.value)" value="Avril">Avril</option>
+        <option (click)="getMonthValue(month.value)" value="Mai">Mai</option>
+        <option (click)="getMonthValue(month.value)" value="Juin">Juin</option>
+        <option (click)="getMonthValue(month.value)" value="Juillet">Juillet</option>
+        <option (click)="getMonthValue(month.value)" value="Août">Août</option>
+        <option (click)="getMonthValue(month.value)" value="Septembre">Septembre</option>
+        <option (click)="getMonthValue(month.value)" value="Octobre">Octobre</option>
+        <option (click)="getMonthValue(month.value)" value="Novembre">Novembre</option>
+        <option (click)="getMonthValue(month.value)" value="Décembre">Décembre</option>
+      </select>
 
-
-
-  <button (click)="changeMonth(-1)">mois précédent</button>
-  <button (click)="changeMonth(1)">mois suivant</button>
-
-
-  <select #departementId >
-    <option *ngFor="let departement of departements"  [value]="departement.id" (click)="employeByDepartement(departementId.value)"  [defaultSelected]="departementGeneral">{{departement.name}}</option>
-  </select>
-  <select id="year" name="year"   #year>
-    <option *ngFor="let annee of annees"  (click)="changeCurrentYear(year.value)"  [defaultSelected]="2023"> {{annee}} </option>
-  </select>
-  <div style="display: block">
-    <canvas baseChart
-            [datasets]="lineChartData"
-            [labels]="lineChartLabels"
-            [options]="lineChartOptions"
-            [legend]="lineChartLegend"
-    ></canvas>
+      <select #year class="form-select" id="year" name="year">
+        <option (click)="changeCurrentYear(year.value)" *ngFor="let annee of annees" [defaultSelected]="currentYear">
+          {{annee}}
+        </option>
+      </select>
+    </div>
+    <div class="d-flex flex-row">
+      <p class="fw-bold fs-2 text-center">{{month.value}} </p>
+    </div>
   </div>
-
+  <div style="display: block">
+    <canvas [datasets]="lineChartData" [labels]="lineChartLabels" [legend]="lineChartLegend"
+            [options]="lineChartOptions"
+            baseChart>
+    </canvas>
+  </div>
 </section>
