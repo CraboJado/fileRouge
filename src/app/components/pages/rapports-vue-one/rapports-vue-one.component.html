@@ -1,44 +1,47 @@
-<section>
-  <div class="container">
-    <div class="row ">
-      <select #departementId class="form-select  align-self-end">
-        <option (click)="employeByDepartement(departementId.value)" *ngFor="let departement of departements"
-                [defaultSelected]="departementGeneral" [value]="departement.id">
+<section class="container">
+
+
+  <div class="row justify-content-end ">
+    <div class=" col-3 ">
+
+      <select #departementId class="form-select mb-1">
+        <option *ngFor="let departement of departements" [value]="departement.id"
+                (click)="employeByDepartement(departementId.value)" [defaultSelected]="departementGeneral">
           {{departement.name}}
         </option>
       </select>
 
-      <select #month aria-label="Default select example" class="form-select ">
-        <option (click)="getMonthValue(month.value)" value="Janvier">Janvier</option>
-        <option (click)="getMonthValue(month.value)" value="Fevrier">Fevrier</option>
-        <option (click)="getMonthValue(month.value)" value="Mars">Mars</option>
-        <option (click)="getMonthValue(month.value)" value="Avril">Avril</option>
-        <option (click)="getMonthValue(month.value)" value="Mai">Mai</option>
-        <option (click)="getMonthValue(month.value)" value="Juin">Juin</option>
-        <option (click)="getMonthValue(month.value)" value="Juillet">Juillet</option>
-        <option (click)="getMonthValue(month.value)" value="Août">Août</option>
-        <option (click)="getMonthValue(month.value)" value="Septembre">Septembre</option>
-        <option (click)="getMonthValue(month.value)" value="Octobre">Octobre</option>
-        <option (click)="getMonthValue(month.value)" value="Novembre">Novembre</option>
-        <option (click)="getMonthValue(month.value)" value="Décembre">Décembre</option>
+      <select class="form-select mb-1" #month aria-label="Default select example">
+        <option value="Janvier" (click)="getMonthValue(month.value)">Janvier</option>
+        <option value="Fevrier" (click)="getMonthValue(month.value)">Fevrier</option>
+        <option value="Mars" (click)="getMonthValue(month.value)">Mars</option>
+        <option value="Avril" (click)="getMonthValue(month.value)">Avril</option>
+        <option value="Mai" (click)="getMonthValue(month.value)">Mai</option>
+        <option value="Juin" (click)="getMonthValue(month.value)">Juin</option>
+        <option value="Juillet" (click)="getMonthValue(month.value)">Juillet</option>
+        <option value="Août" (click)="getMonthValue(month.value)">Août</option>
+        <option value="Septembre" (click)="getMonthValue(month.value)">Septembre</option>
+        <option value="Octobre" (click)="getMonthValue(month.value)">Octobre</option>
+        <option value="Novembre" (click)="getMonthValue(month.value)">Novembre</option>
+        <option value="Décembre" (click)="getMonthValue(month.value)">Décembre</option>
       </select>
 
-      <select #year class="form-select" id="year" name="year">
-        <option (click)="changeCurrentYear(year.value)" *ngFor="let annee of annees" [defaultSelected]="currentYear">
-          {{annee}}
-        </option>
+      <select id="year" name="year" #year class="form-select mb-1">
+        <option *ngFor="let annee of annees" (click)="changeCurrentYear(year.value)" >
+          {{annee}}</option>
       </select>
-    </div>
-    <div class="d-flex flex-row">
-      <p class="fw-bold fs-2 text-center">{{month.value}} </p>
+
     </div>
   </div>
+
+  <div class="d-flex flex-row">
+    <p class="fw-bold fs-2 text-center">{{month.value}}</p>
+    <p class="fw-bold fs-2 text-center ms-2">{{year.value}}</p>
+  </div>
+
   <div style="display: block">
-    <canvas baseChart
-            [datasets]="lineChartData"
-            [labels]="lineChartLabels"
-            [legend]="lineChartLegend"
-            [options]="lineChartOptions">
-    </canvas>
+    <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+            [legend]="lineChartLegend"></canvas>
   </div>
+
 </section>

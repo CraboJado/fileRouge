@@ -1,6 +1,9 @@
-<app-sub-nav></app-sub-nav>
 <section class="container col-xl-12 col-xxl-12 py-5">
-  <a routerLink="/rapports/vue-one">vue 1 </a>
-  <a routerLink="/rapports/vue-two">vue 2 </a>
+  <select aria-label="Large select example" class="form-select form-select-md mb-3 w-25">
+    <option selected>Affichage</option>
+    <option value="1" class="link m-2 text-dark" routerLink="/rapports/vue-one">Histogramme </option>
+    <option value="2" class="link m-2 text-dark" routerLink="/rapports/vue-two">Tableau</option>
+  </select>
   <router-outlet></router-outlet>
 </section>
+
