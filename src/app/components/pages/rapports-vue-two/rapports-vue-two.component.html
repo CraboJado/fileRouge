@@ -1,6 +1,10 @@
 <section class="container col-xl-12 col-xxl-12 py-5">
+
+  <div class="d-flex flex-row">
   <button (click)="changeMonth(-1)">mois précédent</button>
+  <p class="m-3">{{currentMonth +1}}</p>
   <button (click)="changeMonth(1)">mois suivant</button>
+</div>
   <select #departementId >
     <option *ngFor="let departement of departements"  [value]="departement.id" (click)="employeByDepartement(departementId.value)"  [defaultSelected]="departementGeneral">{{departement.name}}</option>
   </select>
@@ -12,7 +16,7 @@
     <thead>
     <tr>
       <th>name</th>
-      <th *ngFor="let label of lineChartLabels">{{ label }}</th>
+      <th *ngFor="let label of lineChartLabels2">{{ label }}</th>
     </tr>
     </thead>
     <tbody>
