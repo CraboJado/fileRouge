@@ -23,7 +23,7 @@ export class FormComponent implements OnInit{
 
   ngOnInit(): void {
     this.start = this.transformDate(this.event.start);
-    this.end = this.transformDate(this.event.end);
+    this.end = this.event.end ==null ? this.transformDate(this.event.start) : this.transformDate(this.event.end);
     this.type = this.getType();
     this.motif = this.getMotif();
   }
