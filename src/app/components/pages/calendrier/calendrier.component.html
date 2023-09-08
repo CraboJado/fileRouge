@@ -26,18 +26,21 @@
         </div>
       </div>
 
-
-
-        <div
+      <div
         *ngIf="showButton"
-        class="form position-absolute top-50 start-50 bg-white translate-middle d-flex justify-content-center flex-column p-sm-1 p-md-4 border border-2 rounded gap-3">
-        <button
-        (click)="annulerDemandeAbs()"
-        class="btn btn-danger ">Annuler la demande</button>
-        <button
-        (click)="handleShowForm()"
-        class="btn btn-primary ">Modifer la demande</button>
+        class="layer-seperator bg-transparent position-absolute top-0 w-100 h-100"
+      >
+        <div
+          class="form position-absolute top-50 start-50 bg-white translate-middle d-flex justify-content-center flex-column p-sm-1 p-md-4 border border-2 rounded gap-3">
+          <button
+            (click)="annulerDemandeAbs()"
+            class="btn btn-danger ">Annuler la demande</button>
+          <button
+            (click)="handleShowForm()"
+            class="btn btn-primary ">Modifer la demande</button>
         </div>
+      </div>
+
     </div>
 
 </section>
