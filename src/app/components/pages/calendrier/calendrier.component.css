@@ -31,3 +31,15 @@
 .form{
     z-index: 3;
 }
+
+.layer-seperator{
+  z-index: 4;
+  width: 100%;
+
+}
+
+::ng-deep .fc-daygrid-day-frame {
+  cursor: pointer;
+}
+
+

@@ -55,7 +55,7 @@ import {FullCalendarModule} from "@fullcalendar/angular";
     NgChartsModule,
     FullCalendarModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

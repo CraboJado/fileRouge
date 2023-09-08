@@ -21,7 +21,7 @@ export class CalendrierComponent implements OnInit {
 
   @ViewChild('fullcalendar') calendarComponent!: FullCalendarComponent;
 
-  showForm = false;
+  showForm = true;
   showButton = false;
   isDelete:boolean = false;
   absences: Absence[] = [];
@@ -35,6 +35,7 @@ export class CalendrierComponent implements OnInit {
     dateClick: this.handleDateClick.bind(this), // MUST ensure `this` context is maintained
     eventClick: this.handleEventClick.bind(this),
     events: [],
+
   };
 
   constructor(private _absenceService: AbsenceService) {}
