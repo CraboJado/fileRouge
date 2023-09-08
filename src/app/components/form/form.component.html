@@ -1,0 +1,35 @@
+
+<form
+#form="ngForm"
+(ngSubmit)="emitter.emit(form)"
+class="d-flex flex-column gap-2">
+    <div>
+        <label for="start">Start date:</label>
+        <input type="date" id="start" name="start" min="2023-01-01" max="2023-12-31" [(ngModel)]="start"/>
+    </div>
+    <div>
+        <label for="end">End date:</label>
+        <input type="date" id="end" name="end" min="2023-01-01" max="2023-12-31" [(ngModel)]="end" />
+    </div>
+    <div class="type">
+        <label for="type-select">Choose a type:</label>
+        <select name="type" id="type-select" [(ngModel)]="type">
+            <option value="">--Please choose an option--</option>
+            <option value="CONGE_PAYE">Congés payés</option>
+            <option value="RTT">RTT</option>
+            <option value="CONGE_SANS_SOLDE">Congés sans solde</option>
+        </select>
+    </div>
+    <div class="motif">
+        <label for="motif">Motif:</label>
+        <textarea id="motif" name="motif" rows="3" cols="33" [(ngModel)]="motif"></textarea>
+    </div>
+    <div class="d-flex gap-5 justify-content-center">
+        <button
+        class="btn btn-success btn-sm ">valider</button>
+        <button
+          (click)="emitterAnnulation.emit()"
+        class="btn btn-danger btn-sm ">annuler</button>
+    </div>
+
+</form>

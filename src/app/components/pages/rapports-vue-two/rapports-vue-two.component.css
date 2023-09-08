@@ -1,0 +1,19 @@
+/* grid-chart.component.css */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td, tr {
+  border: 1px solid #000; /* Add a border to th and td elements */
+  padding: 8px;
+  text-align: center;
+}
+
+/* Style for empty cells */
+td span {
+  display: inline-block;
+  width: 16px; /* Adjust the width as needed */
+  height: 16px; /* Adjust the height as needed */
+}
