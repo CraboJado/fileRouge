@@ -22,12 +22,13 @@ export class AbsenceService{
   }
 
   public create(absence: Absence) {
+    const headers = { 'content-type': 'application/json'}
     return this._http.post<Absence>(this._baseUrl, absence,{withCredentials:true})
   }
 
   public delete(id: string) {
     return this._http
-      .delete<Absence>(this._baseUrl + "/" + id)
+      .delete<Absence>(this._baseUrl + "/" + id, {withCredentials:true})
 
   }
 

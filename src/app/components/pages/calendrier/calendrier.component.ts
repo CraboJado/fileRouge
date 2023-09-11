@@ -134,17 +134,20 @@ export class CalendrierComponent implements OnInit {
         error :()=>{ this._init() },
         complete : ()=> console.log("complete")
       })
+
+
       this.showForm = !this.showForm;
       this.event = {};
       return
     }
 
     // annuler une absence
+    //TODO à regler le problem de error , mais code 201 dans la réponse,
     if(this.isDelete){
       this._absenceService.delete(this.event.id)
-        .subscribe(()=>{
-          this._init();
-          console.log('absence supprimé')
+        .subscribe({
+          next:()=>{ },
+          error:()=>{this._init()}
         })
       this.showForm = !this.showForm;
       this.event = {};
@@ -170,8 +173,6 @@ export class CalendrierComponent implements OnInit {
       }
     )
 
-    // this._absenceService.update()
-    console.log('modifier une demande absence dans bbd')
     this.showForm = !this.showForm;
     this.event = {};
   }
