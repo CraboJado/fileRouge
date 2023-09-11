@@ -30,7 +30,7 @@ export class EmployeService {
 
 
   public logout(){
-    return this.http.post(`${this._baseUrlOut}`,{})
+    return this.http.post(`${this._baseUrlOut}`,{},{withCredentials: true})
   }
 
   public create(firstName: string, lastName: string, password: string, soldeConge: number, soldeRTT: number, email: string, departement: Departement, manager: Employe, roles: string[]) {
