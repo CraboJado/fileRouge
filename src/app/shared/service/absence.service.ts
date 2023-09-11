@@ -17,18 +17,23 @@ export class AbsenceService{
     return this._http.get<Absence[]>(this._baseUrl,{withCredentials:true})
   }
 
+  public findAllByEmploye(){
+    return this._http.get<Absence[]>(this._baseUrl + '/employe',{withCredentials:true})
+  }
+
   public create(absence: Absence) {
-    return this._http.post<Absence>(this._baseUrl, absence)
+    const headers = { 'content-type': 'application/json'}
+    return this._http.post<Absence>(this._baseUrl, absence,{withCredentials:true})
   }
 
   public delete(id: string) {
     return this._http
-      .delete<Absence>(this._baseUrl + "/" + id)
+      .delete<Absence>(this._baseUrl + "/" + id, {withCredentials:true})
 
   }
 
-  public modifier(absence: Absence) {
-    return this._http.put<Absence>(this._baseUrl + "/" +  absence.id, absence)
+  public modify(absence: Absence) {
+    return this._http.put<Absence>(this._baseUrl + "/" +  absence.id, absence,{withCredentials:true})
   }
 
   public update(updated: Absence) {
