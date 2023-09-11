@@ -29,6 +29,7 @@ export class RapportsVueTwoComponent implements OnInit {
   departementGeneral: Departement = { id: 0, name: "tout le monde" }
   currentMonth: number = new Date().getMonth();
   currentYear: number = new Date().getFullYear()
+  currentYear2: number = new Date().getFullYear()
   // daysInMonth: number = 0; // Initialisez à 0
 
   lineChartData: any[] = []
