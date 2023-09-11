@@ -13,7 +13,7 @@
     <select id="year" name="year" #year class="form-select" [(ngModel)]="currentYear2">
       <option *ngFor="let annee of annees" [ngValue]="annee" (click)="changeCurrentYear(year.value)" >{{ annee }}</option>
     </select>
-    
+
   <select #departementId class="form-select">
     <option *ngFor="let departement of departements"  [value]="departement.id" (click)="employeByDepartement(departementId.value)"  [defaultSelected]="departementGeneral">{{departement.name}}</option>
   </select>
@@ -44,3 +44,6 @@
     </tbody>
   </table>
 </section>
+
+
+<button (click)="exportToExcel()">Export to Excel</button>

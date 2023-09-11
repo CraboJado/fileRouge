@@ -1,4 +1,6 @@
 import {Component, HostListener} from '@angular/core';
+import {Employe} from "./shared/model/employe";
+import {EmployeService} from "./shared/service/employe.service";
 
 @Component({
   selector: 'app-root',
@@ -7,13 +9,6 @@ import {Component, HostListener} from '@angular/core';
 })
 export class AppComponent {
   title = 'Gestion des congés et jours feriés';
-
-
-
-  @HostListener('window:beforeunload', ['$event'])
-  beforeUnloadHandler(event: any) {
-    localStorage.clear();
-  }
 
 
 

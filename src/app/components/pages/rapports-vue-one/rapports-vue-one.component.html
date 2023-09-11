@@ -26,11 +26,12 @@
         <option value="Décembre" (click)="getMonthValue(month.value)">Décembre</option>
       </select>
 
+
       <select id="year" name="year" #year class="form-select mb-1" [(ngModel)]="currentYear">
         <option *ngFor="let annee of annees" (click)="changeCurrentYear(year.value)" >
           {{annee}}</option>
       </select>
-  
+
 
     </div>
   </div>
@@ -48,4 +49,9 @@
     ></canvas>
   </div>
 
+
+  <button (click)="exportToExcel()">Export to Excel</button>
+
+
 </section>
+

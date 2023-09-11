@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {SharedDataService} from "../../../shared/service/active-role.service";
 import {EmployeService} from "../../../shared/service/employe.service";
 import {Employe} from "../../../shared/model/employe";
+import {LoginService} from "../../../shared/service/login.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-main-nav',
@@ -16,7 +18,7 @@ export class MainNavComponent implements OnInit{
   event:any = {}
 
   employe:Employe= {}
-  constructor( private employeService:EmployeService) {
+  constructor( private employeService:EmployeService,private loginService:LoginService, private router:Router) {
   }
 
   ngOnInit(): void {
@@ -27,7 +29,9 @@ export class MainNavComponent implements OnInit{
 
 
 
-
+logout(){
+    this.router.navigate(['/login'])
+}
 
 
 

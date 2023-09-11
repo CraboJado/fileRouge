@@ -11,6 +11,7 @@ import { JoursOffService } from "../../../shared/service/jours-off.service";
 import { formatDate } from "@angular/common";
 import { ChartConfiguration } from "chart.js";
 import { switchMap } from "rxjs";
+import * as XLSX from "xlsx";
 
 @Component({
   selector: 'app-rapports-vue-two',
@@ -130,7 +131,7 @@ export class RapportsVueTwoComponent implements OnInit {
   lineChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     scales: {
-      
+
       y: {
         position: 'left',
         suggestedMax: 5,
@@ -164,7 +165,7 @@ export class RapportsVueTwoComponent implements OnInit {
     for (let i = 1980; i < 2050; i++) {
       this.annees.push(i)
     }
-    
+
 
   }
 
@@ -188,7 +189,7 @@ export class RapportsVueTwoComponent implements OnInit {
   }
 
   updateLineChartLabels() {
-    this.lineChartLabels = Array.from({ length: 31 }, (_, i) => {
+    this.lineChartLabels = Array.from({ length: this.getDaysInMonth(this.currentYear, this.currentMonth) }, (_, i) => {
       const date = new Date();
       date.setMonth(this.currentMonth);
       date.setDate(i + 1);
@@ -212,8 +213,27 @@ export class RapportsVueTwoComponent implements OnInit {
     "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
     "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
   ];
-  
+
   getMonthName(monthNumber: number): string {
     return this.months[monthNumber];
+  }
+  exportToExcel() {
+    // Prepare the data for Excel export
+    const excelData = [];
+    // Add headers as the first row
+    excelData.push(['Date', ...this.lineChartLabels2]);
+    // Add data rows
+    for (let i = 0; i < this.employes.length; i++) {
+      const employe = this.employes[i];
+      const rowData = [employe.firstName, ...this.lineChartData[i].data];
+      excelData.push(rowData);
+    }
+    // Create a worksheet
+    const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(excelData);
+    // Create a workbook
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Chart Data'); // 'Chart Data' is the name of the sheet
+    // Generate a Blob containing the Excel file and trigger download
+    XLSX.writeFile(wb, 'chart_data.xlsx'); // 'chart_data.xlsx' is the file name
   }
 }

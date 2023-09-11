@@ -10,6 +10,7 @@ import { Employe } from "../../../shared/model/employe";
 import { switchMap } from "rxjs";
 import { JoursOffService } from "../../../shared/service/jours-off.service";
 import { JoursOff } from "../../../shared/model/jours-off";
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-rapports-vue-one',
@@ -215,5 +216,33 @@ export class RapportsVueOneComponent implements OnInit {
     }
     this.updateLineChartLabels()
   }
+
+
+
+
+  exportToExcel() {
+    // Prepare the data for Excel export
+    const excelData = [];
+
+    // Add headers as the first row
+    excelData.push(['Date', ...this.employes.map(employe => employe.firstName)]);
+
+    // Add data rows
+    for (let i = 0; i < this.lineChartLabels.length; i++) {
+      const rowData = [this.lineChartLabels[i], ...this.lineChartData.map(dataset => dataset.data[i])];
+      excelData.push(rowData);
+    }
+
+    // Create a worksheet
+    const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(excelData);
+
+    // Create a workbook
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Chart Data'); // 'Chart Data' is the name of the sheet
+
+    // Generate a Blob containing the Excel file and trigger download
+    XLSX.writeFile(wb, 'chart_data.xlsx'); // 'chart_data.xlsx' is the file name
+  }
+
 
 }
