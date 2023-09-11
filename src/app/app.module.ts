@@ -22,6 +22,8 @@ import { FormComponent } from './components/form/form.component';
 import {DatePipe} from "@angular/common";
 import { NgChartsModule } from 'ng2-charts';
 import {DateAdapter} from "@angular/material/core";
+import {MainNavComponent} from "./components/header/main-nav/main-nav.component";
+import {HomeComponent} from "./components/pages/home/home.component";
 
 
 @NgModule({
@@ -38,8 +40,10 @@ import {DateAdapter} from "@angular/material/core";
     RapportsVueTwoComponent,
     HeaderComponent,
     FooterComponent,
+    MainNavComponent,
     SubNavComponent,
-    FormComponent
+    FormComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

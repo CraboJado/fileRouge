@@ -5,10 +5,15 @@ import { Router } from '@angular/router';
 import {AuthService} from './auth.service';
 
 export const authGuard: CanActivateFn = (route, state) => {
+  console.log("in authGuard")
   const authService = inject(AuthService);
+
   const router = inject(Router);
 
-  if (authService.isLoggedIn) {
+  let roles = localStorage.getItem('roles');
+
+  if (roles) {
+    authService.roles =JSON.parse(roles as string);
     return true;
   }
 

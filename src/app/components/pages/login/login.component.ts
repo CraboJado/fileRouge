@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Injectable} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {Departement} from "../../../shared/model/departement";
 import {Employe} from "../../../shared/model/employe";
@@ -9,6 +9,7 @@ import {AbsenceService} from "../../../shared/service/absence.service";
 import {JoursOffService} from "../../../shared/service/jours-off.service";
 import {JoursOff} from "../../../shared/model/jours-off";
 import {Absence} from "../../../shared/model/absence";
+import {AuthService} from "../../../auth/auth.service";
 
 
 @Component({
@@ -33,17 +34,32 @@ export class LoginComponent {
     private absenceService: AbsenceService,
     private jourOffService: JoursOffService,
     private router: Router,
+    private authService: AuthService
   ) {
   }
 
+  // testLogin(email: string, password: string) {
+  //   this.authService.login(email,password).subscribe(()=>{
+  //     console.log(this.authService.roles)
+  //     if(this.authService.roles != null){
+  //       this.router.navigate(['/home'])
+  //     }
+  //   })
+  // }
+
   testLogin(email: string, password: string) {
-    console.log("connecté")
-    this.loginService.login(email, password)
+    this.authService.login(email,password).subscribe({
+      next:(value)=>{this.router.navigate(['/home'])},
+      error:(err)=>{this.router.navigate(['/login'])}
+    })
   }
 
 
   testLogout(){
+    console.log('logout')
     this.employeService.logout().subscribe(t=>console.log(t))
+
+
   }
 
   testActive(){

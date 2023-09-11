@@ -1,4 +1,5 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
+import {AuthService} from "./auth/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -9,12 +10,9 @@ export class AppComponent {
   title = 'Gestion des congés et jours feriés';
 
 
-
-  @HostListener('window:beforeunload', ['$event'])
-  beforeUnloadHandler(event: any) {
-    localStorage.clear();
-  }
-
-
+  // @HostListener('window:beforeunload', ['$event'])
+  // beforeUnloadHandler(event: any) {
+  //   localStorage.clear();
+  // }
 
 }
