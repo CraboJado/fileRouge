@@ -23,7 +23,7 @@ export class AbsenceService{
 
   public create(absence: Absence) {
     const headers = { 'content-type': 'application/json'}
-    return this._http.post<Absence>(this._baseUrl, absence,{withCredentials:true})
+    return this._http.post<Absence>(this._baseUrl, absence,{withCredentials:true,responseType: "json"})
   }
 
   public delete(id: string) {
