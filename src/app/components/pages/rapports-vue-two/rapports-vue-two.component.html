@@ -1,16 +1,26 @@
-<section class="container col-xl-12 col-xxl-12 py-5">
+<section class="container py-5 ">
 
-  <div class="d-flex flex-row">
-  <button (click)="changeMonth(-1)">mois précédent</button>
-  <p class="m-3">{{currentMonth +1}}</p>
-  <button (click)="changeMonth(1)">mois suivant</button>
+
+<div class="d-flex justify-content-center">
+  <button (click)="changeMonth(-1)" class="btn btn-outline-black h-25 align-self-center" ><i class="bi bi-caret-left-fill"></i></button>
+  <p class="m-3 h5" #month>{{ getMonthName(currentMonth) }}</p>
+  <button (click)="changeMonth(1)" class="btn btn-outline-black h-25  align-self-center"><i class="bi bi-caret-right-fill"></i></button>
 </div>
-  <select #departementId >
+
+
+<div class="row justify-content-end mb-3">
+  <div class="col-3 ">
+    <select id="year" name="year" #year class="form-select" [(ngModel)]="currentYear">
+      <option *ngFor="let annee of annees" [ngValue]="annee" (click)="changeCurrentYear(year.value)" >{{ annee }}</option>
+    </select>
+    
+  <select #departementId class="form-select">
     <option *ngFor="let departement of departements"  [value]="departement.id" (click)="employeByDepartement(departementId.value)"  [defaultSelected]="departementGeneral">{{departement.name}}</option>
   </select>
-  <select id="year" name="year"   #year>
-    <option *ngFor="let annee of annees"  (click)="changeCurrentYear(year.value)"  [defaultSelected]="currentYear"> {{annee}} </option>
-  </select>
+
+</div>
+</div>
+
 
   <table>
     <thead>

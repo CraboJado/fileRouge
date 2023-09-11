@@ -2,7 +2,7 @@
 
 
   <div class="row justify-content-end ">
-    <div class=" col-3 ">
+    <div class="col-3 ">
 
       <select #departementId class="form-select mb-1">
         <option *ngFor="let departement of departements" [value]="departement.id"
@@ -26,10 +26,11 @@
         <option value="Décembre" (click)="getMonthValue(month.value)">Décembre</option>
       </select>
 
-      <select id="year" name="year" #year class="form-select mb-1">
+      <select id="year" name="year" #year class="form-select mb-1" [(ngModel)]="currentYear">
         <option *ngFor="let annee of annees" (click)="changeCurrentYear(year.value)" >
           {{annee}}</option>
       </select>
+  
 
     </div>
   </div>

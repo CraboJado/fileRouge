@@ -25,17 +25,11 @@ export class RapportsVueTwoComponent implements OnInit {
   absences: Absence[] = []
   employes: Employe[] = []
   departements: Departement[] = []
-
   joursOffs: JoursOff[] = []
-
   departementGeneral: Departement = { id: 0, name: "tout le monde" }
-
   currentMonth: number = new Date().getMonth();
-
   currentYear: number = new Date().getFullYear()
   // daysInMonth: number = 0; // Initialisez à 0
-
-
 
   lineChartData: any[] = []
   lineChartLabels: string[] = []
@@ -62,7 +56,6 @@ export class RapportsVueTwoComponent implements OnInit {
 
   }
 
-
   updateLineChartData() {
     this.lineChartData = this.employes.map((employe, index) => {
       const dataPoints = this.lineChartLabels.map((label) =>
@@ -77,8 +70,6 @@ export class RapportsVueTwoComponent implements OnInit {
       };
     });
   }
-
-
 
   nbAbsencePerDayPerEmploye(date: string, employe: Employe) {
     let nbTotal = 0;
@@ -95,8 +86,6 @@ export class RapportsVueTwoComponent implements OnInit {
     }
     return nbTotal
   }
-
-
 
   getDates(startDate: Date, endDate: Date) {
     const dates: string[] = [];
@@ -119,9 +108,6 @@ export class RapportsVueTwoComponent implements OnInit {
     }
     return dates;
   }
-
-
-
 
   isWeekEnd(date: string): boolean {
     const date1 = new Date(date)
@@ -179,9 +165,6 @@ export class RapportsVueTwoComponent implements OnInit {
 
   }
 
-
-
-
   changeMonth(change: number) {
     this.currentMonth += change;
 
@@ -220,10 +203,14 @@ export class RapportsVueTwoComponent implements OnInit {
   changeCurrentYear(year: string) {
     this.currentYear = parseInt(year)
     this.updateLineChartLabels()
-
   }
 
-
-
-
+  months: string[] = [
+    "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
+    "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
+  ];
+  
+  getMonthName(monthNumber: number): string {
+    return this.months[monthNumber];
+  }
 }
