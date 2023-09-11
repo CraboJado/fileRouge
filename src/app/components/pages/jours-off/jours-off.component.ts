@@ -106,38 +106,26 @@ export class JoursOffComponent implements OnInit {
   createOrUpdateJourOff() {
     if (!this.jo.id) {
       this._jourOffService.create(this.jo)
-        .subscribe(() => {
-            this._init();
-            this.reInitJourOff();
-          }, (error) => {
-            console.error("Erreur lors de la création du jour officiel", error);
-          }
-        );
+        .subscribe({
+          next:()=>{ },
+          error:()=>{this._init();this.reInitJourOff();}
+        })
     } else {
       this._jourOffService.update(this.jo)
-        .subscribe(
-          () => {
-            this._init();
-            this.reInitJourOff();
-          },
-          (error) => {
-            console.error("Erreur lors de la modification du jour officiel", error);
-          }
-        );
+        .subscribe({
+          next:()=>{ },
+          error:()=>{this._init();this.reInitJourOff();}
+        })
     }
   }
 
   deleteJourOff(id?: number) {
     if (id) {
       this._jourOffService.delete(id)
-        .subscribe(
-          () => {
-            this._init();
-          },
-          (error) => {
-            console.error("Erreur lors de la suppression du jour officiel", error);
-          }
-        );
+        .subscribe({
+          next:()=>{ },
+          error:()=>{this._init();this.reInitJourOff();}
+        })
     }
   }
 
