@@ -1,31 +1,3 @@
 <section class="container col-xl-12 col-xxl-12 py-5">
   <h1 class="lead fw-bold text-center lh-1 text-body-emphasis mb-3">Bienvenue dans votre espace personnel </h1>
 </section>
-
-
-<div *ngIf="activeEmploye" class="d-flex justify-content-between align-items-center">
-  <div class="d-flex align-items-center">
-    <button
-      *ngIf="activeEmploye.roles?.includes('MANAGER')"
-      class="btn btn-primary btn-lg"
-      (click)="sendDataToNavBar('manager')"
-    >
-      testManager
-    </button>
-  </div>
-  <div  class="d-flex align-items-center">
-  <button class="btn btn-primary btn-lg"*ngIf="activeEmploye.roles?.includes('ADMIN') || activeEmploye.roles?.includes('MANAGER')"
-  (click)="sendDataToNavBar('employe')">
-    testEmploye
-  </button >
-  </div>
-  <div class="d-flex align-items-center">
-    <button
-      *ngIf="activeEmploye.roles?.includes('ADMIN')"
-      class="btn btn-primary btn-lg"
-      (click)="sendDataToNavBar('admin')"
-    >
-      testAdmin
-    </button>
-  </div>
-</div>
