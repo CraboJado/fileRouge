@@ -29,11 +29,16 @@ const routes: Routes = [
   { path: 'rapports',component : RapportsComponent ,
     children:[
       {
-        path:"vue-one",
+        path:"",
+        redirectTo:'histogramme',
+        pathMatch: 'full' 
+      },
+      {
+        path:"histogramme",
         component:RapportsVueOneComponent
       },
       {
-        path:"vue-two",
+        path:"tableau",
         component:RapportsVueTwoComponent
 
       },

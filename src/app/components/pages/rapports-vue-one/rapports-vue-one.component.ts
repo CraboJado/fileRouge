@@ -35,9 +35,9 @@ export class RapportsVueOneComponent implements OnInit {
 
 
   constructor(private absenceService: AbsenceService,
-              private departementService: DepartementService,
-              private employeService: EmployeService,
-              private jourOffService: JoursOffService) {
+    private departementService: DepartementService,
+    private employeService: EmployeService,
+    private jourOffService: JoursOffService) {
   }
 
 
@@ -90,17 +90,17 @@ export class RapportsVueOneComponent implements OnInit {
   getDates(startDate: Date, endDate: Date) {
     const dates: string[] = [];
     let currentDate = new Date(startDate);
-    let maxDate= new Date(endDate)
-    while (currentDate<=new Date(endDate)) {
-      for(let jours of this.joursOffs){
+    let maxDate = new Date(endDate)
+    while (currentDate <= new Date(endDate)) {
+      for (let jours of this.joursOffs) {
 
-        if(jours.jour==currentDate) {
+        if (jours.jour == currentDate) {
           currentDate.setDate(currentDate.getDate() + 1);
         }
       }
-      if(currentDate.getDay()==0 || currentDate.getDay()==6){
+      if (currentDate.getDay() == 0 || currentDate.getDay() == 6) {
         currentDate.setDate(currentDate.getDate() + 1);
-      }else {
+      } else {
         dates.push(formatDate(currentDate, 'yyyy-MM-dd', 'en-US'));
         currentDate.setDate(currentDate.getDate() + 1);
       }
@@ -114,7 +114,10 @@ export class RapportsVueOneComponent implements OnInit {
     plugins: {
       legend: {
         display: true,
-        position: 'bottom'
+        position: 'bottom',
+        labels: {
+          padding: 20,
+        }
       }
     },
     scales: {
@@ -172,11 +175,11 @@ export class RapportsVueOneComponent implements OnInit {
     this.updateLineChartLabels()
   }
 
-  getMonthValue(monthName: string){
+  getMonthValue(monthName: string) {
     switch (monthName) {
       case "Janvier":
         this.currentMonth = 0;
-        console.log(  this.currentMonth);
+        console.log(this.currentMonth);
 
         break;
       case "Fevrier":
