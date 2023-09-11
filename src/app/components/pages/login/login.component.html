@@ -12,32 +12,8 @@
                     <li>Guito SAMEDI</li>
                 </ul>
                 <div class="pt-4">
-                    <button (click)="testGetDeparteemnt()">departements</button>
-                    <ul>
-                        <!--<li *ngFor="let test of departements"> {{test.name}}</li>-->
-                        <li *ngFor="let test of departements"> {{test|json}}</li>
-                    </ul>
-                    <button (click)="testEmploye()">employes</button>
-                    <ul>
-                        <!--<li *ngFor="let employe of employes"> {{employe.firstName}} {{employe.password}}</li>-->
-                        <li *ngFor="let employe of employes"> {{employe|json}}</li>
-                    </ul>
-                  <button (click)="testGetAbsence()">absences</button>
-                    <ul>
-                        <!--<li *ngFor="let employe of employes"> {{employe.firstName}} {{employe.password}}</li>-->
-                        <li *ngFor="let absence of absences"> {{absence|json}}</li>
-                    </ul>
-                  <button (click)="testGetJoursOff()">joursOff</button>
-                    <ul>
-                        <!--<li *ngFor="let employe of employes"> {{employe.firstName}} {{employe.password}}</li>-->
-                        <li *ngFor="let joursOff of joursOffs"> {{joursOff|json}}</li>
-                    </ul>
-                  <button (click)="testActive()">employes</button>
-                  <a>{{activeEmploye|json}}</a>
-
-                  <button (click)="testLogout()">logout</button>
-
                 </div>
+
             </div>
         </div>
         <div class="col-md-10 mx-auto col-lg-5">
