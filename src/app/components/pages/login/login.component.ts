@@ -39,7 +39,6 @@ export class LoginComponent {
   testLogin(email: string, password: string) {
     console.log("connecté")
     this.loginService.login(email, password)
-    this.router.navigate(['/home']);
   }
 
 
