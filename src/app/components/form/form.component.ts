@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import {DateInput} from "@fullcalendar/core";
 
 
 @Component({
@@ -23,7 +24,13 @@ export class FormComponent implements OnInit{
 
   ngOnInit(): void {
     this.start = this.transformDate(this.event.start);
-    this.end = this.event.end ==null ? this.transformDate(this.event.start) : this.transformDate(this.event.end);
+    if(this.event.end ==null){
+      this.end = this.transformDate(this.event.start);
+    }else{
+      let endDate = new Date(this.event.end as Date)
+      endDate.setDate(endDate.getDate() - 1)
+      this.end  = this.transformDate(endDate)
+    }
     this.type = this.getType();
     this.motif = this.getMotif();
   }
