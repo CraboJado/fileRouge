@@ -11,6 +11,7 @@ import {Departement} from "../model/departement";
 export class EmployeService {
 
   private _baseUrl = environment.urlApi.employes;
+  private _baseUrlOut = environment.urlApi.logout;
 
 
   constructor(private http: HttpClient) {
@@ -23,7 +24,14 @@ export class EmployeService {
   public findById(id: number) {
     return this.http.get<Employe>(`${this._baseUrl}/${id}`, {withCredentials: true})
   }
+  public findActive() {
+    return this.http.get<Employe>(`${this._baseUrl}/active`, {withCredentials: true})
+  }
 
+
+  public logout(){
+    return this.http.post(`${this._baseUrlOut}`,{})
+  }
 
   public create(firstName: string, lastName: string, password: string, soldeConge: number, soldeRTT: number, email: string, departement: Departement, manager: Employe, roles: string[]) {
 
@@ -36,11 +44,8 @@ export class EmployeService {
         soldeConge: soldeConge,
         soldeRTT: soldeRTT,
         email: email,
-
         departement: departement,
-
         manager: manager,
-
         roles: roles
       }
 

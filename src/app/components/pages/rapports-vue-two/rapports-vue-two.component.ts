@@ -28,9 +28,9 @@ export class RapportsVueTwoComponent implements OnInit {
   joursOffs: JoursOff[] = []
   departementGeneral: Departement = { id: 0, name: "tout le monde" }
   currentMonth: number = new Date().getMonth();
-  currentYear: number = new Date().getFullYear();
+  currentYear: number = new Date().getFullYear()
+  // daysInMonth: number = 0; // Initialisez à 0
   currentYear2: number = new Date().getFullYear();
-
 
   lineChartData: any[] = []
   lineChartLabels: string[] = []
@@ -164,6 +164,7 @@ export class RapportsVueTwoComponent implements OnInit {
     for (let i = 1980; i < 2050; i++) {
       this.annees.push(i)
     }
+    
 
   }
 

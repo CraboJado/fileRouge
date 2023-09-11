@@ -23,6 +23,7 @@ export class LoginComponent {
   absences: Absence[] = [];
   joursOffs: JoursOff[] = [];
   cookie: string = "";
+  activeEmploye:Employe={};
 
 
   constructor(
@@ -41,6 +42,14 @@ export class LoginComponent {
     this.router.navigate(['/home']);
   }
 
+
+  testLogout(){
+    this.employeService.logout().subscribe(t=>console.log(t))
+  }
+
+  testActive(){
+    this.employeService.findActive().subscribe(t=>this.activeEmploye=t)
+  }
 
   testEmploye() {
     this.employeService.findAll().subscribe(t => this.employes = t)

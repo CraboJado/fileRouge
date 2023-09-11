@@ -32,7 +32,11 @@
                         <!--<li *ngFor="let employe of employes"> {{employe.firstName}} {{employe.password}}</li>-->
                         <li *ngFor="let joursOff of joursOffs"> {{joursOff|json}}</li>
                     </ul>
-                  <button (click)="testtetst()">employes</button>
+                  <button (click)="testActive()">employes</button>
+                  <a>{{activeEmploye|json}}</a>
+
+                  <button (click)="testLogout()">employes</button>
+
                 </div>
             </div>
         </div>

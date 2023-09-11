@@ -29,9 +29,7 @@ export class LoginService {
         console.log(response)
         console.log(response.headers)
       })
-
   }
-
 //   return this.http.post(this._baseUrl, body,{'headers': headers})
 //       .subscribe((response)=> console.log(response));
 //
