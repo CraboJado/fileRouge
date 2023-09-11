@@ -21,15 +21,15 @@ const routes: Routes = [
     children:[
       {
         path:"",
-        redirectTo: 'histogramme',
+        redirectTo:'histogramme',
         pathMatch: 'full' 
-     },
+      },
       {
-        path:"vue-one",
+        path:"histogramme",
         component:RapportsVueOneComponent
       },
       {
-        path:"vue-two",
+        path:"tableau",
         component:RapportsVueTwoComponent
 
       },
