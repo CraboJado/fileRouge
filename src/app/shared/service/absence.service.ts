@@ -23,13 +23,12 @@ export class AbsenceService{
 
   public create(absence: Absence) {
     const headers = { 'content-type': 'application/json'}
-    return this._http.post<Absence>(this._baseUrl, absence,{withCredentials:true,responseType: "json"})
+    return this._http.post<Absence>(this._baseUrl, absence,{headers: headers,withCredentials:true})
   }
 
   public delete(id: string) {
     return this._http
       .delete<Absence>(this._baseUrl + "/" + id, {withCredentials:true})
-
   }
 
   public modify(absence: Absence) {
@@ -49,7 +48,7 @@ export class AbsenceService{
     }
     const headers = { 'content-type': 'application/json'}
     return  this._http
-   .put(`${this._baseUrl}/statut/${updated.id}`, newAbsence,{headers: headers,withCredentials:true})
+   .put(`${this._baseUrl}/statut/${updated.id}`, newAbsence,{headers: headers,withCredentials:true,responseType: "text"})
 
   }
 

@@ -12,17 +12,12 @@ export class ValidationAbsComponent {
   absences: Absence[] = [];
   errorMessage: string = '';
   okMessage: string = "";
-
   triDateCreationAscendant: boolean = false;
   triDateDebutAscendant: boolean = false;
-
-
   constructor(private _absenceService: AbsenceService) { }
-
   ngOnInit(): void {
     this._init()
   }
-
   private _init() {
     this._absenceService
       .findAll()
@@ -31,7 +26,6 @@ export class ValidationAbsComponent {
 
       })
   }
-
   validStatut(absence: Absence) {
     absence.statut = "VALIDEE";
   }
@@ -41,8 +35,6 @@ export class ValidationAbsComponent {
   eraseStatut(absence: Absence) {
     absence.statut = "INITIALE"
   }
-
-
   DateCreationSort() {
     this.absences.sort((a, b) => {
       if (a.dateCreation && b.dateCreation) {
@@ -82,7 +74,6 @@ export class ValidationAbsComponent {
       this.errorMessage = '';
     }, 3000);
   }
-
   updateAbs() {
       this.absences.forEach(absence => {
         this._absenceService.update(absence).subscribe(t=>this._init());

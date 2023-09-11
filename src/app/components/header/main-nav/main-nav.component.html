@@ -7,7 +7,7 @@
         <li class="nav-item active">
           <a class="nav-link" [routerLink]="'/home'" (click)="isMenuCollapsed = true">Dashboard</a>
         </li>
-        <li class="nav-item" ngbDropdown>
+        <li class="nav-item" ngbDropdown *ngIf="event.key=='manager'">
           <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button"> Absences </a>
           <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
             <a ngbDropdownItem [routerLink]="'/demande'" (click)="$event.preventDefault()">Demande d'absence</a>
@@ -15,14 +15,14 @@
             <a ngbDropdownItem [routerLink]="'/rapports'" (click)="$event.preventDefault()">Rapports (M)</a>
           </div>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="event.key=='employe'">
           <a class="nav-link" [routerLink]="'/calendrier'" (click)="isMenuCollapsed = true">Calendrier</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="'jours-off'" (click)="isMenuCollapsed = true">Jours officiels</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">Bonjour, Admin</a>
+          <a class="nav-link">Bonjour,{{event.key}}</a>
         </li>
         <li class="nav-item">
           <a class="btn btn-outline-primary rounded-pill px-3" [routerLink]="'jours-off'" (click)="isMenuCollapsed = true">Déconnexion</a>
@@ -30,4 +30,8 @@
       </ul>
     </div>
   </div>
+
+
+
+
 </nav>
