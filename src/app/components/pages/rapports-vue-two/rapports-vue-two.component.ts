@@ -28,8 +28,9 @@ export class RapportsVueTwoComponent implements OnInit {
   joursOffs: JoursOff[] = []
   departementGeneral: Departement = { id: 0, name: "tout le monde" }
   currentMonth: number = new Date().getMonth();
-  currentYear: number = new Date().getFullYear()
-  // daysInMonth: number = 0; // Initialisez à 0
+  currentYear: number = new Date().getFullYear();
+  currentYear2: number = new Date().getFullYear();
+
 
   lineChartData: any[] = []
   lineChartLabels: string[] = []
@@ -129,7 +130,7 @@ export class RapportsVueTwoComponent implements OnInit {
   lineChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     scales: {
-      // We use this empty structure as a placeholder for dynamic theming.
+      
       y: {
         position: 'left',
         suggestedMax: 5,
