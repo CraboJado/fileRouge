@@ -85,24 +85,25 @@ export class RapportsVueOneComponent implements OnInit {
     }
     return nbTotal
   }
+
   getDates(startDate: Date, endDate: Date) {
     const dates: string[] = [];
     let currentDate = new Date(startDate);
-    // let maxDate= new Date(endDate)
-    while (currentDate <= new Date(endDate)) {
-      for (let jours of this.joursOffs) {
+    let maxDate= new Date(endDate)
+    while (currentDate<=new Date(endDate)) {
+      for(let jours of this.joursOffs){
 
-        if (jours.jour == currentDate) {
+        if(jours.jour==currentDate) {
           currentDate.setDate(currentDate.getDate() + 1);
         }
       }
-      if (currentDate.getDay() == 0 || currentDate.getDay() == 6) {
+      if(currentDate.getDay()==0 || currentDate.getDay()==6){
         currentDate.setDate(currentDate.getDate() + 1);
-      } else {
-        dates.push(formatDate(currentDate, 'yyyy-MMMM-dd', 'en-US'));
+      }else {
+        dates.push(formatDate(currentDate, 'yyyy-MM-dd', 'en-US'));
+        currentDate.setDate(currentDate.getDate() + 1);
       }
 
-      currentDate.setDate(currentDate.getDate() + 1);
     }
     return dates;
   }
@@ -158,7 +159,7 @@ export class RapportsVueOneComponent implements OnInit {
       date.setMonth(this.currentMonth);
       date.setDate(i + 1);
       date.setFullYear(this.currentYear)
-      return formatDate(date, 'dd-MM-yyyy', 'en-US');
+      return formatDate(date, 'yyyy-MM-dd', 'en-US');
 
     });
 

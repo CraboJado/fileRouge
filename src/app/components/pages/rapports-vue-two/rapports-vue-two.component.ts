@@ -106,6 +106,7 @@ export class RapportsVueTwoComponent implements OnInit {
       }
 
     }
+
     return dates;
   }
 
