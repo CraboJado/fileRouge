@@ -10,9 +10,18 @@ import {RapportsComponent} from "./components/pages/rapports/rapports.component"
 import {RapportsVueOneComponent} from "./components/pages/rapports-vue-one/rapports-vue-one.component";
 import {RapportsVueTwoComponent} from "./components/pages/rapports-vue-two/rapports-vue-two.component";
 import {CalendrierComponent} from "./components/pages/calendrier/calendrier.component";
+import {SharedLayoutComponent} from "./components/layout/shared-layout/shared-layout.component";
+import {LoginLayoutComponent} from "./components/layout/login-layout/login-layout.component";
 
 const routes: Routes = [
-  { path: 'login',component : LoginComponent},
+  {
+    path: 'login',
+    component: LoginLayoutComponent, // Use the login layout for the login page
+  },
+  {
+    path: '',
+    component: SharedLayoutComponent, // Use the shared layout for other pages
+    children: [
   { path: 'home',component : HomeComponent},
   { path: 'calendrier',component : CalendrierComponent},
   { path: 'demande',component : DemandeAbsComponent},
@@ -33,6 +42,7 @@ const routes: Routes = [
   { path: 'jours-off',component : JoursOffComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**',component : NotFoundComponent},
+    ]}
 ];
 
 @NgModule({

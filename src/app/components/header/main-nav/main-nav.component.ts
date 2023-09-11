@@ -4,6 +4,7 @@ import {EmployeService} from "../../../shared/service/employe.service";
 import {Employe} from "../../../shared/model/employe";
 import {LoginService} from "../../../shared/service/login.service";
 import {Router} from "@angular/router";
+import {SharedLayoutComponent} from "../../layout/shared-layout/shared-layout.component";
 
 @Component({
   selector: 'app-main-nav',
@@ -22,9 +23,7 @@ export class MainNavComponent implements OnInit{
   }
 
   ngOnInit(): void {
-
     this.employeService.findActive().subscribe(t=>this.employe=t)
-
   }
 
 
@@ -33,8 +32,5 @@ logout(){
     this.employeService.logout().subscribe()
     this.router.navigate(['/login'])
 }
-
-
-
 
 }

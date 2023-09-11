@@ -19,11 +19,12 @@ import { RapportsVueTwoComponent } from './components/pages/rapports-vue-two/rap
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MainNavComponent } from './components/header/main-nav/main-nav.component';
-import { SubNavComponent } from './components/header/sub-nav/sub-nav.component';
 import { FormComponent } from './components/form/form.component';
 import {DatePipe} from "@angular/common";
 import { NgChartsModule } from 'ng2-charts';
 import {DateAdapter} from "@angular/material/core";
+import { SharedLayoutComponent } from './components/layout/shared-layout/shared-layout.component';
+import { LoginLayoutComponent } from './components/layout/login-layout/login-layout.component';
 
 
 @NgModule({
@@ -42,8 +43,9 @@ import {DateAdapter} from "@angular/material/core";
     HeaderComponent,
     FooterComponent,
     MainNavComponent,
-    SubNavComponent,
-    FormComponent
+    FormComponent,
+    SharedLayoutComponent,
+    LoginLayoutComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,8 @@ import {AbsenceService} from "../../../shared/service/absence.service";
 import {JoursOffService} from "../../../shared/service/jours-off.service";
 import {JoursOff} from "../../../shared/model/jours-off";
 import {Absence} from "../../../shared/model/absence";
+import {layouts} from "chart.js";
+import {SharedLayoutComponent} from "../../layout/shared-layout/shared-layout.component";
 
 
 @Component({
@@ -36,9 +38,11 @@ export class LoginComponent {
   ) {
   }
 
-  testLogin(email: string, password: string) {
+  tryLogin(email: string, password: string) {
     console.log("connecté")
     this.loginService.login(email, password)
+
+
   }
 
 
@@ -49,6 +53,9 @@ export class LoginComponent {
   testActive(){
     this.employeService.findActive().subscribe(t=>this.activeEmploye=t)
   }
+
+
+
 
   testEmploye() {
     this.employeService.findAll().subscribe(t => this.employes = t)

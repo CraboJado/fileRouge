@@ -170,7 +170,6 @@ export class RapportsVueOneComponent implements OnInit {
   changeCurrentYear(year: string) {
     this.currentYear = parseInt(year)
     this.updateLineChartLabels()
-
   }
 
   getMonthValue(monthName: string){
