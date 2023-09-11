@@ -55,9 +55,13 @@ export class CalendrierComponent implements OnInit {
 
         const id:string = abs.id+'';
 
-        let endDate = new Date(abs.dateFin as Date)
-        endDate.setDate(endDate.getDate() + 1)
-        let dateFin = this._datePipe.transform(endDate, 'yyyy-MM-dd') as DateInput ;
+        let dateFin = abs.dateDebut as DateInput;
+
+        if(abs.dateFin != abs.dateDebut){
+          let endDate = new Date(abs.dateFin as Date)
+          endDate.setDate(endDate.getDate() + 1)
+          dateFin = this._datePipe.transform(endDate, 'yyyy-MM-dd') as DateInput ;
+        }
 
         return {
           id: id,
@@ -75,19 +79,13 @@ export class CalendrierComponent implements OnInit {
 
   handleEventClick(info:any){
     info.jsEvent.preventDefault();
-    console.log('affecter valeur à event')
     this.event = info.event;
-
   }
 
   handleDateClick(arg: any) {
-    console.log('date click function')
-    console.log("event.id === ",this.event.id)
     if(this.event.id){
-      console.log("update or delete, showButton")
       this.showButton = !this.showButton
     }else{
-      console.log("No event, show Form to creer")
       this.showForm = !this.showForm;
     }
   }
@@ -99,7 +97,6 @@ export class CalendrierComponent implements OnInit {
 
 
  handleAnnulation(){
-    console.log("turn off Form, re-initial the state as beginning : isDelete false, event = {}")
    this.showForm = !this.showForm;
    if(this.event.id && this.isDelete){
      this.isDelete = false;
@@ -108,7 +105,6 @@ export class CalendrierComponent implements OnInit {
  }
 
   annulerDemandeAbs(){
-    console.log("set isDelete true, show Form and hide button")
     this.isDelete = true;
     this.showForm = !this.showForm;
     this.showButton = !this.showButton;
@@ -119,7 +115,6 @@ export class CalendrierComponent implements OnInit {
   handleSubmit(data:any){
     // ajoute une absence
     if(!this.event.id){
-      console.log('creer absence, turnoff form')
       const absence = {
         dateDebut:data.value.start,
         dateFin:data.value.end,
@@ -128,26 +123,22 @@ export class CalendrierComponent implements OnInit {
         employeId:1,
         statut:"INITIALE"
       }
-      //TODO à regler le problem de error , mais code 201 dans la réponse,
       this._absenceService.create(absence).subscribe({
-        next: ()=> { console.log('creer')},
-        error :()=>{ this._init() },
+        next: ()=> { this._init()},
+        error :()=>{ console.log("show popup , à faire quand il y a temp") },
         complete : ()=> console.log("complete")
       })
-
-
       this.showForm = !this.showForm;
       this.event = {};
       return
     }
 
     // annuler une absence
-    //TODO à regler le problem de error , mais code 201 dans la réponse,
     if(this.isDelete){
       this._absenceService.delete(this.event.id)
         .subscribe({
-          next:()=>{ },
-          error:()=>{this._init()}
+          next: ()=> { this._init()},
+          error :()=>{ console.log("show popup , à faire quand il y a temp") },
         })
       this.showForm = !this.showForm;
       this.event = {};
@@ -165,16 +156,13 @@ export class CalendrierComponent implements OnInit {
       statut:"INITIALE"
     }
 
-    //TODO à regler le problem de error , mais code 201 dans la réponse,
     this._absenceService.modify(absence).subscribe(
       {
-        next:()=>{},
-        error:()=> {this._init() }
+        next: ()=> { this._init()},
+        error :()=>{ console.log("show popup , à faire quand il y a temp") },
       }
     )
-
     this.showForm = !this.showForm;
     this.event = {};
   }
-
 }

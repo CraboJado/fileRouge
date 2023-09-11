@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import {Departement} from "../../../shared/model/departement";
 import {Employe} from "../../../shared/model/employe";
 import {LoginService} from "../../../shared/service/login.service";
@@ -29,13 +30,15 @@ export class LoginComponent {
     private departementService: DepartementService,
     private employeService: EmployeService,
     private absenceService: AbsenceService,
-    private jourOffService: JoursOffService
+    private jourOffService: JoursOffService,
+    private router: Router,
   ) {
   }
 
   testLogin(email: string, password: string) {
     console.log("connecté")
     this.loginService.login(email, password)
+    this.router.navigate(['/home']);
   }
 
 
