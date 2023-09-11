@@ -131,7 +131,6 @@ export class RapportsVueTwoComponent implements OnInit {
   lineChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     scales: {
-
       y: {
         position: 'left',
         suggestedMax: 5,

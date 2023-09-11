@@ -20,6 +20,11 @@ const routes: Routes = [
   { path: 'rapports',component : RapportsComponent ,
     children:[
       {
+        path:"",
+        redirectTo: 'histogramme',
+        pathMatch: 'full' 
+     },
+      {
         path:"vue-one",
         component:RapportsVueOneComponent
       },

@@ -116,7 +116,7 @@ export class RapportsVueOneComponent implements OnInit {
         display: true,
         position: 'bottom',
         labels: {
-          padding: 40,
+          padding: 20,
         }
       }
     },
