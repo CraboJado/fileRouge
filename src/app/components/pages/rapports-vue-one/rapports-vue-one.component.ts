@@ -32,6 +32,7 @@ export class RapportsVueOneComponent implements OnInit {
   lineChartData: any[] = []
   lineChartLabels: string[] = []
 
+
   constructor(private absenceService: AbsenceService,
               private departementService: DepartementService,
               private employeService: EmployeService,
