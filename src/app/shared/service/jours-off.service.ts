@@ -33,10 +33,6 @@ export class JoursOffService {
       return this._http
         .put(`${this._baseUrl}/${updated.id}`, updated,{headers: headers,withCredentials:true})
     }
- /* public update(updated: JoursOff) {
-    return this._http
-      .put(`${this._baseUrl}`, updated);
-  }*/
   public delete(id?: number) {
     const headers = { 'content-type': 'application/json'}
     return this._http.delete(`${this._baseUrl}/${id}`,{headers: headers,withCredentials:true})
