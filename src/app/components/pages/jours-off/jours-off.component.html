@@ -1,49 +1,68 @@
 <app-header></app-header>
-<ng-template #content let-offcanvas>
-  <div *ngIf="showForm">
-    <div class="offcanvas-header">
-      <h4
-        class="offcanvas-title">{{ editable && selectedEvent ? 'Modifier le jour officiel' : 'Créer un jour officiel' }}</h4>
-      <button (click)="offcanvas.dismiss('Cross click')" aria-label="Close" class="btn-close" type="button"></button>
-    </div>
-    <div class="offcanvas-body row">
-      <div class="col-md-12">
-        <form #form="ngForm" (ngSubmit)="createOrUpdateJourOff()" class="form">
-          <div class="form-check">
-            <input [(ngModel)]="jo.typeJour" [value]="0" class="form-check-input" id="exampleRadios1" name="typeJour"
-                   selected type="radio">
-            <label class="form-check-label" for="exampleRadios1">
-              RTT
-            </label>
-          </div>
-          <div class="form-check">
-            <input [(ngModel)]="jo.typeJour" [value]="1" class="form-check-input" id="exampleRadios2" name="typeJour"
-                   type="radio">
-            <label class="form-check-label" for="exampleRadios2">
-              JOUR FERIE
-            </label>
-          </div>
-          <label class="pt-3" for="floatingTextarea">Description (facultatif)</label>
-          <input [(ngModel)]="jo.description" aria-label="Description" class="form-control" id="floatingTextarea"
-                 name="description" placeholder="Description" type="text">
 
-          <label class="pt-3" for="floatingTextarea">Date</label><br/>
-          <input [(ngModel)]="jo.jour" aria-label="Date" class="form-control pt-1" name="jour" placeholder="Description"
-                 type="date">
+      <ng-template #content let-offcanvas>
+        <div *ngIf="showForm">
+          <div *ngIf="roles?.includes('ADMIN')" class="form-container">
+            <div class="offcanvas-header">
+              <h4
+                class="offcanvas-title">{{ editable && selectedEvent ? 'Modifier le jour officiel' : 'Créer un jour officiel' }}</h4>
+              <button (click)="hidePanel()" aria-label="Close" class="btn-close" type="button"></button>
+            </div>
+            <div class="offcanvas-body row">
+              <div class="col-md-12">
+                <form #form="ngForm" (ngSubmit)="createOrUpdateJourOff()" class="form">
+                  <div *ngIf="showTypeJour">
+                    <div class="form-check">
+                      <input [(ngModel)]="jo.typeJour" [value]="0" class="form-check-input" id="exampleRadios1"
+                             name="typeJour"
+                             selected type="radio">
+                      <label class="form-check-label" for="exampleRadios1">
+                        RTT
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input [(ngModel)]="jo.typeJour" [value]="1" class="form-check-input" id="exampleRadios2"
+                             name="typeJour"
+                             type="radio">
+                      <label class="form-check-label" for="exampleRadios2">
+                        JOUR FERIE
+                      </label>
+                    </div>
+                  </div>
+                  <label class="pt-3" for="floatingTextarea">Description (facultatif)</label>
+                  <input [(ngModel)]="jo.description" aria-label="Description" class="form-control"
+                         id="floatingTextarea"
+                         name="description" placeholder="Description" type="text">
 
-          <div class="pt-3">
-            <button (click)="offcanvas.dismiss('Cross click')" class="btn btn-outline-primary" type="submit">
-              Enregistrer
-            </button>
-            <button (click)="deleteJourOff(selectedEvent.id); offcanvas.dismiss('Cross click')"
-                    *ngIf="editable && selectedEvent" class="btn btn-outline-danger ms-2"
-                    type="button">
-              Supprimer
-            </button>
+                  <label class="pt-3" for="floatingTextarea">Date</label><br/>
+                  <input [(ngModel)]="jo.jour" aria-label="Date" class="form-control pt-1" name="jour"
+                         placeholder="Description"
+                         type="date">
+
+                  <div class="pt-3">
+                    <button (click)="offcanvas.dismiss()" class="btn btn-outline-primary" type="submit">
+                      Enregistrer
+                    </button>
+                    <button (click)="deleteJourOff(selectedEvent.id); hidePanel()"
+                            *ngIf="editable && selectedEvent" class="btn btn-outline-danger ms-2"
+                            type="button">
+                      Supprimer
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</ng-template>
-<full-calendar [options]="calendarOptions" id="calendar"></full-calendar>
+          <div class="list-container ">
+            <div class="overflow-auto">
+              <div class="col-md-12 p-4 ">
+                <h4>Liste jours officiels</h4>
+                <ul *ngFor="let j of joursOffs">
+                  <li>{{j.description?j.description:j.typeJour}} - {{ j.jour | date:'dd/MM/yyyy' }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <full-calendar [options]="calendarOptions" id="calendar"></full-calendar>
