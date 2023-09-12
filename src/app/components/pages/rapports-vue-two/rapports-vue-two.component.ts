@@ -75,9 +75,9 @@ export class RapportsVueTwoComponent implements OnInit {
 
   nbAbsencePerDayPerEmploye(date: string, employe: Employe) {
     let nbTotal = 0;
+    const absenceList = this.absences.filter(absence=>absence.statut=="VALIDEE")
 
-
-    for (let absence of this.absences) {
+    for (let absence of absenceList) {
       //@ts-ignore
       for (let dateTempo of this.getDates(absence.dateDebut, absence.dateFin)) {
         if (date == dateTempo && absence.employe?.id == employe.id) {
@@ -120,6 +120,26 @@ export class RapportsVueTwoComponent implements OnInit {
     let bool = false;
     for (let jour of this.joursOffs) {
       if (jour.jour?.toString() == date) {
+        return true
+      }
+    }
+
+    return false;
+  }
+  isFerie(date: string): boolean {
+    let bool = false;
+    for (let jour of this.joursOffs) {
+      if (jour.jour?.toString() == date && jour.typeJour=="JOUR_FERIE") {
+        return true
+      }
+    }
+
+    return false;
+  }
+  isRttEmployeur(date: string): boolean {
+    let bool = false;
+    for (let jour of this.joursOffs) {
+      if (jour.jour?.toString() == date && jour.typeJour=="RTT_EMPLOYEUR") {
         return true
       }
     }
