@@ -6,7 +6,6 @@ import {
   CalendarOptions, DateInput,
   EventSourceInput,
 } from '@fullcalendar/core';
-import frLocale from '@fullcalendar/core/locales/fr';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { Absence } from 'src/app/shared/model/absence';
@@ -27,6 +26,8 @@ export class CalendrierComponent implements OnInit {
   isDelete:boolean = false;
   absences: Absence[] = [];
   event:any = {}
+  statut:string="";
+  editable = false;
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
@@ -70,7 +71,8 @@ export class CalendrierComponent implements OnInit {
           type:abs.typeAbsence,
           motif:abs.motif,
           display: 'background',
-          color: color
+          color: color,
+          statut:abs.statut
         };
       });
       console.log(this.calendarOptions.events)
@@ -86,37 +88,43 @@ export class CalendrierComponent implements OnInit {
 
   handleDateClick(arg: any) {
     console.log('date click function')
-    console.log("event.id === ",this.event.id)
     if(this.event.id){
       console.log("update or delete, showButton")
-      this.showButton = !this.showButton
+
+      this.showButton = true;
+      console.log(this.event.extendedProps.statut)
+      if(this.event.extendedProps.statut == 'INITIALE' || this.event.extendedProps.statut == 'REJETEE'){
+        this.editable = true;
+      }
     }else{
       console.log("No event, show Form to creer")
-      this.showForm = !this.showForm;
+      this.showForm = true;
     }
   }
 
   handleShowForm(){
-    this.showForm = !this.showForm;
-    this.showButton = !this.showButton;
+    console.log("After click modier la demande in modal to show Form")
+    this.showForm = true;
+    console.log("then close button modal")
+    this.showButton = false;
   }
 
 
  handleAnnulation(){
     console.log("turn off Form, re-initial the state as beginning : isDelete false, event = {}")
-   this.showForm = !this.showForm;
+   this.showForm = false;
    if(this.event.id && this.isDelete){
      this.isDelete = false;
    }
    this.event = {};
+   this.editable =false;
  }
 
   annulerDemandeAbs(){
     console.log("set isDelete true, show Form and hide button")
     this.isDelete = true;
-    this.showForm = !this.showForm;
-    this.showButton = !this.showButton;
-
+    this.showForm = true;
+    this.showButton = false;
   }
 
 
@@ -132,30 +140,30 @@ export class CalendrierComponent implements OnInit {
         employeId:1,
         statut:"INITIALE"
       }
-      //TODO à regler le problem de error , mais code 201 dans la réponse,
+
       this._absenceService.create(absence).subscribe({
-        next: ()=> { console.log('creer')},
-        error :()=>{ this._init() },
+        next: ()=> { this._init()},
+        error :(err)=>{ console.log(err) },
         complete : ()=> console.log("complete")
       })
 
 
-      this.showForm = !this.showForm;
+      this.showForm = false;
       this.event = {};
       return
     }
 
     // annuler une absence
-    //TODO à regler le problem de error , mais code 201 dans la réponse,
     if(this.isDelete){
       this._absenceService.delete(this.event.id)
         .subscribe({
-          next:()=>{ },
-          error:()=>{this._init()}
+          next:()=>{this._init() },
+          error:(err)=>{console.log(err) }
         })
-      this.showForm = !this.showForm;
+      this.showForm = false;
       this.event = {};
       this.isDelete = false;
+      this.editable = false;
       return
     }
 
@@ -169,15 +177,15 @@ export class CalendrierComponent implements OnInit {
       statut:"INITIALE"
     }
 
-    //TODO à regler le problem de error , mais code 201 dans la réponse,
     this._absenceService.modify(absence).subscribe(
       {
-        next:()=>{},
-        error:()=> {this._init() }
+        next:()=>{this._init()},
+        error:(err)=> {console.log(err) }
       }
     )
 
-    this.showForm = !this.showForm;
+    this.showForm = false;
+    this.editable = false;
     this.event = {};
   }
 

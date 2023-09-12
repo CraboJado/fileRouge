@@ -36,6 +36,7 @@
             (click)="annulerDemandeAbs()"
             class="btn btn-danger ">Annuler la demande</button>
           <button
+            *ngIf="editable"
             (click)="handleShowForm()"
             class="btn btn-primary ">Modifer la demande</button>
         </div>
