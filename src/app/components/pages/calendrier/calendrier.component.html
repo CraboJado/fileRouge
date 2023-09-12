@@ -1,48 +1,30 @@
 <app-header></app-header>
 <section class="container col-xl-12 col-xxl-12 py-5 d-flex gap-5 justify-content-between">
-    <div class="d-flex flex-column justify-content-center gap-3 color-instruction">
-      <div class="dateDuJour">date du jour</div>
-      <div class="initiale">statut itinial</div>
-      <div class="conge-valide">congé validé</div>
-      <div class="rtt-valide">Rtt validé</div>
-      <div class="en-attente">en attente de validation</div>
-      <div class="refuse">demande refusé</div>
-    </div>
-    <div class="calendar-container position-relative flex-grow-1 ">
-        <full-calendar
-        #fullcalendar
-
-        [options]="calendarOptions"></full-calendar>
-
+  <div class="d-flex flex-column justify-content-center gap-3 color-instruction">
+    <div class="dateDuJour">date du jour</div>
+    <div class="initiale">statut itinial</div>
+    <div class="conge-valide">congés validés</div>
+    <div class="rtt-valide">rtts validés</div>
+    <div class="refuse">demande refusé</div>
+    <div class="en-attente">en attente de validation</div>
+  </div>
+  <div class="calendar-container position-relative flex-grow-1 ">
+    <full-calendar #fullcalendar [options]="calendarOptions"></full-calendar>
+    <div *ngIf="showForm" class="layer-seperator bg-transparent position-absolute top-0 w-100 h-100">
       <div
-        *ngIf="showForm"
-        class="layer-seperator bg-transparent position-absolute top-0 w-100 h-100"
-      >
-        <div
-          class="form position-absolute top-50 start-50 bg-white translate-middle d-flex justify-content-center p-sm-1 p-md-4 border border-2 rounded">
-          <app-form
-            (emitter)="handleSubmit($event)"
-            (emitterAnnulation)="handleAnnulation()"
-            [event] ="event"
-          ></app-form>
-        </div>
+        class="form position-absolute top-50 start-50 bg-white translate-middle d-flex justify-content-center p-sm-1 p-md-4 border border-2 rounded">
+        <app-form (emitter)="handleSubmit($event)" (emitterAnnulation)="handleAnnulation()" [event]="event"></app-form>
       </div>
-
-      <div
-        *ngIf="showButton"
-        class="layer-seperator bg-transparent position-absolute top-0 w-100 h-100"
-      >
-        <div
-          class="form position-absolute top-50 start-50 bg-white translate-middle d-flex justify-content-center flex-column p-sm-1 p-md-4 border border-2 rounded gap-3">
-          <button
-            (click)="annulerDemandeAbs()"
-            class="btn btn-outline-danger ">Annuler la demande</button>
-          <button
-            (click)="handleShowForm()"
-            class="btn btn-outline-primary ">Modifer la demande</button>
-        </div>
-      </div>
-
     </div>
+
+    <div *ngIf="showButton" class="layer-seperator bg-transparent position-absolute top-0 w-100 h-100">
+      <div
+        class="form position-absolute top-50 start-50 bg-white translate-middle d-flex justify-content-center flex-column p-sm-1 p-md-4 border border-2 rounded gap-3">
+        <button (click)="annulerDemandeAbs()" class="btn btn-outline-danger ">Annuler la demande</button>
+        <button (click)="handleShowForm()" class="btn btn-outline-primary ">Modifer la demande</button>
+      </div>
+    </div>
+
+  </div>
 
 </section>
