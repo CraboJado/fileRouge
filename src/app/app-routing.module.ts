@@ -34,7 +34,7 @@ const routes: Routes = [
   },
   { path: 'jours-off',component : JoursOffComponent,canActivate:[authGuard]},
   { path: '', redirectTo: 'login', pathMatch: 'full'},
-  { path: '**',component : NotFoundComponent },
+  { path: '**',component : NotFoundComponent ,canActivate:[authGuard]},
 ];
 
 @NgModule({

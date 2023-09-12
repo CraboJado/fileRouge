@@ -21,9 +21,7 @@ export class MainNavComponent implements OnInit{
   }
 
   ngOnInit(): void {
-
     this.roles =  this.authService.roles ;
-    console.log( this.roles)
   }
 
   logOut(){

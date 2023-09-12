@@ -38,19 +38,10 @@ export class LoginComponent {
   ) {
   }
 
-  // testLogin(email: string, password: string) {
-  //   this.authService.login(email,password).subscribe(()=>{
-  //     console.log(this.authService.roles)
-  //     if(this.authService.roles != null){
-  //       this.router.navigate(['/home'])
-  //     }
-  //   })
-  // }
-
   testLogin(email: string, password: string) {
     this.authService.login(email,password).subscribe({
       next:(value)=>{this.router.navigate(['/home'])},
-      error:(err)=>{this.router.navigate(['/login'])}
+      error:(err)=>{console.log("err à traiter si on a temps")}
     })
   }
 
