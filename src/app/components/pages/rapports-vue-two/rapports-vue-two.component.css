@@ -32,7 +32,31 @@ td span {
 .carre{
   background-color: rgb(163, 226, 227);
   height: 1rem;
-  width:1rem;
+  width: 1rem;
 
   
 }
+@media (max-width: 768px) {
+  .table-responsive {
+    overflow-x: auto;
+  }
+  .table {
+    width: 100%;
+  }
+  .table th,
+  .table td {
+    white-space: nowrap;
+  }
+
+  .divLegend {
+    flex-direction:  column !important;
+    align-items: center;
+  }
+
+  /* .selects{
+  justify-content: flex-start !important;
+  } */
+
+ 
+}
+
