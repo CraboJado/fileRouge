@@ -1,15 +1,15 @@
-import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {JoursOffService} from "../../../shared/service/jours-off.service";
-import {JoursOff} from "../../../shared/model/jours-off";
-import {CalendarOptions} from '@fullcalendar/core';
+import { DatePipe } from '@angular/common';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import bootstrap5Plugin from '@fullcalendar/bootstrap5';
+import { CalendarOptions } from '@fullcalendar/core';
+import frLocale from '@fullcalendar/core/locales/fr';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import listPlugin from '@fullcalendar/list';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import {NgbOffcanvas} from '@ng-bootstrap/ng-bootstrap';
-import interactionPlugin, {DateClickArg} from '@fullcalendar/interaction';
-import frLocale from '@fullcalendar/core/locales/fr';
-import {DatePipe} from '@angular/common';
-import bootstrap5Plugin from '@fullcalendar/bootstrap5';
+import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
+import { JoursOff } from "../../../shared/model/jours-off";
+import { JoursOffService } from "../../../shared/service/jours-off.service";
 
 @Component({
   selector: 'app-jours-off',
@@ -26,6 +26,7 @@ export class JoursOffComponent implements OnInit {
   showForm: boolean = false;
   selectedEvent: JoursOff | null = null;
   editable: boolean = false;
+  
   calendarOptions: CalendarOptions = {
     locale: frLocale,
     plugins: [

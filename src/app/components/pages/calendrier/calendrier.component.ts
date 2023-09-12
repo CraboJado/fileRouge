@@ -1,12 +1,14 @@
-import { DatePipe } from "@angular/common";
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FullCalendarComponent } from '@fullcalendar/angular';
-import { CalendarOptions, DateInput} from '@fullcalendar/core';
+import { Calendar,CalendarOptions, DateInput,EventSourceInput} from '@fullcalendar/core';
+import frLocale from '@fullcalendar/core/locales/fr';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { Absence } from 'src/app/shared/model/absence';
 import { AbsenceService } from 'src/app/shared/service/absence.service';
-
+import {DatePipe} from "@angular/common";
+import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 @Component({
   selector: 'app-departements',
   templateUrl: './calendrier.component.html',
@@ -22,15 +24,18 @@ export class CalendrierComponent implements OnInit {
   absences: Absence[] = [];
   event:any = {}
 
+
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
-    plugins: [dayGridPlugin, interactionPlugin],
+    locale: frLocale,
+    plugins: [dayGridPlugin, interactionPlugin, bootstrap5Plugin],
     dateClick: this.handleDateClick.bind(this),
     eventClick: this.handleEventClick.bind(this),
     events: [],
+    themeSystem: 'bootstrap5',
     weekends:false,
-
   }
+
   constructor(private _absenceService: AbsenceService,private _datePipe: DatePipe) {}
 
   ngOnInit(): void {
