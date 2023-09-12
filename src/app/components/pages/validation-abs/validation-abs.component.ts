@@ -20,10 +20,10 @@ export class ValidationAbsComponent {
   }
   private _init() {
     this._absenceService
-      .findAll()
+      .findAllByManager()
       .subscribe(absenceReceived => {
-        this.absences = absenceReceived;
-
+        this.absences = absenceReceived.filter(t=>t.statut=="EN_ATTENTE");
+        ;
       })
   }
   validStatut(absence: Absence) {
@@ -33,7 +33,7 @@ export class ValidationAbsComponent {
     absence.statut = "REJETEE"
   }
   eraseStatut(absence: Absence) {
-    absence.statut = "INITIALE"
+    absence.statut = "EN_ATTENTE"
   }
   DateCreationSort() {
     this.absences.sort((a, b) => {

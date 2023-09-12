@@ -11,8 +11,6 @@ import {Departement} from "../model/departement";
 export class EmployeService {
 
   private _baseUrl = environment.urlApi.employes;
-  private _baseUrlOut = environment.urlApi.logout;
-
 
   constructor(private http: HttpClient) {
   }
@@ -28,10 +26,6 @@ export class EmployeService {
     return this.http.get<Employe>(`${this._baseUrl}/active`, {withCredentials: true})
   }
 
-
-  public logout(){
-    return this.http.post(`${this._baseUrlOut}`,{},{withCredentials: true})
-  }
 
   public create(firstName: string, lastName: string, password: string, soldeConge: number, soldeRTT: number, email: string, departement: Departement, manager: Employe, roles: string[]) {
 

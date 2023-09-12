@@ -2,12 +2,13 @@
   <div class="container">
     <span class="navbar-brand fw-bold" [routerLink]="'/home'">Redwire</span>
     <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">&#9776;</button>
-    <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+    <div
+      [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item active">
           <a class="nav-link" [routerLink]="'/home'" (click)="isMenuCollapsed = true">Dashboard</a>
         </li>
-        <li class="nav-item" ngbDropdown *ngIf="employe.roles?.includes('MANAGER')">
+        <li class="nav-item" ngbDropdown *ngIf="roles?.includes('MANAGER')">
           <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button"> Absences </a>
           <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
             <a ngbDropdownItem [routerLink]="'/validation'" (click)="$event.preventDefault()">Validation des absences (M)</a>
@@ -17,14 +18,14 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="'/calendrier'" (click)="isMenuCollapsed = true">Calendrier</a>
         </li>
-        <li class="nav-item" *ngIf="employe.roles?.includes('ADMIN')">
-          <a class="nav-link" [routerLink]="'jours-off'" (click)="isMenuCollapsed = true" >Jours officiels</a>
+        <li class="nav-item" *ngIf="roles?.includes('ADMIN')">
+          <a class="nav-link" [routerLink]="'/jours-off'" (click)="isMenuCollapsed = true" >Jours officiels</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">Bonjour,{{employe.firstName}}</a>
+          <a class="nav-link">Bonjour</a>
         </li>
         <li class="nav-item">
-          <a class="btn btn-outline-primary rounded-pill px-3" (click)="logout()">Déconnexion</a>
+          <a class="btn btn-outline-primary rounded-pill px-3" [routerLink]="'/login'" (click)="logOut()">Déconnexion</a>
         </li>
       </ul>
     </div>

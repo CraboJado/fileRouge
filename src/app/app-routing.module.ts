@@ -5,33 +5,28 @@ import {LoginComponent} from "./components/pages/login/login.component";
 import {NotFoundComponent} from "./components/pages/not-found/not-found.component";
 import {ValidationAbsComponent} from "./components/pages/validation-abs/validation-abs.component";
 import {DemandeAbsComponent} from "./components/pages/demande-abs/demande-abs.component";
-import {HomeComponent} from "./components/pages/home/home.component";
 import {RapportsComponent} from "./components/pages/rapports/rapports.component";
 import {RapportsVueOneComponent} from "./components/pages/rapports-vue-one/rapports-vue-one.component";
 import {RapportsVueTwoComponent} from "./components/pages/rapports-vue-two/rapports-vue-two.component";
 import {CalendrierComponent} from "./components/pages/calendrier/calendrier.component";
-import {SharedLayoutComponent} from "./components/layout/shared-layout/shared-layout.component";
-import {LoginLayoutComponent} from "./components/layout/login-layout/login-layout.component";
+
+import {HomeComponent} from "./components/pages/home/home.component";
+import {authGuard} from "./auth/auth.guard";
 
 const routes: Routes = [
-  {
-    path: 'login',
-    component: LoginLayoutComponent, // Use the login layout for the login page
-  },
-  {
-    path: '',
-    component: SharedLayoutComponent, // Use the shared layout for other pages
-    children: [
-  { path: 'home',component : HomeComponent},
-  { path: 'calendrier',component : CalendrierComponent},
-  { path: 'demande',component : DemandeAbsComponent},
-  { path: 'validation',component : ValidationAbsComponent},
-  { path: 'rapports',component : RapportsComponent ,
+  { path: 'login',component : LoginComponent},
+  { path: 'home',component : HomeComponent, canActivate:[authGuard]},
+  { path: 'calendrier',component : CalendrierComponent,canActivate:[authGuard]},
+  { path: 'demande',component : DemandeAbsComponent,canActivate:[authGuard]},
+  { path: 'validation',component : ValidationAbsComponent,canActivate:[authGuard]},
+  { path: 'rapports',
+    component : RapportsComponent,
+    canActivate:[authGuard],
     children:[
       {
         path:"",
         redirectTo:'histogramme',
-        pathMatch: 'full' 
+        pathMatch: 'full'
       },
       {
         path:"histogramme",
@@ -40,14 +35,13 @@ const routes: Routes = [
       {
         path:"tableau",
         component:RapportsVueTwoComponent
-
       },
-    ]
+    ],
+
   },
-  { path: 'jours-off',component : JoursOffComponent},
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: '**',component : NotFoundComponent},
-    ]}
+  { path: 'jours-off',component : JoursOffComponent,canActivate:[authGuard]},
+  { path: '', redirectTo: 'login', pathMatch: 'full'},
+  { path: '**',component : NotFoundComponent ,canActivate:[authGuard]},
 ];
 
 @NgModule({

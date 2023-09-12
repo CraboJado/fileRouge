@@ -12,7 +12,6 @@ import { JoursOffComponent } from './components/pages/jours-off/jours-off.compon
 import { NotFoundComponent } from './components/pages/not-found/not-found.component';
 import { ValidationAbsComponent } from './components/pages/validation-abs/validation-abs.component';
 import { DemandeAbsComponent } from './components/pages/demande-abs/demande-abs.component';
-import { HomeComponent } from './components/pages/home/home.component';
 import { RapportsComponent } from './components/pages/rapports/rapports.component';
 import { RapportsVueOneComponent } from './components/pages/rapports-vue-one/rapports-vue-one.component';
 import { RapportsVueTwoComponent } from './components/pages/rapports-vue-two/rapports-vue-two.component';
@@ -22,10 +21,7 @@ import { MainNavComponent } from './components/header/main-nav/main-nav.componen
 import { FormComponent } from './components/form/form.component';
 import {DatePipe} from "@angular/common";
 import { NgChartsModule } from 'ng2-charts';
-import {DateAdapter} from "@angular/material/core";
-import { SharedLayoutComponent } from './components/layout/shared-layout/shared-layout.component';
-import { LoginLayoutComponent } from './components/layout/login-layout/login-layout.component';
-
+import {HomeComponent} from "./components/pages/home/home.component";
 
 @NgModule({
   declarations: [
@@ -36,7 +32,6 @@ import { LoginLayoutComponent } from './components/layout/login-layout/login-lay
     JoursOffComponent,
     ValidationAbsComponent,
     DemandeAbsComponent,
-    HomeComponent,
     RapportsComponent,
     RapportsVueOneComponent,
     RapportsVueTwoComponent,
@@ -44,8 +39,7 @@ import { LoginLayoutComponent } from './components/layout/login-layout/login-lay
     FooterComponent,
     MainNavComponent,
     FormComponent,
-    SharedLayoutComponent,
-    LoginLayoutComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,

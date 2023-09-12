@@ -1,8 +1,13 @@
+<app-header></app-header>
 <section class="container col-xl-12 col-xxl-12 py-5">
   <select  aria-label="Large select example" class="form-select form-select-md mb-3 w-25">
     <option selected value="1" class="link m-2 text-dark" [routerLink]="['/rapports/histogramme']" routerLinkActive="active">Histogramme</option>
     <option value="2" class="link m-2 text-dark" [routerLink]="['/rapports/tableau']" routerLinkActive="active">Tableau</option>
   </select>
+
+
   <router-outlet></router-outlet>
 </section>
+
+
 

@@ -1,4 +1,4 @@
-
+<app-header></app-header>
 <section class="container col-xl-12 col-xxl-12 py-5">
   <table class="table">
     <thead>
@@ -7,10 +7,10 @@
 
         <th scope="col text-">Nom</th>
 
-        <th scope="col "> <a class="link-body-emphasis link-offset-2  link-opacity-50-hover text-decoration-none"(click)="DateCreationSort()">Date creation  
+        <th scope="col "> <a class="link-body-emphasis link-offset-2  link-opacity-50-hover text-decoration-none"(click)="DateCreationSort()">Date creation
           <i class="bi bi-arrow-down-up"></i></a></th>
-          
-        <th scope="col"> <a class="link-body-emphasis link-offset-2  link-opacity-50-hover text-decoration-none"(click)="DateDebutSort()">Date Début  
+
+        <th scope="col"> <a class="link-body-emphasis link-offset-2  link-opacity-50-hover text-decoration-none"(click)="DateDebutSort()">Date Début
           <i class="bi bi-arrow-down-up"></i></a></th>
 
 
@@ -36,14 +36,14 @@
 
         <td>
           <button type="submit" class="btn btn-outline-success me-2" (click)="validStatut(absence)"
-            *ngIf="absence.statut =='INITIALE'">
+            *ngIf="absence.statut =='EN_ATTENTE'">
             <i class="bi bi-check-lg"> </i>
           </button>
 
           <i class="bi bi-check-lg text-success" *ngIf="absence.statut=='VALIDEE'"></i>
 
           <button type="submit" class="btn btn-outline-danger" (click)="rejectStatut(absence)"
-            *ngIf="absence.statut=='INITIALE'">
+            *ngIf="absence.statut=='EN_ATTENTE'">
             <i class="bi bi-x-lg"> </i>
           </button>
           <i class="bi bi-x-lg" *ngIf="absence.statut =='REJETEE'">

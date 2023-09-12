@@ -25,14 +25,7 @@ export class LoginService {
     const headers = { 'content-type': 'application/json'}
     const body = JSON.stringify(logindata);
 
-    this.http.post(this._baseUrl, body, {observe: "response", headers: headers, withCredentials: true})
-      .subscribe(
-        {
-          next:t=> this.router.navigate(['/home']) ,
-          error:t=>t
-        }
-
-    )
+    return this.http.post(this._baseUrl, body, {observe: "response", headers: headers, withCredentials: true})
   }
 //   return this.http.post(this._baseUrl, body,{'headers': headers})
 //       .subscribe((response)=> console.log(response));
