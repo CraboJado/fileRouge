@@ -1,5 +1,5 @@
 <section class="container py-5 ">
-
+<div>
   <div class="row justify-content-end mb-3">
 
     <div class="col-3 ">
@@ -30,7 +30,7 @@
       </button>
     </div>
 
-
+  </div>
   <table>
     <thead>
       <tr>
@@ -41,7 +41,7 @@
     <tbody>
       <ng-container *ngFor="let dataset of lineChartData; let i = index">
         <tr>
-          <td>{{ dataset.label }}</td>
+          <td data-label=''>{{ dataset.label }}</td>
           <td *ngFor="let value of dataset.data; let j = index">
             <span *ngIf="value === 1 && !isWeekEnd(lineChartLabels[j]) && !isJourOff(lineChartLabels[j]) ">A</span>
             <span *ngIf="value === 0 && !isWeekEnd(lineChartLabels[j]) && !isJourOff(lineChartLabels[j])">&nbsp;</span>
