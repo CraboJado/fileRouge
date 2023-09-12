@@ -156,6 +156,7 @@ export class RapportsVueOneComponent implements OnInit {
       this.annees.push(i)
     }
   }
+  
 
   updateLineChartLabels() {
     this.lineChartLabels = Array.from({ length: 31 }, (_, i) => {
