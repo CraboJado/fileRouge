@@ -38,9 +38,9 @@
         <tr>
           <td>{{ dataset.label }}</td>
           <td *ngFor="let value of dataset.data; let j = index">
-            <span *ngIf="value === 1 && !isWeekEnd(lineChartLabels[j]) && !isJourOff(lineChartLabels[j]) ">C</span>
+            <span *ngIf="value === 1 && !isWeekEnd(lineChartLabels[j]) && !isJourOff(lineChartLabels[j]) ">A</span>
             <span *ngIf="value === 0 && !isWeekEnd(lineChartLabels[j]) && !isJourOff(lineChartLabels[j])">&nbsp;</span>
-            <span *ngIf=" isWeekEnd(lineChartLabels[j])">t</span>
+            <span *ngIf=" isWeekEnd(lineChartLabels[j]) && !isJourOff(lineChartLabels[j])">t</span>
             <span *ngIf=" isJourOff(lineChartLabels[j])">R</span>
           </td>
         </tr>
