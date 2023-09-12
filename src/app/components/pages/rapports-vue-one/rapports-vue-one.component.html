@@ -11,19 +11,19 @@
         </option>
       </select>
 
-      <select class="form-select mb-1" #month aria-label="Default select example">
-        <option value="Janvier" (click)="getMonthValue(month.value)">Janvier</option>
-        <option value="Fevrier" (click)="getMonthValue(month.value)">Fevrier</option>
-        <option value="Mars" (click)="getMonthValue(month.value)">Mars</option>
-        <option value="Avril" (click)="getMonthValue(month.value)">Avril</option>
-        <option value="Mai" (click)="getMonthValue(month.value)">Mai</option>
-        <option value="Juin" (click)="getMonthValue(month.value)">Juin</option>
-        <option value="Juillet" (click)="getMonthValue(month.value)">Juillet</option>
-        <option value="Août" (click)="getMonthValue(month.value)">Août</option>
-        <option value="Septembre" (click)="getMonthValue(month.value)">Septembre</option>
-        <option value="Octobre" (click)="getMonthValue(month.value)">Octobre</option>
-        <option value="Novembre" (click)="getMonthValue(month.value)">Novembre</option>
-        <option value="Décembre" (click)="getMonthValue(month.value)">Décembre</option>
+      <select class="form-select mb-1" aria-label="Default select example"  [(ngModel)]="currentMonth" (change)="updateLineChartLabels()">
+        <option value=0>Janvier</option>
+        <option value=1 >Fevrier</option>
+        <option value=2>Mars</option>
+        <option value=3 >Avril</option>
+        <option value=4 >Mai</option>
+        <option value=5 >Juin</option>
+        <option value=6>Juillet</option>
+        <option value=7>Août</option>
+        <option value=8 >Septembre</option>
+        <option value=9 >Octobre</option>
+        <option value=10 >Novembre</option>
+        <option value=11 >Décembre</option>
       </select>
 
 
@@ -37,7 +37,7 @@
   </div>
 
   <div class="d-flex flex-row justify-content-center ">
-    <p class="fw-bold fs-2 text-center">{{month.value}}</p>
+    <p class="fw-bold fs-2 text-center">{{getMonthName()}}</p>
     <p class="fw-bold fs-2 text-center ms-2">{{currentYear}}</p>
   </div>
   <div class="d-flex justify-content-end">
@@ -45,7 +45,7 @@
       <i class="bi bi-file-earmark-arrow-down">Télécharger au format Exel</i>
     </button>
   </div>
-  <div style="display: block">
+  <div style="display: flex">
     <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
       [legend]="lineChartLegend"></canvas>
   </div>

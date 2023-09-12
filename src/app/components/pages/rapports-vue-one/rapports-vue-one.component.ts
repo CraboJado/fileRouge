@@ -175,49 +175,37 @@ export class RapportsVueOneComponent implements OnInit {
     this.updateLineChartLabels()
   }
 
-  getMonthValue(monthName: string) {
-    switch (monthName) {
-      case "Janvier":
-        this.currentMonth = 0;
+  getMonthName() {
+      if (this.currentMonth == 0) {
+        return "Janvier";
+      } else if (this.currentMonth == 1) {
+        return "Février";
+      } else if (this.currentMonth == 2) {
+        return "Mars";
+      } else if (this.currentMonth == 3) {
+        return "Avril";
+      } else if (this.currentMonth == 4) {
+        return "Mai";
+      } else if (this.currentMonth == 5) {
+        return "Juin";
+      } else if (this.currentMonth == 6) {
+        return "Juillet";
+      } else if (this.currentMonth == 7) {
+        return "Août";
+      } else if (this.currentMonth == 8) {
+        return "Septembre";
+      } else if (this.currentMonth == 9) {
+        return "Octobre";
+      } else if (this.currentMonth == 10) {
+        return "Novembre";
+      } else if (this.currentMonth == 11) {
+        return "Décembre";
+      } else {
         console.log(this.currentMonth);
-
-        break;
-      case "Fevrier":
-        this.currentMonth = 1;
-        break;
-      case "Mars":
-        this.currentMonth = 2;
-        break;
-      case "Avril":
-        this.currentMonth = 3;
-        break;
-      case "Mai":
-        this.currentMonth = 4;
-        break;
-      case "Juin":
-        this.currentMonth = 5;
-        break;
-      case "Juillet":
-        this.currentMonth = 6;
-        break;
-      case "Août":
-        this.currentMonth = 7;
-        break;
-      case "Septembre":
-        this.currentMonth = 8;
-        break;
-      case "Octobre":
-        this.currentMonth = 9;
-        break;
-      case "Novembre":
-        this.currentMonth = 10;
-        break;
-      case "Décembre":
-        this.currentMonth = 11;
-        break;
+        return "Invalid Month";
+      }
     }
-    this.updateLineChartLabels()
-  }
+
 
 
 
