@@ -24,6 +24,7 @@ export class CalendrierComponent implements OnInit {
 
   showForm = false;
   showButton = false;
+  showError = false;
   isDelete:boolean = false;
   absences: Absence[] = [];
   event:any = {}
@@ -31,6 +32,7 @@ export class CalendrierComponent implements OnInit {
   editable = false;
   soldeConge = 0;
   soldeRtt = 0;
+  errorMsg="";
 
 
   calendarOptions: CalendarOptions = {
@@ -158,8 +160,11 @@ export class CalendrierComponent implements OnInit {
 
       this._absenceService.create(absence).subscribe({
         next: ()=> { this._init()},
-        error :(err)=>{ console.log(err) },
-        complete : ()=> console.log("complete")
+        error :(res)=>{
+          this.errorMsg = res.error;
+          this.showError = true;
+          },
+        complete : ()=> {}
       })
 
 
@@ -209,6 +214,7 @@ export class CalendrierComponent implements OnInit {
     this.showButton = false;
     this.editable =false;
     this.isDelete = false;
+    this.showError = false;
     this.event = {};
   }
 
