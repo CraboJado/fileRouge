@@ -41,11 +41,11 @@ export class CalendrierComponent implements OnInit {
     this._absenceService.findAllByEmploye().subscribe((absencesReceived) => {
       this.absences = absencesReceived;
       this.calendarOptions.events = this.absences.map((abs) => {
-        let color = '#FEDD00';
+        let color = '#ffd2e1';
         if (abs.statut == 'EN_ATTENTE') color = '#2B1B7B';
-        if (abs.statut == 'VALIDEE' && abs.typeAbsence =='RTT') color = '#DCFF00';
+        if (abs.statut == 'VALIDEE' && abs.typeAbsence =='RTT') color = '#FEDD00';
         if (abs.statut == 'VALIDEE' && abs.typeAbsence =='CONGE_PAYE') color = '#35FDBE';
-        if (abs.statut == 'REJETEE') color = '#BF1F59';
+        if (abs.statut == 'REJETEE') color = '#f00020';
 
         const id:string = abs.id+'';
 
