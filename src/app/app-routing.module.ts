@@ -9,6 +9,7 @@ import {RapportsComponent} from "./components/pages/rapports/rapports.component"
 import {RapportsVueOneComponent} from "./components/pages/rapports-vue-one/rapports-vue-one.component";
 import {RapportsVueTwoComponent} from "./components/pages/rapports-vue-two/rapports-vue-two.component";
 import {CalendrierComponent} from "./components/pages/calendrier/calendrier.component";
+
 import {HomeComponent} from "./components/pages/home/home.component";
 import {authGuard} from "./auth/auth.guard";
 
@@ -22,11 +23,16 @@ const routes: Routes = [
     component : RapportsComponent,
     children:[
       {
-        path:"vue-one",
+        path:"",
+        redirectTo:'histogramme',
+        pathMatch: 'full' 
+      },
+      {
+        path:"histogramme",
         component:RapportsVueOneComponent
       },
       {
-        path:"vue-two",
+        path:"tableau",
         component:RapportsVueTwoComponent
       },
     ],

@@ -12,6 +12,7 @@ import {Absence} from "../../../shared/model/absence";
 import {AuthService} from "../../../auth/auth.service";
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -49,13 +50,12 @@ export class LoginComponent {
   testLogout(){
     console.log('logout')
     this.employeService.logout().subscribe(t=>console.log(t))
-
-
   }
 
   testActive(){
     this.employeService.findActive().subscribe(t=>this.activeEmploye=t)
   }
+
 
   testEmploye() {
     this.employeService.findAll().subscribe(t => this.employes = t)

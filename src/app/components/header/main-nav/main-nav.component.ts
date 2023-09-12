@@ -1,8 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {SharedDataService} from "../../../shared/service/active-role.service";
-import {EmployeService} from "../../../shared/service/employe.service";
-import {Employe} from "../../../shared/model/employe";
 import {AuthService} from "../../../auth/auth.service";
+
 
 @Component({
   selector: 'app-main-nav',
@@ -17,6 +15,7 @@ export class MainNavComponent implements OnInit{
   event:any = {}
   roles: string [] | null = null;
 
+
   constructor( private authService : AuthService) {
   }
 
@@ -28,12 +27,5 @@ export class MainNavComponent implements OnInit{
     this.isMenuCollapsed = true;
     this.authService.logout();
   }
-
-
-
-
-
-
-
 
 }

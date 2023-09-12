@@ -31,8 +31,10 @@
     "bootstrap-icons": "^1.10.5",
     "chart.js": "^3.9.1",
     "ng2-charts": "^5.0.3",
+    "node-xlsx": "^0.23.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {

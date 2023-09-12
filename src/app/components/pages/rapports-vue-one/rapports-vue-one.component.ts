@@ -10,6 +10,7 @@ import { Employe } from "../../../shared/model/employe";
 import { switchMap } from "rxjs";
 import { JoursOffService } from "../../../shared/service/jours-off.service";
 import { JoursOff } from "../../../shared/model/jours-off";
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-rapports-vue-one',
@@ -34,9 +35,9 @@ export class RapportsVueOneComponent implements OnInit {
 
 
   constructor(private absenceService: AbsenceService,
-              private departementService: DepartementService,
-              private employeService: EmployeService,
-              private jourOffService: JoursOffService) {
+    private departementService: DepartementService,
+    private employeService: EmployeService,
+    private jourOffService: JoursOffService) {
   }
 
 
@@ -89,17 +90,17 @@ export class RapportsVueOneComponent implements OnInit {
   getDates(startDate: Date, endDate: Date) {
     const dates: string[] = [];
     let currentDate = new Date(startDate);
-    let maxDate= new Date(endDate)
-    while (currentDate<=new Date(endDate)) {
-      for(let jours of this.joursOffs){
+    let maxDate = new Date(endDate)
+    while (currentDate <= new Date(endDate)) {
+      for (let jours of this.joursOffs) {
 
-        if(jours.jour==currentDate) {
+        if (jours.jour == currentDate) {
           currentDate.setDate(currentDate.getDate() + 1);
         }
       }
-      if(currentDate.getDay()==0 || currentDate.getDay()==6){
+      if (currentDate.getDay() == 0 || currentDate.getDay() == 6) {
         currentDate.setDate(currentDate.getDate() + 1);
-      }else {
+      } else {
         dates.push(formatDate(currentDate, 'yyyy-MM-dd', 'en-US'));
         currentDate.setDate(currentDate.getDate() + 1);
       }
@@ -113,7 +114,10 @@ export class RapportsVueOneComponent implements OnInit {
     plugins: {
       legend: {
         display: true,
-        position: 'bottom'
+        position: 'bottom',
+        labels: {
+          padding: 20,
+        }
       }
     },
     scales: {
@@ -169,14 +173,13 @@ export class RapportsVueOneComponent implements OnInit {
   changeCurrentYear(year: string) {
     this.currentYear = parseInt(year)
     this.updateLineChartLabels()
-
   }
 
-  getMonthValue(monthName: string){
+  getMonthValue(monthName: string) {
     switch (monthName) {
       case "Janvier":
         this.currentMonth = 0;
-        console.log(  this.currentMonth);
+        console.log(this.currentMonth);
 
         break;
       case "Fevrier":
@@ -215,5 +218,33 @@ export class RapportsVueOneComponent implements OnInit {
     }
     this.updateLineChartLabels()
   }
+
+
+
+
+  exportToExcel() {
+    // Prepare the data for Excel export
+    const excelData = [];
+
+    // Add headers as the first row
+    excelData.push(['Date', ...this.employes.map(employe => employe.firstName)]);
+
+    // Add data rows
+    for (let i = 0; i < this.lineChartLabels.length; i++) {
+      const rowData = [this.lineChartLabels[i], ...this.lineChartData.map(dataset => dataset.data[i])];
+      excelData.push(rowData);
+    }
+
+    // Create a worksheet
+    const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(excelData);
+
+    // Create a workbook
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Chart Data'); // 'Chart Data' is the name of the sheet
+
+    // Generate a Blob containing the Excel file and trigger download
+    XLSX.writeFile(wb, 'chart_data.xlsx'); // 'chart_data.xlsx' is the file name
+  }
+
 
 }
