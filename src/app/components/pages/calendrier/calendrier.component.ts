@@ -1,17 +1,11 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { DatePipe } from "@angular/common";
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FullCalendarComponent } from '@fullcalendar/angular';
-import {
-  Calendar,
-  CalendarOptions, DateInput,
-  EventSourceInput,
-} from '@fullcalendar/core';
-import frLocale from '@fullcalendar/core/locales/fr';
+import { CalendarOptions, DateInput} from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { Absence } from 'src/app/shared/model/absence';
 import { AbsenceService } from 'src/app/shared/service/absence.service';
-import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-departements',
