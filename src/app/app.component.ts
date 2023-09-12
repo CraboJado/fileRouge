@@ -1,6 +1,7 @@
-import {Component, HostListener} from '@angular/core';
-import {Employe} from "./shared/model/employe";
-import {EmployeService} from "./shared/service/employe.service";
+
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from "./auth/auth.service";
+
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,5 @@ import {EmployeService} from "./shared/service/employe.service";
 })
 export class AppComponent {
   title = 'Gestion des congés et jours feriés';
-
-
 
 }

@@ -1,10 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {SharedDataService} from "../../../shared/service/active-role.service";
-import {EmployeService} from "../../../shared/service/employe.service";
-import {Employe} from "../../../shared/model/employe";
-import {LoginService} from "../../../shared/service/login.service";
-import {Router} from "@angular/router";
-import {SharedLayoutComponent} from "../../layout/shared-layout/shared-layout.component";
+import {AuthService} from "../../../auth/auth.service";
+
 
 @Component({
   selector: 'app-main-nav',
@@ -17,20 +13,19 @@ export class MainNavComponent implements OnInit{
   // appear initially when the page loads on a small screen!
   isMenuCollapsed = true;
   event:any = {}
+  roles: string [] | null = null;
 
-  employe:Employe= {}
-  constructor( private employeService:EmployeService,private loginService:LoginService, private router:Router) {
+
+  constructor( private authService : AuthService) {
   }
 
   ngOnInit(): void {
-    this.employeService.findActive().subscribe(t=>this.employe=t)
+    this.roles =  this.authService.roles ;
   }
 
-
-
-logout(){
-    this.employeService.logout().subscribe()
-    this.router.navigate(['/login'])
-}
+  logOut(){
+    this.isMenuCollapsed = true;
+    this.authService.logout();
+  }
 
 }
