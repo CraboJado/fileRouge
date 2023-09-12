@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AuthService} from "../../../auth/auth.service";
+import {LoginService} from "../../../shared/service/login.service";
 
 
 @Component({
@@ -13,19 +13,19 @@ export class MainNavComponent implements OnInit{
   // appear initially when the page loads on a small screen!
   isMenuCollapsed = true;
   event:any = {}
-  roles: string [] | null = null;
+  roles: string [] | undefined = [];
 
 
-  constructor( private authService : AuthService) {
+  constructor(private loginService:LoginService) {
   }
 
   ngOnInit(): void {
-    this.roles =  this.authService.roles ;
+    this.roles =  this.loginService.roles ;
   }
 
   logOut(){
     this.isMenuCollapsed = true;
-    this.authService.logout();
+    this.loginService.logout();
   }
 
 }
