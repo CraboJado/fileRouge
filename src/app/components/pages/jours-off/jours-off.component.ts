@@ -8,9 +8,9 @@ import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import listPlugin from '@fullcalendar/list';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import {NgbOffcanvas} from '@ng-bootstrap/ng-bootstrap';
-import {AuthService} from "../../../auth/auth.service";
 import { JoursOff } from "../../../shared/model/jours-off";
 import { JoursOffService } from "../../../shared/service/jours-off.service";
+import {LoginService} from "../../../shared/service/login.service";
 
 @Component({
   selector: 'app-jours-off',
@@ -21,7 +21,7 @@ import { JoursOffService } from "../../../shared/service/jours-off.service";
 export class JoursOffComponent implements OnInit {
   @ViewChild('content') content: TemplateRef<any> | undefined;
 
-  roles: string [] | null = null;
+  roles: string [] | undefined = [];
   joursOffs: JoursOff[] = [];
   jo: any = {};
   typesJour: string[] = [];
@@ -62,7 +62,7 @@ export class JoursOffComponent implements OnInit {
 
   constructor(
     private _jourOffService: JoursOffService,
-    private authService : AuthService,
+    private loginService : LoginService,
     private datePipe: DatePipe,
     private offcanvasService: NgbOffcanvas
   ) {
@@ -70,7 +70,7 @@ export class JoursOffComponent implements OnInit {
 
   ngOnInit(): void {
     this._init();
-    this.roles =  this.authService.roles ;
+    this.roles =  this.loginService.roles ;
   }
 
   reInitJourOff() {

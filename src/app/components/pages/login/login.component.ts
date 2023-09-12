@@ -1,8 +1,6 @@
 import {Component, Injectable} from '@angular/core';
 import { Router } from '@angular/router';
-import {AuthService} from "../../../auth/auth.service";
-
-
+import {LoginService} from "../../../shared/service/login.service";
 
 @Component({
   selector: 'app-login',
@@ -13,12 +11,12 @@ export class LoginComponent {
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private loginService: LoginService
   ) {
   }
 
   signIn(email: string, password: string) {
-    this.authService.login(email,password).subscribe({
+    this.loginService.login(email,password).subscribe({
       next:(value)=>{this.router.navigate(['/home'])},
       error:(err)=>{console.log("err à traiter si on a temps")}
     })

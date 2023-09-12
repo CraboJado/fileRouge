@@ -1,14 +1,13 @@
 import {CanActivateFn, Router} from '@angular/router';
 import {inject} from "@angular/core";
-import {AuthService} from "./auth.service";
+import {LoginService} from "../shared/service/login.service";
 
 export const roleGuard: CanActivateFn = (route, state) => {
 
-  const authService = inject(AuthService);
-
+  const loginService= inject(LoginService);
   const router = inject(Router);
 
-  let isAuthorized = authService.roles?.includes(route.data['roles']);
+  let isAuthorized = loginService.roles?.includes(route.data['roles']);
 
   if(isAuthorized){
     return true;
