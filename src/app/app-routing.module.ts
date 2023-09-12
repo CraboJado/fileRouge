@@ -12,16 +12,22 @@ import {CalendrierComponent} from "./components/pages/calendrier/calendrier.comp
 
 import {HomeComponent} from "./components/pages/home/home.component";
 import {authGuard} from "./auth/auth.guard";
+import {roleGuard} from "./auth/role.guard";
 
 const routes: Routes = [
   { path: 'login',component : LoginComponent},
   { path: 'home',component : HomeComponent, canActivate:[authGuard]},
   { path: 'calendrier',component : CalendrierComponent,canActivate:[authGuard]},
   { path: 'demande',component : DemandeAbsComponent,canActivate:[authGuard]},
-  { path: 'validation',component : ValidationAbsComponent,canActivate:[authGuard]},
+  { path: 'validation',
+    component : ValidationAbsComponent,
+    canActivate:[authGuard,roleGuard],
+    data:{roles:'MANAGER'}
+  },
   { path: 'rapports',
     component : RapportsComponent,
-    canActivate:[authGuard],
+    canActivate:[authGuard,roleGuard],
+    data:{roles:'MANAGER'},
     children:[
       {
         path:"",
@@ -39,7 +45,11 @@ const routes: Routes = [
     ],
 
   },
-  { path: 'jours-off',component : JoursOffComponent,canActivate:[authGuard]},
+  { path: 'jours-off',
+    component : JoursOffComponent,
+    canActivate:[authGuard,roleGuard],
+    data:{roles:'ADMIN'},
+  },
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: '**',component : NotFoundComponent ,canActivate:[authGuard]},
 ];
