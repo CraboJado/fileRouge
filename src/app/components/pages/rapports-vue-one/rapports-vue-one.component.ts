@@ -73,9 +73,9 @@ export class RapportsVueOneComponent implements OnInit {
   }
   nbAbsencePerDayPerEmploye(date: string, employe: Employe) {
     let nbTotal = 0;
+    const absenceList=this.absences.filter(absence=>absence.statut=="VALIDEE")
 
-
-    for (let absence of this.absences) {
+    for (let absence of absenceList) {
       //@ts-ignore
       for (let dateTempo of this.getDates(absence.dateDebut, absence.dateFin)) {
         if (date == dateTempo && absence.employe?.id == employe.id) {
@@ -156,7 +156,8 @@ export class RapportsVueOneComponent implements OnInit {
       this.annees.push(i)
     }
   }
-  
+
+
 
   updateLineChartLabels() {
     this.lineChartLabels = Array.from({ length: 31 }, (_, i) => {
@@ -171,10 +172,20 @@ export class RapportsVueOneComponent implements OnInit {
     this.updateLineChartData()
   }
 
-  changeCurrentYear(year: string) {
-    this.currentYear = parseInt(year)
+  changeMonth(change: number) {
+    this.currentMonth += change;
+
+    if (this.currentMonth > 11) {
+      this.currentMonth = 0;
+      this.currentYear += 1
+    } else if (this.currentMonth < 0) {
+      this.currentMonth = 11;
+      this.currentYear += -1
+    }
+
     this.updateLineChartLabels()
   }
+
 
   getMonthName() {
       if (this.currentMonth == 0) {
@@ -202,7 +213,6 @@ export class RapportsVueOneComponent implements OnInit {
       } else if (this.currentMonth == 11) {
         return "Décembre";
       } else {
-        console.log(this.currentMonth);
         return "Invalid Month";
       }
     }

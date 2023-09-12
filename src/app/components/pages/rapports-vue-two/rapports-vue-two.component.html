@@ -31,6 +31,7 @@
     </div>
 
 
+
   <table>
     <thead>
       <tr>
@@ -45,12 +46,15 @@
           <td *ngFor="let value of dataset.data; let j = index">
             <span *ngIf="value === 1 && !isWeekEnd(lineChartLabels[j]) && !isJourOff(lineChartLabels[j]) ">A</span>
             <span *ngIf="value === 0 && !isWeekEnd(lineChartLabels[j]) && !isJourOff(lineChartLabels[j])">&nbsp;</span>
-            <span *ngIf=" isWeekEnd(lineChartLabels[j]) && !isJourOff(lineChartLabels[j])">t</span>
-            <span *ngIf=" isJourOff(lineChartLabels[j])">R</span>
+            <span *ngIf=" isWeekEnd(lineChartLabels[j]) && !isJourOff(lineChartLabels[j])">W</span>
+            <span *ngIf=" isFerie(lineChartLabels[j])">F</span>
+            <span *ngIf=" isRttEmployeur(lineChartLabels[j])">R</span>
           </td>
         </tr>
       </ng-container>
     </tbody>
   </table>
- 
+
 </section>
+
+<a>W=weekend  A=absence  F=Jour Ferié  R=RTT employeur</a>

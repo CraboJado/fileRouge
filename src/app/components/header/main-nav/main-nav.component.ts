@@ -14,18 +14,13 @@ export class MainNavComponent implements OnInit{
   isMenuCollapsed = true;
   event:any = {}
   roles: string [] | null = null;
-
-
   constructor( private authService : AuthService) {
   }
-
   ngOnInit(): void {
     this.roles =  this.authService.roles ;
   }
-
   logOut(){
     this.isMenuCollapsed = true;
     this.authService.logout();
   }
-
 }
