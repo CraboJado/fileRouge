@@ -114,7 +114,8 @@ export class CalendrierComponent implements OnInit {
     }
   }
 
-  handleShowForm(){
+  handleShowForm(e:Event){
+    e.stopPropagation();
     console.log("After click modier la demande in modal to show Form")
     this.showForm = true;
     console.log("then close button modal")
@@ -132,7 +133,8 @@ export class CalendrierComponent implements OnInit {
    this.editable =false;
  }
 
-  annulerDemandeAbs(){
+  annulerDemandeAbs(e:Event){
+    e.stopPropagation();
     console.log("set isDelete true, show Form and hide button")
     this.isDelete = true;
     this.showForm = true;
@@ -141,6 +143,7 @@ export class CalendrierComponent implements OnInit {
 
 
   handleSubmit(data:any){
+
     // ajoute une absence
     if(!this.event.id){
       console.log('creer absence, turnoff form')
@@ -198,6 +201,14 @@ export class CalendrierComponent implements OnInit {
 
     this.showForm = false;
     this.editable = false;
+    this.event = {};
+  }
+
+  annulerAction(){
+    this.showForm = false;
+    this.showButton = false;
+    this.editable =false;
+    this.isDelete = false;
     this.event = {};
   }
 
