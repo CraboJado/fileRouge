@@ -28,7 +28,8 @@ export class RapportsComponent {
     } else if (selectedValue === "tableau") {
       this.gotoTableau();
     }
+    else{
+      this.gotoHisto();
+    }
   }
-
-
 }
