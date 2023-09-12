@@ -1,6 +1,8 @@
 <app-header></app-header>
 <section class="container col-xl-12 col-xxl-12 py-5 d-flex gap-5 justify-content-between">
     <div class="d-flex flex-column justify-content-center gap-3 color-instruction">
+      <div class="dateDuJour">date du jour</div>
+      <div class="initiale">statut itinial</div>
       <div class="conge-valide">congé validé</div>
       <div class="rtt-valide">Rtt validé</div>
       <div class="en-attente">en attente de validation</div>
@@ -34,11 +36,11 @@
           class="form position-absolute top-50 start-50 bg-white translate-middle d-flex justify-content-center flex-column p-sm-1 p-md-4 border border-2 rounded gap-3">
           <button
             (click)="annulerDemandeAbs()"
-            class="btn btn-danger ">Annuler la demande</button>
+            class="btn btn-outline-danger ">Annuler la demande</button>
           <button
             *ngIf="editable"
             (click)="handleShowForm()"
-            class="btn btn-primary ">Modifer la demande</button>
+            class="btn btn-outline-primary ">Modifer la demande</button>
         </div>
       </div>
 

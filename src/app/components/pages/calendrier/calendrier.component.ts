@@ -6,12 +6,13 @@ import {
   CalendarOptions, DateInput,
   EventSourceInput,
 } from '@fullcalendar/core';
+import frLocale from '@fullcalendar/core/locales/fr';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { Absence } from 'src/app/shared/model/absence';
 import { AbsenceService } from 'src/app/shared/service/absence.service';
 import {DatePipe} from "@angular/common";
-
+import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 @Component({
   selector: 'app-departements',
   templateUrl: './calendrier.component.html',
@@ -29,15 +30,18 @@ export class CalendrierComponent implements OnInit {
   statut:string="";
   editable = false;
 
+
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
-    plugins: [dayGridPlugin, interactionPlugin],
+    locale: frLocale,
+    plugins: [dayGridPlugin, interactionPlugin, bootstrap5Plugin],
     dateClick: this.handleDateClick.bind(this),
     eventClick: this.handleEventClick.bind(this),
     events: [],
+    themeSystem: 'bootstrap5',
     weekends:false,
-
   }
+
   constructor(private _absenceService: AbsenceService,private _datePipe: DatePipe) {}
 
   ngOnInit(): void {
@@ -48,11 +52,11 @@ export class CalendrierComponent implements OnInit {
     this._absenceService.findAllByEmploye().subscribe((absencesReceived) => {
       this.absences = absencesReceived;
       this.calendarOptions.events = this.absences.map((abs) => {
-        let color = '#e398a2';
-        if (abs.statut == 'EN_ATTENTE') color = '#fcba03';
-        if (abs.statut == 'VALIDEE' && abs.typeAbsence =='RTT') color = '#98e1e3';
-        if (abs.statut == 'VALIDEE' && abs.typeAbsence =='CONGE_PAYE') color = '#03fc90';
-        if (abs.statut == 'REJETEE') color = '#fc0324';
+        let color = '#ffd2e1';
+        if (abs.statut == 'EN_ATTENTE') color = '#2B1B7B';
+        if (abs.statut == 'VALIDEE' && abs.typeAbsence =='RTT') color = '#FEDD00';
+        if (abs.statut == 'VALIDEE' && abs.typeAbsence =='CONGE_PAYE') color = '#35FDBE';
+        if (abs.statut == 'REJETEE') color = '#f00020';
 
         const id:string = abs.id+'';
 

@@ -13,3 +13,4 @@ li {
   opacity: unset;
   background: none;
 }
+fc-widget-content .fc-scroller {height: auto !important;}

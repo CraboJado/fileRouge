@@ -1,15 +1,16 @@
-import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {JoursOffService} from "../../../shared/service/jours-off.service";
-import {JoursOff} from "../../../shared/model/jours-off";
-import {CalendarOptions} from '@fullcalendar/core';
+import { DatePipe } from '@angular/common';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import bootstrap5Plugin from '@fullcalendar/bootstrap5';
+import { CalendarOptions } from '@fullcalendar/core';
+import frLocale from '@fullcalendar/core/locales/fr';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import listPlugin from '@fullcalendar/list';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import {NgbOffcanvas} from '@ng-bootstrap/ng-bootstrap';
-import interactionPlugin, {DateClickArg} from '@fullcalendar/interaction';
-import frLocale from '@fullcalendar/core/locales/fr';
-import {DatePipe} from '@angular/common';
-import bootstrap5Plugin from '@fullcalendar/bootstrap5';
+import {AuthService} from "../../../auth/auth.service";
+import { JoursOff } from "../../../shared/model/jours-off";
+import { JoursOffService } from "../../../shared/service/jours-off.service";
 
 @Component({
   selector: 'app-jours-off',
@@ -20,12 +21,15 @@ import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 export class JoursOffComponent implements OnInit {
   @ViewChild('content') content: TemplateRef<any> | undefined;
 
+  roles: string [] | null = null;
   joursOffs: JoursOff[] = [];
   jo: any = {};
   typesJour: string[] = [];
   showForm: boolean = false;
+  showTypeJour: boolean = false;
   selectedEvent: JoursOff | null = null;
   editable: boolean = false;
+
   calendarOptions: CalendarOptions = {
     locale: frLocale,
     plugins: [
@@ -41,14 +45,12 @@ export class JoursOffComponent implements OnInit {
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
-
     events: this.joursOffs.map(jourOff => ({
       id: jourOff.id?.toString() || '',
       title: jourOff.description || '',
       start: jourOff.jour || '',
       allDay: true,
     })),
-
     initialView: 'dayGridMonth',
     weekends: false,
     editable: true,
@@ -60,6 +62,7 @@ export class JoursOffComponent implements OnInit {
 
   constructor(
     private _jourOffService: JoursOffService,
+    private authService : AuthService,
     private datePipe: DatePipe,
     private offcanvasService: NgbOffcanvas
   ) {
@@ -67,6 +70,7 @@ export class JoursOffComponent implements OnInit {
 
   ngOnInit(): void {
     this._init();
+    this.roles =  this.authService.roles ;
   }
 
   reInitJourOff() {
@@ -75,6 +79,10 @@ export class JoursOffComponent implements OnInit {
 
   showPanel() {
     this.offcanvasService.open(this.content, {position: 'end'});
+  }
+  hidePanel() {
+    this.offcanvasService.dismiss();
+   //this.reInitJourOff();
   }
 
   handleDateClick(clickInfo: DateClickArg) {
@@ -93,6 +101,7 @@ export class JoursOffComponent implements OnInit {
     // Vérifier si l'évènement seléctionné possède une donnée pour afficher le bon formulare Create/Update
     if (existedJourOff) {
       this.editable = true;
+      this.showTypeJour =true;
       this.selectedEvent = existedJourOff;
       console.log('Evenement :', this.selectedEvent);
       this.jo = {...existedJourOff};
