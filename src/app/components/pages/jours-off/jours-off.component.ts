@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {JoursOffService} from "../../../shared/service/jours-off.service";
 import {JoursOff} from "../../../shared/model/jours-off";
 import {CalendarOptions} from '@fullcalendar/core';
@@ -9,6 +9,7 @@ import {NgbOffcanvas} from '@ng-bootstrap/ng-bootstrap';
 import interactionPlugin, {DateClickArg} from '@fullcalendar/interaction';
 import frLocale from '@fullcalendar/core/locales/fr';
 import {DatePipe} from '@angular/common';
+import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 
 @Component({
   selector: 'app-jours-off',
@@ -31,9 +32,10 @@ export class JoursOffComponent implements OnInit {
       interactionPlugin,
       dayGridPlugin,
       timeGridPlugin,
-      listPlugin
+      listPlugin,
+      bootstrap5Plugin
     ],
-
+    themeSystem: 'bootstrap5',
     headerToolbar: {
       left: 'prev,next,prevYear,nextYear,today',
       center: 'title',
@@ -76,45 +78,55 @@ export class JoursOffComponent implements OnInit {
   }
 
   handleDateClick(clickInfo: DateClickArg) {
-    const clickedDate = this.datePipe.transform(clickInfo.date, 'yyyy-MM-dd');
-    console.log('Date séléctionnée :', clickedDate);
 
+    // Affecter la date cliquée et la formater
+    const clickedDate = this.datePipe.transform(clickInfo.date, 'yyyy-MM-dd');
+
+    // Affecter la date du jour dans la DB et la formater
     const existedJourOff = this.joursOffs.find(jourOff => {
       const joDate = this.datePipe.transform(jourOff.jour, 'yyyy-MM-dd');
       return joDate === clickedDate;
     });
 
     this.jo.jour = clickedDate
-    console.log('Date jo :', this.jo.jour);
 
+    // Vérifier si l'évènement seléctionné possède une donnée pour afficher le bon formulare Create/Update
     if (existedJourOff) {
-      console.log('Formulaire Edition');
       this.editable = true;
       this.selectedEvent = existedJourOff;
       console.log('Evenement :', this.selectedEvent);
       this.jo = {...existedJourOff};
     } else {
-      console.log('Formulaire Création');
       this.editable = false;
       this.selectedEvent = null;
     }
 
-    this.showForm = true;
+    // Afficher les éléments du formulaire
     this.showPanel();
+    this.showForm = true;
+
   }
 
   createOrUpdateJourOff() {
     if (!this.jo.id) {
       this._jourOffService.create(this.jo)
         .subscribe({
-          next:()=>{ },
-          error:()=>{this._init();this.reInitJourOff();}
+          next: () => {
+          },
+          error: () => {
+            this._init();
+            this.reInitJourOff();
+          }
         })
     } else {
       this._jourOffService.update(this.jo)
         .subscribe({
-          next:()=>{ },
-          error:()=>{this._init();this.reInitJourOff();}
+          next: () => {
+          },
+          error: () => {
+            this._init();
+            this.reInitJourOff();
+          }
         })
     }
   }
@@ -123,8 +135,12 @@ export class JoursOffComponent implements OnInit {
     if (id) {
       this._jourOffService.delete(id)
         .subscribe({
-          next:()=>{ },
-          error:()=>{this._init();this.reInitJourOff();}
+          next: () => {
+          },
+          error: () => {
+            this._init();
+            this.reInitJourOff();
+          }
         })
     }
   }
