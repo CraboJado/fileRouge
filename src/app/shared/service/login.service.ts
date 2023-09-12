@@ -11,6 +11,9 @@ import {Router} from "@angular/router";
 export class LoginService {
 
   private _baseUrl = environment.urlApi.login;
+  private _baseUrlOut = environment.urlApi.logout;
+
+  roles: string[] | undefined = [];
 
   constructor(private http: HttpClient, private router:Router) {
   }
@@ -29,5 +32,11 @@ export class LoginService {
   }
 //   return this.http.post(this._baseUrl, body,{'headers': headers})
 //       .subscribe((response)=> console.log(response));
-//
+
+  logout() {
+    localStorage.clear()
+    this.http.post(`${this._baseUrlOut}`,{},{withCredentials: true})
+  }
 }
+
+
