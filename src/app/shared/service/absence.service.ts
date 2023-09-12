@@ -17,6 +17,10 @@ export class AbsenceService{
     return this._http.get<Absence[]>(this._baseUrl,{withCredentials:true})
   }
 
+  public findAllByManager(){
+    return this._http.get<Absence[]>(this._baseUrl + '/manager',{withCredentials:true})
+  }
+
   public findAllByEmploye(){
     return this._http.get<Absence[]>(this._baseUrl + '/employe',{withCredentials:true})
   }

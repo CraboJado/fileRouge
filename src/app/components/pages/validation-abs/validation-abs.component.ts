@@ -20,10 +20,10 @@ export class ValidationAbsComponent {
   }
   private _init() {
     this._absenceService
-      .findAll()
+      .findAllByManager()
       .subscribe(absenceReceived => {
+        console.log(absenceReceived);
         this.absences = absenceReceived;
-
       })
   }
   validStatut(absence: Absence) {

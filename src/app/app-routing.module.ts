@@ -21,11 +21,12 @@ const routes: Routes = [
   { path: 'validation',component : ValidationAbsComponent,canActivate:[authGuard]},
   { path: 'rapports',
     component : RapportsComponent,
+    canActivate:[authGuard],
     children:[
       {
         path:"",
         redirectTo:'histogramme',
-        pathMatch: 'full' 
+        pathMatch: 'full'
       },
       {
         path:"histogramme",
@@ -36,7 +37,7 @@ const routes: Routes = [
         component:RapportsVueTwoComponent
       },
     ],
-    canActivate:[authGuard]
+
   },
   { path: 'jours-off',component : JoursOffComponent,canActivate:[authGuard]},
   { path: '', redirectTo: 'login', pathMatch: 'full'},
