@@ -12,20 +12,28 @@
   left: -3rem;
 }
 
+.dateDuJour::before {
+   background-color: #fffadf;
+}
+
+.initiale::before {
+  background-color: #FEDD00;
+}
+
 .conge-valide::before {
-    background-color:#03fc90;
+    background-color:#35FDBE;
 }
 
 .rtt-valide::before  {
-    background-color:#98e1e3;
+    background-color:#DCFF00;
 }
 
 .en-attente::before{
-    background-color:#fcba03;
+    background-color:#2B1B7B;
 }
 
 .refuse::before{
-    background-color:#fc0324;
+    background-color:#BF1F59;
 }
 
 .form{
