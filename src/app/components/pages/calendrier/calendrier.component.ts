@@ -29,6 +29,8 @@ export class CalendrierComponent implements OnInit {
   event:any = {}
   statut:string="";
   editable = false;
+  soldeConge = 0;
+  soldeRtt = 0;
 
 
   calendarOptions: CalendarOptions = {
@@ -45,6 +47,12 @@ export class CalendrierComponent implements OnInit {
   constructor(private _absenceService: AbsenceService,private _datePipe: DatePipe) {}
 
   ngOnInit(): void {
+    let employe = localStorage.getItem('employe');
+    if(employe){
+       let parsedEmploye = JSON.parse(employe);
+      this.soldeConge = parsedEmploye.soldeConge;
+      this.soldeRtt = parsedEmploye.soldeRtt;
+    }
     this._init();
   }
 
