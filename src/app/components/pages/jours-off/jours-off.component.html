@@ -7,10 +7,10 @@
     </div>
   </div>
   <div class="col-md-7">
-    <div *ngIf="showError" class="alert alert-danger alert-dismissible fade show" role="alert" (click)="$event.stopPropagation();">
-      Erreur ! {{errorMsg}}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" data-bs-target="#my-alert" aria-label="Close"></button>
+    <div *ngIf="showError">
+      <ngb-alert #selfClosingAlert *ngIf="errorMsg" type="danger" (closed)="errorMsg = ''"
+      >{{ errorMsg }}
+      </ngb-alert>
     </div>
     <ng-template #content let-offcanvas>
       <div *ngIf="showForm">
