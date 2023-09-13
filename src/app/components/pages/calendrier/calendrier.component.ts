@@ -13,6 +13,8 @@ import { Absence } from 'src/app/shared/model/absence';
 import { AbsenceService } from 'src/app/shared/service/absence.service';
 import {DatePipe} from "@angular/common";
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
+import {Employe} from "../../../shared/model/employe";
+import {EmployeService} from "../../../shared/service/employe.service";
 @Component({
   selector: 'app-departements',
   templateUrl: './calendrier.component.html',
@@ -30,8 +32,8 @@ export class CalendrierComponent implements OnInit {
   event:any = {}
   statut:string="";
   editable = false;
-  soldeConge = 0;
-  soldeRtt = 0;
+  soldeConge: number | undefined = 0;
+  soldeRtt: number | undefined = 0;
   errorMsg="";
 
 
@@ -46,15 +48,9 @@ export class CalendrierComponent implements OnInit {
     weekends:false,
   }
 
-  constructor(private _absenceService: AbsenceService,private _datePipe: DatePipe) {}
+  constructor(private _absenceService: AbsenceService,private _datePipe: DatePipe, private employeService:EmployeService) {}
 
   ngOnInit(): void {
-    let employe = localStorage.getItem('employe');
-    if(employe){
-       let parsedEmploye = JSON.parse(employe);
-      this.soldeConge = parsedEmploye.soldeConge;
-      this.soldeRtt = parsedEmploye.soldeRtt;
-    }
     this._init();
   }
 
@@ -89,21 +85,21 @@ export class CalendrierComponent implements OnInit {
           statut:abs.statut
         };
       });
-      console.log(this.calendarOptions.events)
     });
+    this.employeService.findActive().subscribe(employe=>{
+        this.soldeConge=employe.body?.soldeConge
+        this.soldeRtt=employe.body?.soldeRtt
+    })
   }
 
   handleEventClick(info:any){
     info.jsEvent.preventDefault();
-    console.log('affecter valeur à event')
     this.event = info.event;
 
   }
 
   handleDateClick(arg: any) {
-    console.log('date click function')
     if(this.event.id){
-      console.log("update or delete, showButton")
 
       this.showButton = true;
       console.log(this.event.extendedProps.statut)
@@ -111,22 +107,18 @@ export class CalendrierComponent implements OnInit {
         this.editable = true;
       }
     }else{
-      console.log("No event, show Form to creer")
       this.showForm = true;
     }
   }
 
   handleShowForm(e:Event){
     e.stopPropagation();
-    console.log("After click modier la demande in modal to show Form")
     this.showForm = true;
-    console.log("then close button modal")
     this.showButton = false;
   }
 
 
  handleAnnulation(){
-    console.log("turn off Form, re-initial the state as beginning : isDelete false, event = {}")
    this.showForm = false;
    if(this.event.id && this.isDelete){
      this.isDelete = false;
@@ -137,7 +129,6 @@ export class CalendrierComponent implements OnInit {
 
   annulerDemandeAbs(e:Event){
     e.stopPropagation();
-    console.log("set isDelete true, show Form and hide button")
     this.isDelete = true;
     this.showForm = true;
     this.showButton = false;
@@ -148,7 +139,6 @@ export class CalendrierComponent implements OnInit {
 
     // ajoute une absence
     if(!this.event.id){
-      console.log('creer absence, turnoff form')
       const absence = {
         dateDebut:data.value.start,
         dateFin:data.value.end,

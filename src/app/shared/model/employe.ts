@@ -7,7 +7,7 @@ firstName?:string;
 lastName?:string;
 password?:string;
 soldeConge?:number;
-soldeRTT?:number;
+soldeRtt?:number;
 email?:string;
 
 departement?:Departement

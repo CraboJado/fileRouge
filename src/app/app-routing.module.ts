@@ -16,22 +16,24 @@ import {roleGuard} from "./auth/role.guard";
 import {SharedLayoutComponent} from "./components/layout/shared-layout/shared-layout.component";
 
 const routes: Routes = [
-  { path: 'login',component : LoginComponent},
+  { path: 'login',component : LoginComponent,
+  },
 
 
   {path:"", component:SharedLayoutComponent,
+    canActivate:[authGuard],
     children:[
-  { path: 'home',component : HomeComponent, canActivate:[authGuard]},
-  { path: 'calendrier',component : CalendrierComponent,canActivate:[authGuard]},
-  { path: 'demande',component : DemandeAbsComponent,canActivate:[authGuard]},
+  { path: 'home',component : HomeComponent},
+  { path: 'calendrier',component : CalendrierComponent},
+  { path: 'demande',component : DemandeAbsComponent},
   { path: 'validation',
     component : ValidationAbsComponent,
-    canActivate:[authGuard,roleGuard],
+    canActivate:[roleGuard],
     data:{roles:'MANAGER'}
   },
   { path: 'rapports',
     component : RapportsComponent,
-    canActivate:[authGuard,roleGuard],
+    canActivate:[roleGuard],
     data:{roles:'MANAGER'},
     children:[
       {
@@ -52,11 +54,11 @@ const routes: Routes = [
   },
   { path: 'jours-off',
     component : JoursOffComponent,
-    canActivate:[authGuard,roleGuard],
+    canActivate:[roleGuard],
     data:{roles:'ADMIN'},
   }]},
   { path: '', redirectTo: 'login', pathMatch: 'full'},
-  { path: '**',component : NotFoundComponent ,canActivate:[authGuard]}
+  { path: '**',component : NotFoundComponent}
 ]
 
 @NgModule({
