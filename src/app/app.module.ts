@@ -23,6 +23,8 @@ import {DatePipe} from "@angular/common";
 import { NgChartsModule } from 'ng2-charts';
 import {HomeComponent} from "./components/pages/home/home.component";
 import {SharedLayoutComponent} from "./components/layout/shared-layout/shared-layout.component";
+import {ToastrModule} from "ngx-toastr";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import {SharedLayoutComponent} from "./components/layout/shared-layout/shared-la
     FullCalendarModule,
     DatePipe,
     NgChartsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
