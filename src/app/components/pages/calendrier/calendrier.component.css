@@ -72,7 +72,7 @@
   .color-instruction{
     display: flex !important;
     flex-direction: column !important;
-   align-items: center;
+    align-items: center;
   }
 
 }
