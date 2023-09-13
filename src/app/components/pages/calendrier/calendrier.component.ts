@@ -133,12 +133,16 @@ export class CalendrierComponent implements OnInit {
   handleSubmit(data:any){
     // ajoute une absence
     if(!this.event.id){
+      let motif = '';
+      if(data.value.motif && data.value.motif.replace(/ /g,'') != ''){
+        motif = data.value.motif;
+      }
+
       const absence = {
         dateDebut:data.value.start,
         dateFin:data.value.end,
         typeAbsence:data.value.type,
-        motif:data.value.motif,
-        employeId:1,
+        motif:motif,
         statut:"INITIALE"
       }
 
