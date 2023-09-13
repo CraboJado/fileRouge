@@ -36,27 +36,25 @@
   <div class="table-responsive">
     <table class="table table-sm">
       <thead>
-        <tr>
-          <th>name</th>
-          <th *ngFor="let label of lineChartLabels2">{{ label }}</th>
-        </tr>
+      <tr>
+        <th>name</th>
+        <th *ngFor="let label of lineChartLabels2">{{ label }}</th>
+      </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let dataset of lineChartData; let i = index">
-          <tr>
-            <td data-label=''>{{ dataset.label }}</td>
-            <td *ngFor="let value of dataset.data; let j = index">
-              <span *ngIf="value === 1 && !isWeekEnd(lineChartLabels[j]) && !isJourOff(lineChartLabels[j]) ">A</span>
-              <span
-                *ngIf="value === 0 && !isWeekEnd(lineChartLabels[j]) && !isJourOff(lineChartLabels[j])">&nbsp;</span>
-              <span *ngIf=" isWeekEnd(lineChartLabels[j]) && !isJourOff(lineChartLabels[j])" class="we"></span>
-              <span *ngIf=" isFerie(lineChartLabels[j])">F</span>
-              <span *ngIf=" isRttEmployeur(lineChartLabels[j])">R</span>
-            </td>
-          </tr>
-        </ng-container>
+      <tr *ngFor="let dataset of lineChartData; let i = index">
+        <td>{{ dataset.label }}</td>
+        <td *ngFor="let value of dataset.data; let j = index">
+          <span *ngIf="value === 1 && !isWeekEnd(lineChartLabels[j]) && !isJourOff(lineChartLabels[j]) ">A</span>
+          <span *ngIf="value === 0 && !isWeekEnd(lineChartLabels[j]) && !isJourOff(lineChartLabels[j])">&nbsp;</span>
+          <span *ngIf="isWeekEnd(lineChartLabels[j]) && !isJourOff(lineChartLabels[j])" class="we"></span>
+          <span *ngIf="isFerie(lineChartLabels[j])">F</span>
+          <span *ngIf="isRttEmployeur(lineChartLabels[j])">R</span>
+        </td>
+      </tr>
       </tbody>
     </table>
+
   </div>
 
   <div class="d-flex flex-row justify-content-center divLegend m-3">

@@ -55,17 +55,14 @@ li {
 
 @media (max-width: 768px) {
 h2{
-  font-size: 2rem !important;
+  font-size: 1.5rem !important;
   margin: 1rem 1rem !important;
   }
 .dateDuJour, .initiale, .conge-valide, .rtt-valide, .en-attente, .refuse{
    font-size: 0.7rem !important;
 }
-.color-instruction > div{
-  margin: 0.4rem 2rem !important;
-}
+
 .fc-today-button{
  margin-bottom: 1rem;
 }
 
-}

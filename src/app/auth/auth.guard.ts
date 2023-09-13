@@ -14,8 +14,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   return new Observable<boolean>((observer) =>{
     employeService.findActive().subscribe({
       next:(res)=>{
-        console.log("activeactive")
-        loginService.roles = res.body?.roles
+        loginService.roles = res.roles
         observer.next(true);
         observer.complete();
       },

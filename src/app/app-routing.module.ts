@@ -54,8 +54,6 @@ const routes: Routes = [
   },
   { path: 'jours-off',
     component : JoursOffComponent,
-    canActivate:[roleGuard],
-    data:{roles:'ADMIN'},
   }]},
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: '**',component : NotFoundComponent}

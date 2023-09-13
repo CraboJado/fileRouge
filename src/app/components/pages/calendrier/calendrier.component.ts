@@ -87,8 +87,8 @@ export class CalendrierComponent implements OnInit {
       });
     });
     this.employeService.findActive().subscribe(employe=>{
-        this.soldeConge=employe.body?.soldeConge
-        this.soldeRtt=employe.body?.soldeRtt
+        this.soldeConge=employe.soldeConge
+        this.soldeRtt=employe.soldeRtt
     })
   }
 
