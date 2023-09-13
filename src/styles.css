@@ -1,6 +1,11 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import 'node_modules/bootstrap-icons/font/bootstrap-icons.css';
 
+
+h1{
+  
+}
+
 ul,
 li {
   padding: 0;
@@ -47,7 +52,7 @@ fc-widget-content .fc-scroller {height: auto !important;}
 
 @media (max-width: 768px) {
 h2{
-  font-size: 2rem !important;
+  font-size: 1.5rem !important;
   margin: 1rem 1rem !important;
   }
 .dateDuJour, .initiale, .conge-valide, .rtt-valide, .en-attente, .refuse{
@@ -57,5 +62,6 @@ h2{
 .fc-today-button{
  margin-bottom: 1rem;
 }
+
 
 }
