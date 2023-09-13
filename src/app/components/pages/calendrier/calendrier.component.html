@@ -1,4 +1,5 @@
 <app-header></app-header>
+
 <div class="container col-xl-12 col-xxl-12 py-3 pt-5 d-flex flex-column align-items-end">
   <p>Solde de congé : {{soldeConge}} jours</p>
   <p>Solde RTT : {{soldeRtt}} jours</p>
@@ -33,7 +34,9 @@
           ></app-form>
         </div>
       </div>
+    </div>
 
+    <div *ngIf="showButton" class="layer-seperator bg-transparent position-absolute top-0 w-100 h-100">
       <div
         *ngIf="showButton"
         (click)="annulerAction()"
@@ -63,7 +66,6 @@
           IL Y A UNE ERREUR : {{errorMsg | uppercase}}
         </div>
       </div>
-
     </div>
-
+  </div>
 </section>

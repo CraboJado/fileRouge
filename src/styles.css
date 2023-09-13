@@ -14,3 +14,50 @@ li {
   background: none;
 }
 fc-widget-content .fc-scroller {height: auto !important;}
+
+
+.btn-primary:not(.fc-today-button){
+  color: black !important;
+  background-color: white !important;
+  border-color: black !important;
+}
+.btn-primary:not(.fc-today-button):hover{
+  color: white !important;
+  background-color: black !important;
+  border-color: white !important;
+}
+.btn-primary:not(.fc-today-button):active{
+  color: white !important;
+  background-color: black !important;
+  border-color: white !important;
+}
+
+.fc-today-button{
+  color: black !important;
+  background-color: white !important;
+  border-color: black !important;
+}
+
+.fc-today-button:hover{
+  color: white !important;
+  background-color: black !important;
+  border-color: white !important;
+}
+
+
+@media (max-width: 768px) {
+h2{
+  font-size: 2rem !important;
+  margin: 1rem 1rem !important;
+  }
+.dateDuJour, .initiale, .conge-valide, .rtt-valide, .en-attente, .refuse{
+   font-size: 0.7rem !important;
+}
+.color-instruction > div{
+  margin: 0.4rem 2rem !important;
+}
+.fc-today-button{
+ margin-bottom: 1rem;
+}
+
+}
