@@ -2,3 +2,35 @@
   margin: 40px auto;
   min-height:600px;
 }
+
+.list-jo {
+  font-size:0.8em;
+}
+.color-instruction {
+  margin-top:2em;
+}
+
+.color-instruction > div {
+  position: relative;
+  padding:0.7em;
+  font-size: small;
+}
+
+.color-instruction > div::before {
+  content:'';
+  display:block;
+  width:30px;
+  height:30px;
+  margin-right: 0.7em;
+}
+.dateDuJour::before {
+  background-color: #fffadf;
+}
+
+.rtt::before {
+  background-color: #CAFFFF;
+}
+
+.jf::before {
+  background-color:#FF580F;
+}
