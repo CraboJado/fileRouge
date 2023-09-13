@@ -178,7 +178,9 @@ export class CalendrierComponent implements OnInit {
       this._absenceService.delete(this.event.id)
         .subscribe({
           next:()=>{this._init() },
-          error:(err)=>{console.log(err) }
+          error:(res)=>{
+            this.errorMsg = res.error;
+            this.showError = true;}
         })
       this.showForm = false;
       this.event = {};
@@ -200,7 +202,9 @@ export class CalendrierComponent implements OnInit {
     this._absenceService.modify(absence).subscribe(
       {
         next:()=>{this._init()},
-        error:(err)=> {console.log(err) }
+        error:(res)=> {
+          this.errorMsg = res.error;
+          this.showError = true; }
       }
     )
 
