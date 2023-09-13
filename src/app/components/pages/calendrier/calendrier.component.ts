@@ -43,7 +43,7 @@ export class CalendrierComponent implements OnInit {
     eventClick: this.handleEventClick.bind(this),
     events: [],
     themeSystem: 'bootstrap5',
-    weekends:false,
+    weekends:true,
   }
 
   constructor(private _absenceService: AbsenceService,private _datePipe: DatePipe) {}

@@ -35,16 +35,9 @@ export class JoursOffComponent implements OnInit {
     plugins: [
       interactionPlugin,
       dayGridPlugin,
-      timeGridPlugin,
-      listPlugin,
       bootstrap5Plugin
     ],
     themeSystem: 'bootstrap5',
-    headerToolbar: {
-      left: 'prev,next,prevYear,nextYear,today',
-      center: 'title',
-      right: 'dayGridMonth,timeGridWeek,timeGridDay'
-    },
     events: this.joursOffs.map(jourOff => ({
       id: jourOff.id?.toString() || '',
       title: jourOff.description || '',
@@ -52,7 +45,7 @@ export class JoursOffComponent implements OnInit {
       allDay: true,
     })),
     initialView: 'dayGridMonth',
-    weekends: false,
+    weekends: true,
     editable: true,
     selectable: true,
     selectMirror: true,
