@@ -1,8 +1,6 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import 'node_modules/bootstrap-icons/font/bootstrap-icons.css';
 
-
-
 ul,
 li {
   padding: 0;
@@ -10,14 +8,22 @@ li {
   list-style-type: none;
 }
 
+.navbar-nav > li{
+  margin-left:8px;
+  margin-right:8px;
+}
 
 .fc .fc-bg-event {
   opacity: unset;
   background: none;
 }
-fc-widget-content .fc-scroller {height: auto !important;}
+.fc-widget-content .fc-scroller {height: auto !important;}
 
-
+.fc-toolbar .fc-toolbar-title {
+  font-size:1.4em;
+  text-transform:capitalize;
+  font-weight:bold;
+}
 .btn-primary:not(.fc-today-button){
   color: black !important;
   background-color: white !important;
@@ -60,5 +66,3 @@ h2{
  margin-bottom: 1rem;
 }
 
-
-}
