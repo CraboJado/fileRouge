@@ -29,8 +29,6 @@ export class DepartementService {
     const body = JSON.stringify(logindata);
 
     this.http.post<string>(this._baseUrl, body, {observe: "response", headers: head, withCredentials: true})
-      .subscribe(response => {
-        console.log(response)
-      })
+      .subscribe(()=>{})
   }
 }

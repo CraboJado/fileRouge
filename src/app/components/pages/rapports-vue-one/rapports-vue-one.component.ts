@@ -19,6 +19,8 @@ import * as XLSX from 'xlsx';
 })
 export class RapportsVueOneComponent implements OnInit {
 
+  //page de création de l'histogramme
+
   selectMonth: string = "";
   annees: number[] = []
   absences: Absence[] = []
@@ -42,6 +44,7 @@ export class RapportsVueOneComponent implements OnInit {
 
 
   employeByDepartement(departementId: string) {
+    //pour filtre les absences en fonction du département
 
     if (parseInt(departementId) == 0) {
       this.employeService.findAll().subscribe(list => {
@@ -60,9 +63,10 @@ export class RapportsVueOneComponent implements OnInit {
   updateLineChartData() {
     this.lineChartData = this.employes.map((employe, index) => {
       const dataPoints = this.lineChartLabels.map((label) =>
-        this.nbAbsencePerDayPerEmploye(label, employe)
+        this.absencePerDayPerEmploye(label, employe)
+        //on check si l'employe est absent ce jour là
       );
-      const hue = (index / this.employes.length) * 360;
+      const hue = (index / this.employes.length) * 360;//couleur aléatoire mais qui reste la meme à chaque refresh
       return {
         data: dataPoints, // Array of data points for the dataset
         label: employe.firstName,
@@ -71,7 +75,7 @@ export class RapportsVueOneComponent implements OnInit {
       };
     });
   }
-  nbAbsencePerDayPerEmploye(date: string, employe: Employe) {
+  absencePerDayPerEmploye(date: string, employe: Employe) {
     let nbTotal = 0;
     const absenceList=this.absences.filter(absence=>absence.statut=="VALIDEE")
 
@@ -88,6 +92,8 @@ export class RapportsVueOneComponent implements OnInit {
   }
 
   getDates(startDate: Date, endDate: Date) {
+
+    //return le nombre de jours ouvrés entre deux dates, donc pas les weekend ni les jours officiels
     const dates: string[] = [];
     let currentDate = new Date(startDate);
     let maxDate = new Date(endDate)
@@ -95,13 +101,16 @@ export class RapportsVueOneComponent implements OnInit {
       for (let jours of this.joursOffs) {
 
         if (jours.jour == currentDate) {
+          //si c'est un jour férié ou un rtt employeur
           currentDate.setDate(currentDate.getDate() + 1);
         }
       }
       if (currentDate.getDay() == 0 || currentDate.getDay() == 6) {
+        //si c'est le weekend, on ignore
         currentDate.setDate(currentDate.getDate() + 1);
       } else {
         dates.push(formatDate(currentDate, 'yyyy-MM-dd', 'en-US'));
+        //pour éviter de trop s'embeter , toutes nos dates sont au fomrat américain
         currentDate.setDate(currentDate.getDate() + 1);
       }
 
@@ -121,8 +130,9 @@ export class RapportsVueOneComponent implements OnInit {
       }
     },
     scales: {
-      // We use this empty structure as a placeholder for dynamic theming.
       y: {
+        //par défaut, l'histogramme est haut de 5 unité ,s'il y a plus
+        // d'absence sur une journée que 5, la hauteur changeen fonction
         position: 'left',
         suggestedMax: 5,
       },
@@ -133,6 +143,10 @@ export class RapportsVueOneComponent implements OnInit {
   lineChartType = 'line';
 
   ngOnInit(): void {
+
+    //au chargement de la page, on initialise toutes les valeurs obligatoires
+    //l'ordre dans lequel les valeurs sont initialisés est très important
+    //d'ou le double switchmap (chatgpt a pas mal aidé)
     this.employeService.findAll().pipe(
       switchMap((employes) => {
         this.employes = employes;
@@ -154,6 +168,8 @@ export class RapportsVueOneComponent implements OnInit {
 
     for (let i = 1980; i < 2050; i++) {
       this.annees.push(i)
+      //on propose d'aller jusqu'en 2050,
+      // l'entreprise du client aura surement besoin de faire des mise a jour d'ici là
     }
   }
 
@@ -161,6 +177,7 @@ export class RapportsVueOneComponent implements OnInit {
 
   updateLineChartLabels() {
     this.lineChartLabels = Array.from({ length: 31 }, (_, i) => {
+      //On prend 31 jours pour les labels,
       const date = new Date();
       date.setMonth(this.currentMonth);
       date.setDate(i + 1);
