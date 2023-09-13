@@ -11,9 +11,8 @@
         <li *ngIf="roles?.includes('MANAGER')" class="nav-item" ngbDropdown>
           <a class="nav-link" id="navbarDropdown3" ngbDropdownToggle role="button" tabindex="0"> Absences </a>
           <div aria-labelledby="navbarDropdown3" class="dropdown-menu" ngbDropdownMenu>
-            <a (click)="$event.preventDefault()" [routerLink]="'/validation'" ngbDropdownItem>Validation des absences
-              (M)</a>
-            <a (click)="$event.preventDefault()" [routerLink]="'/rapports'" ngbDropdownItem>Rapports (M)</a>
+            <a (click)="$event.preventDefault()" [routerLink]="'/validation'" ngbDropdownItem>Validation des absences</a>
+            <a (click)="$event.preventDefault()" [routerLink]="'/rapports'" ngbDropdownItem>Rapports</a>
           </div>
         </li>
         <li class="nav-item">
