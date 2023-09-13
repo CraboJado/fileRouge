@@ -78,9 +78,6 @@ export class JoursOffComponent implements OnInit {
     this.offcanvasService.dismiss();
     this.reInitJourOff();
   }
-  showToast() {
-    this.toastrService.success('Bonjour !')
-  }
 
   handleDateClick(clickInfo: DateClickArg) {
 

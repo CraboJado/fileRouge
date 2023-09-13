@@ -7,8 +7,10 @@
     </div>
   </div>
   <div class="col-md-7">
-    <div *ngIf="showError" class="alert alert-danger" role="alert" (click)="$event.stopPropagation();showToast();">
+    <div *ngIf="showError" class="alert alert-danger alert-dismissible fade show" role="alert" (click)="$event.stopPropagation();">
       Erreur ! {{errorMsg}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" data-bs-target="#my-alert" aria-label="Close"></button>
     </div>
     <ng-template #content let-offcanvas>
       <div *ngIf="showForm">
@@ -45,24 +47,22 @@
             </div>
           </div>
         </div>
-        <div class="list-container ">
-          <div class="overflow-auto">
+        <div class="list-container overflow-auto">
             <div class="col-md-12 p-4 ">
               <h5>Liste jours officiels</h5>
               <ul class="list-jo">
                 <li *ngFor="let j of joursOffs">{{j.description ? j.description : j.typeJour}}
                   - {{ j.jour | date:'dd/MM/yyyy' }}</li>
               </ul>
-            </div>
           </div>
         </div>
       </div>
     </ng-template>
     <full-calendar [options]="calendarOptions" id="calendar"></full-calendar>
   </div>
-  <div class="col-md-3 mt-4  ps-5">
+  <div class="col-md-3 mt-4 ps-5 overflow-auto list-container">
     <h6 class="my-4">Liste jours officiels</h6>
-    <ul class="list-jo d-flex flex-column gap-3">
+    <ul class="d-flex flex-column gap-3">
       <li *ngFor="let j of joursOffs">{{j.description ? j.description : j.typeJour}}
         - {{ j.jour | date:'dd/MM/yyyy' }}</li>
     </ul>

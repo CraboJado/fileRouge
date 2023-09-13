@@ -13,7 +13,7 @@ li {
   margin-right:6px;
   font-size: 0.9em;
 }
-.navbar-nav > li > a:hover, .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+.navbar-nav > li > .nav-link:hover, .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
   color:#0d6efd;
 }
 .fc .fc-bg-event {
