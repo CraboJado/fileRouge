@@ -1,5 +1,4 @@
 <section class="row align-items-center justify-content-between">
-
   <div class="col-md-2 mt-4">
     <div class="color-instruction">
       <div class="d-flex dateDuJour">Date du jour</div>
@@ -8,6 +7,9 @@
     </div>
   </div>
   <div class="col-md-7">
+    <div *ngIf="showError" class="alert alert-danger" role="alert" (click)="$event.stopPropagation();showToast();">
+      Erreur ! {{errorMsg}}
+    </div>
     <ng-template #content let-offcanvas>
       <div *ngIf="showForm">
         <div class="offcanvas-header">
@@ -19,24 +21,6 @@
           <div class="offcanvas-body row">
             <div class="col-md-12">
               <form #form="ngForm" (ngSubmit)="createOrUpdateJourOff()" class="form">
-                <div *ngIf="showTypeJour">
-                  <div class="form-check">
-                    <input [(ngModel)]="jo.typeJour" [value]="0" class="form-check-input" id="exampleRadios1"
-                           name="typeJour"
-                           selected type="radio">
-                    <label class="form-check-label" for="exampleRadios1">
-                      RTT
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input [(ngModel)]="jo.typeJour" [value]="1" class="form-check-input" id="exampleRadios2"
-                           name="typeJour"
-                           type="radio">
-                    <label class="form-check-label" for="exampleRadios2">
-                      JOUR FERIE
-                    </label>
-                  </div>
-                </div>
                 <label class="pt-3" for="floatingTextarea">Description (facultatif)</label>
                 <input [(ngModel)]="jo.description" aria-label="Description" class="form-control"
                        id="floatingTextarea"

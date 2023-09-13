@@ -5,12 +5,11 @@ import { CalendarOptions } from '@fullcalendar/core';
 import frLocale from '@fullcalendar/core/locales/fr';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
-import listPlugin from '@fullcalendar/list';
-import timeGridPlugin from '@fullcalendar/timegrid';
 import {NgbOffcanvas} from '@ng-bootstrap/ng-bootstrap';
 import { JoursOff } from "../../../shared/model/jours-off";
 import { JoursOffService } from "../../../shared/service/jours-off.service";
 import {LoginService} from "../../../shared/service/login.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-jours-off',
@@ -26,7 +25,8 @@ export class JoursOffComponent implements OnInit {
   jo: any = {};
   typesJour: string[] = [];
   showForm: boolean = false;
-  showTypeJour: boolean = false;
+  showError = false;
+  errorMsg="";
   selectedEvent: JoursOff | null = null;
   editable: boolean = false;
 
@@ -57,7 +57,8 @@ export class JoursOffComponent implements OnInit {
     private _jourOffService: JoursOffService,
     private loginService : LoginService,
     private datePipe: DatePipe,
-    private offcanvasService: NgbOffcanvas
+    private offcanvasService: NgbOffcanvas,
+    private toastrService: ToastrService
   ) {
   }
 
@@ -77,6 +78,9 @@ export class JoursOffComponent implements OnInit {
     this.offcanvasService.dismiss();
     this.reInitJourOff();
   }
+  showToast() {
+    this.toastrService.success('Bonjour !')
+  }
 
   handleDateClick(clickInfo: DateClickArg) {
 
@@ -94,9 +98,7 @@ export class JoursOffComponent implements OnInit {
     // Vérifier si l'évènement seléctionné possède une donnée pour afficher le bon formulare Create/Update
     if (existedJourOff) {
       this.editable = true;
-      this.showTypeJour =true;
       this.selectedEvent = existedJourOff;
-      console.log('Evenement :', this.selectedEvent);
       this.jo = {...existedJourOff};
     } else {
       this.editable = false;
@@ -117,7 +119,9 @@ export class JoursOffComponent implements OnInit {
             this._init();
             this.reInitJourOff();
           },
-          error: () => {
+          error: (res) => {
+            this.errorMsg = res.error;
+            this.showError = true;
           }
         })
     } else {
@@ -127,8 +131,10 @@ export class JoursOffComponent implements OnInit {
             this._init();
             this.reInitJourOff();
           },
-          error: () => {
-          }
+          error: (res) => {
+            this.errorMsg = res.error;
+            this.showError = true;
+          },
         })
     }
   }
@@ -141,8 +147,9 @@ export class JoursOffComponent implements OnInit {
             this._init();
             this.reInitJourOff();
           },
-          error: () => {
-          }
+          error:(res)=> {
+            this.errorMsg = res.error;
+            this.showError = true; }
         })
     }
   }
@@ -163,6 +170,8 @@ export class JoursOffComponent implements OnInit {
         this.jo.typeJour = this.typesJour[0] || '';
       },
       (error) => {
+        this.errorMsg = error;
+        this.showError = true;
         console.error("Erreur lors de la récupération des jours officiels :", error);
       });
   }
