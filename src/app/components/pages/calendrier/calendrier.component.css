@@ -67,17 +67,18 @@
     height:1rem;
     position: absolute;
     left: -2.3rem;
+  
   }
 
   .legend{
-   margin: 0rem 1rem;
+   margin: 0rem 0rem;
   }
 
 .dir{
     flex-direction: column !important;
   }  
    .color-instruction{
-    flex-direction: column !important;
+    flex-direction: column ;
     font-size: 0.8rem !important ;
     align-items: center;
   } 
