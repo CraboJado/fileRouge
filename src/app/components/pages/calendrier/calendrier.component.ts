@@ -102,6 +102,7 @@ export class CalendrierComponent implements OnInit {
         this.editable = true;
       }
     }else{
+      this.event.start = arg.dateStr;
       this.showForm = true;
     }
   }
@@ -131,6 +132,7 @@ export class CalendrierComponent implements OnInit {
 
 
   handleSubmit(data:any){
+
     // ajoute une absence
     if(!this.event.id){
       let motif = '';
