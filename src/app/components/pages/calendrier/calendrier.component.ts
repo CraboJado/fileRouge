@@ -24,11 +24,15 @@ export class CalendrierComponent implements OnInit {
 
   showForm = false;
   showButton = false;
+  showError = false;
   isDelete:boolean = false;
   absences: Absence[] = [];
   event:any = {}
   statut:string="";
   editable = false;
+  soldeConge = 0;
+  soldeRtt = 0;
+  errorMsg="";
 
 
   calendarOptions: CalendarOptions = {
@@ -45,6 +49,12 @@ export class CalendrierComponent implements OnInit {
   constructor(private _absenceService: AbsenceService,private _datePipe: DatePipe) {}
 
   ngOnInit(): void {
+    let employe = localStorage.getItem('employe');
+    if(employe){
+       let parsedEmploye = JSON.parse(employe);
+      this.soldeConge = parsedEmploye.soldeConge;
+      this.soldeRtt = parsedEmploye.soldeRtt;
+    }
     this._init();
   }
 
@@ -106,7 +116,8 @@ export class CalendrierComponent implements OnInit {
     }
   }
 
-  handleShowForm(){
+  handleShowForm(e:Event){
+    e.stopPropagation();
     console.log("After click modier la demande in modal to show Form")
     this.showForm = true;
     console.log("then close button modal")
@@ -124,7 +135,8 @@ export class CalendrierComponent implements OnInit {
    this.editable =false;
  }
 
-  annulerDemandeAbs(){
+  annulerDemandeAbs(e:Event){
+    e.stopPropagation();
     console.log("set isDelete true, show Form and hide button")
     this.isDelete = true;
     this.showForm = true;
@@ -133,6 +145,7 @@ export class CalendrierComponent implements OnInit {
 
 
   handleSubmit(data:any){
+
     // ajoute une absence
     if(!this.event.id){
       console.log('creer absence, turnoff form')
@@ -147,8 +160,11 @@ export class CalendrierComponent implements OnInit {
 
       this._absenceService.create(absence).subscribe({
         next: ()=> { this._init()},
-        error :(err)=>{ console.log(err) },
-        complete : ()=> console.log("complete")
+        error :(res)=>{
+          this.errorMsg = res.error;
+          this.showError = true;
+          },
+        complete : ()=> {}
       })
 
 
@@ -162,7 +178,9 @@ export class CalendrierComponent implements OnInit {
       this._absenceService.delete(this.event.id)
         .subscribe({
           next:()=>{this._init() },
-          error:(err)=>{console.log(err) }
+          error:(res)=>{
+            this.errorMsg = res.error;
+            this.showError = true;}
         })
       this.showForm = false;
       this.event = {};
@@ -184,12 +202,23 @@ export class CalendrierComponent implements OnInit {
     this._absenceService.modify(absence).subscribe(
       {
         next:()=>{this._init()},
-        error:(err)=> {console.log(err) }
+        error:(res)=> {
+          this.errorMsg = res.error;
+          this.showError = true; }
       }
     )
 
     this.showForm = false;
     this.editable = false;
+    this.event = {};
+  }
+
+  annulerAction(){
+    this.showForm = false;
+    this.showButton = false;
+    this.editable =false;
+    this.isDelete = false;
+    this.showError = false;
     this.event = {};
   }
 

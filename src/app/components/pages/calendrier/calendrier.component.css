@@ -38,16 +38,19 @@
 
 .form{
     z-index: 3;
+    cursor: default;
 }
 
 .layer-seperator{
   z-index: 4;
   width: 100%;
+  cursor: pointer;
 
 }
 
 ::ng-deep .fc-daygrid-day-frame {
   cursor: pointer;
 }
+
 
 

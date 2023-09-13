@@ -36,6 +36,7 @@ export class LoginService {
   logout() {
     localStorage.clear()
     this.http.post(`${this._baseUrlOut}`,{},{withCredentials: true})
+      .subscribe()
   }
 }
 
