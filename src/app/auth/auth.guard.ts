@@ -6,8 +6,6 @@ import {Observable} from "rxjs";
 import {LoginService} from "../shared/service/login.service";
 
 export const authGuard: CanActivateFn = (route, state) => {
-console.log("authGuard ======================")
-
   const loginService= inject(LoginService);
   const employeService = inject(EmployeService);
   const router = inject(Router);

@@ -22,6 +22,7 @@ import { FormComponent } from './components/form/form.component';
 import {DatePipe} from "@angular/common";
 import { NgChartsModule } from 'ng2-charts';
 import {HomeComponent} from "./components/pages/home/home.component";
+import {SharedLayoutComponent} from "./components/layout/shared-layout/shared-layout.component";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {HomeComponent} from "./components/pages/home/home.component";
     FooterComponent,
     MainNavComponent,
     FormComponent,
-    HomeComponent
+    HomeComponent,
+    SharedLayoutComponent
   ],
   imports: [
     BrowserModule,
