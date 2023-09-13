@@ -114,20 +114,20 @@ export class JoursOffComponent implements OnInit {
       this._jourOffService.create(this.jo)
         .subscribe({
           next: () => {
-          },
-          error: () => {
             this._init();
             this.reInitJourOff();
+          },
+          error: () => {
           }
         })
     } else {
       this._jourOffService.update(this.jo)
         .subscribe({
           next: () => {
-          },
-          error: () => {
             this._init();
             this.reInitJourOff();
+          },
+          error: () => {
           }
         })
     }
@@ -138,10 +138,10 @@ export class JoursOffComponent implements OnInit {
       this._jourOffService.delete(id)
         .subscribe({
           next: () => {
-          },
-          error: () => {
             this._init();
             this.reInitJourOff();
+          },
+          error: () => {
           }
         })
     }
