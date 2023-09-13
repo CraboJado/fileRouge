@@ -53,9 +53,7 @@ h2{
 .dateDuJour, .initiale, .conge-valide, .rtt-valide, .en-attente, .refuse{
    font-size: 0.7rem !important;
 }
-.color-instruction > div{
-  margin: 0.4rem 2rem !important;
-}
+
 .fc-today-button{
  margin-bottom: 1rem;
 }

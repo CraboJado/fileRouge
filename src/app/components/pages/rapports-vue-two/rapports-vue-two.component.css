@@ -43,6 +43,7 @@ td span {
   .table {
     width: 100%;
   }
+  
   .table th,
   .table td {
     white-space: nowrap;
