@@ -10,11 +10,12 @@ import { AbsenceService } from 'src/app/shared/service/absence.service';
 })
 export class ValidationAbsComponent {
   absences: Absence[] = [];
-  errorMessage: string = '';
   okMessage: string = "";
   triDateCreationAscendant: boolean = false;
   triDateDebutAscendant: boolean = false;
+
   constructor(private _absenceService: AbsenceService) { }
+
   ngOnInit(): void {
     this._init()
   }
@@ -22,7 +23,7 @@ export class ValidationAbsComponent {
     this._absenceService
       .findAllByManager()
       .subscribe(absenceReceived => {
-        this.absences = absenceReceived.filter(t=>t.statut=="EN_ATTENTE");
+        this.absences = absenceReceived.filter(absence => absence.statut=="EN_ATTENTE");
         ;
       })
   }
@@ -35,6 +36,7 @@ export class ValidationAbsComponent {
   eraseStatut(absence: Absence) {
     absence.statut = "EN_ATTENTE"
   }
+
   DateCreationSort() {
     this.absences.sort((a, b) => {
       if (a.dateCreation && b.dateCreation) {
@@ -64,19 +66,18 @@ export class ValidationAbsComponent {
         return 0;
       }
     });
-
     this.triDateDebutAscendant = !this.triDateDebutAscendant;
   }
 
   clearMessages() {
     setTimeout(() => {
       this.okMessage = '';
-      this.errorMessage = '';
     }, 3000);
   }
+
   updateAbs() {
       this.absences.forEach(absence => {
-        this._absenceService.update(absence).subscribe(t=>this._init());
+        this._absenceService.update(absence).subscribe(reponse => this._init());
         this.okMessage = "Les absences ont bien été enregistrées.";
         this.clearMessages();
       });

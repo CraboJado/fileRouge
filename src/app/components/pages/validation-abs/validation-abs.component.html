@@ -37,7 +37,7 @@
         <td>{{absence.statut}}</td>
 
 
-        <td>
+        <td class="text-center">
           <button type="submit" class="btn btn-outline-success me-2" (click)="validStatut(absence)"
             *ngIf="absence.statut =='EN_ATTENTE'">
             <i class="bi bi-check-lg"> </i>
@@ -49,8 +49,7 @@
             *ngIf="absence.statut=='EN_ATTENTE'">
             <i class="bi bi-x-lg"> </i>
           </button>
-          <i class="bi bi-x-lg" *ngIf="absence.statut =='REJETEE'">
-          </i>
+          <i class="bi bi-x-lg text-danger" *ngIf="absence.statut =='REJETEE'"></i>
         </td>
         <td>
           <button type="submit" class="btn btn-outline-black ms-3" (click)="eraseStatut(absence)">
@@ -64,9 +63,6 @@
     <button class="me-1" type="submit" class="btn btn-outline-dark" (click)="updateAbs()">
       Envoyer
     </button>
-  </div>
-  <div *ngIf="errorMessage" class="alert alert-danger mt-3 text-center">
-    <p>{{ errorMessage }}</p>
   </div>
   <div *ngIf="okMessage" class="alert alert-success mt-3 text-center">{{ okMessage }}</div>
 

@@ -50,6 +50,7 @@ export class AbsenceService{
       statut:updated.statut,
       employeId:updated.employe?.id
     }
+    
     const headers = { 'content-type': 'application/json'}
     return  this._http
    .put(`${this._baseUrl}/statut/${updated.id}`, newAbsence,{headers: headers,withCredentials:true,responseType: "text"})
