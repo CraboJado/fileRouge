@@ -23,6 +23,7 @@ export class EmployeService {
     return this.http.get<Employe>(`${this._baseUrl}/${id}`, {withCredentials: true})
   }
   public findActive() {
+    console.log("use get active")
     return this.http.get<Employe>(`${this._baseUrl}/active`, {observe: "response",withCredentials: true})
   }
 
@@ -58,7 +59,7 @@ export class EmployeService {
         lastName: employe.lastName,
         password: employe.password,
         soldeConge: employe.soldeConge,
-        soldeRTT: employe.soldeRTT,
+        soldeRTT: employe.soldeRtt,
         email: employe.email,
 
         departement: employe.departement,
