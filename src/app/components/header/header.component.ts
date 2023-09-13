@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from "../../shared/service/login.service";
+import {Employe} from "../../shared/model/employe";
+import {EmployeService} from "../../shared/service/employe.service";
 
 @Component({
   selector: 'app-header',
@@ -14,12 +16,15 @@ export class HeaderComponent  implements OnInit{
   event:any = {}
   roles: string [] | undefined = [];
 
+  employe:Employe={}
 
-  constructor(private loginService:LoginService) {
+
+  constructor(private loginService:LoginService, private employeService:EmployeService) {
   }
 
   ngOnInit(): void {
     this.roles =  this.loginService.roles ;
+    this.employeService.findActive().subscribe(t=>this.employe=t)
   }
 
   logOut(){
@@ -28,4 +33,5 @@ export class HeaderComponent  implements OnInit{
   }
 
 }
+
 

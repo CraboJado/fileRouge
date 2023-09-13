@@ -13,12 +13,11 @@ import { NotFoundComponent } from './components/pages/not-found/not-found.compon
 import { ValidationAbsComponent } from './components/pages/validation-abs/validation-abs.component';
 import { DemandeAbsComponent } from './components/pages/demande-abs/demande-abs.component';
 import { RapportsComponent } from './components/pages/rapports/rapports.component';
-import { RapportsVueOneComponent } from './components/pages/rapports-vue-one/rapports-vue-one.component';
-import { RapportsVueTwoComponent } from './components/pages/rapports-vue-two/rapports-vue-two.component';
+import { RapportsVueOneComponent } from './components/pages/rapports/rapports-vue-one/rapports-vue-one.component';
+import { RapportsVueTwoComponent } from './components/pages/rapports/rapports-vue-two/rapports-vue-two.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { MainNavComponent } from './components/header/main-nav/main-nav.component';
-import { FormComponent } from './components/form/form.component';
+import { FormComponent } from './components/pages/calendrier/form/form.component';
 import {DatePipe} from "@angular/common";
 import { NgChartsModule } from 'ng2-charts';
 import {HomeComponent} from "./components/pages/home/home.component";
@@ -40,7 +39,6 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     RapportsVueTwoComponent,
     HeaderComponent,
     FooterComponent,
-    MainNavComponent,
     FormComponent,
     HomeComponent,
     SharedLayoutComponent

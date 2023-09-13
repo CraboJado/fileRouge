@@ -6,8 +6,8 @@ import {NotFoundComponent} from "./components/pages/not-found/not-found.componen
 import {ValidationAbsComponent} from "./components/pages/validation-abs/validation-abs.component";
 import {DemandeAbsComponent} from "./components/pages/demande-abs/demande-abs.component";
 import {RapportsComponent} from "./components/pages/rapports/rapports.component";
-import {RapportsVueOneComponent} from "./components/pages/rapports-vue-one/rapports-vue-one.component";
-import {RapportsVueTwoComponent} from "./components/pages/rapports-vue-two/rapports-vue-two.component";
+import {RapportsVueOneComponent} from "./components/pages/rapports/rapports-vue-one/rapports-vue-one.component";
+import {RapportsVueTwoComponent} from "./components/pages/rapports/rapports-vue-two/rapports-vue-two.component";
 import {CalendrierComponent} from "./components/pages/calendrier/calendrier.component";
 
 import {HomeComponent} from "./components/pages/home/home.component";

@@ -24,7 +24,7 @@ export class JoursOffService {
 
   public create(created: JoursOff, ) {
     const headers = { 'content-type': 'application/json'}
-    created.typeJour = "0";
+    created.typeJour = "0";//0 = rtt employeur, 1 = jour ferie
     return this._http.post(this._baseUrl, created,{headers: headers,withCredentials:true})
   }
 
