@@ -71,11 +71,11 @@ export class JoursOffComponent implements OnInit {
   }
 
   showPanel() {
-    this.offcanvasService.open(this.content, {position: 'end'});
+    this.offcanvasService.open(this.content, {position: 'end', backdrop: 'static', scroll: true});
   }
   hidePanel() {
     this.offcanvasService.dismiss();
-   //this.reInitJourOff();
+    this.reInitJourOff();
   }
 
   handleDateClick(clickInfo: DateClickArg) {
