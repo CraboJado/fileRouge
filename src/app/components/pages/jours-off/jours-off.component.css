@@ -34,3 +34,5 @@
 .jf::before {
   background-color:#FF580F;
 }
+
+::ng-deep .fc-event .fc-event-title{  overflow-wrap: break-word;}
