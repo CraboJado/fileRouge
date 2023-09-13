@@ -10,7 +10,7 @@
   height:2rem;
   position: absolute;
   left: -2.3rem;
- 
+
 }
 
 .dateDuJour::before {
@@ -19,7 +19,7 @@
 
 .initiale::before {
   background-color: #ffd2e1;
-  
+
 }
 
 .conge-valide::before {
@@ -36,6 +36,10 @@
 
 .refuse::before{
     background-color:#f00020;
+}
+
+.rtt-employeur::before{
+  background-color:#77baed;
 }
 
 .form{
@@ -75,11 +79,11 @@
 
 .dir{
     flex-direction: column !important;
-  }  
+  }
    .color-instruction{
     flex-direction: column !important;
     font-size: 0.8rem !important ;
     align-items: center;
-  } 
+  }
 }
 
