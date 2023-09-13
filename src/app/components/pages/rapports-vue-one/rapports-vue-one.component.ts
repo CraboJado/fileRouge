@@ -239,10 +239,10 @@ export class RapportsVueOneComponent implements OnInit {
 
     // Create a workbook
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Chart Data'); // 'Chart Data' is the name of the sheet
+    XLSX.utils.book_append_sheet(wb, ws, this.currentMonth+"_"+this.currentYear+"chartData"); // 'Chart Data' is the name of the sheet
 
     // Generate a Blob containing the Excel file and trigger download
-    XLSX.writeFile(wb, 'chart_data.xlsx'); // 'chart_data.xlsx' is the file name
+    XLSX.writeFile(wb, this.currentMonth+"_"+this.currentYear+"chartData.xlsx"); // 'chart_data.xlsx' is the file name
   }
 
 

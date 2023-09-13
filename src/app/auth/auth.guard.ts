@@ -6,8 +6,6 @@ import {Observable} from "rxjs";
 import {LoginService} from "../shared/service/login.service";
 
 export const authGuard: CanActivateFn = (route, state) => {
-console.log("authGuard ======================")
-
   const loginService= inject(LoginService);
   const employeService = inject(EmployeService);
   const router = inject(Router);
@@ -16,7 +14,7 @@ console.log("authGuard ======================")
   return new Observable<boolean>((observer) =>{
     employeService.findActive().subscribe({
       next:(res)=>{
-        localStorage.setItem('employe', JSON.stringify(res.body));
+        console.log("activeactive")
         loginService.roles = res.body?.roles
         observer.next(true);
         observer.complete();
