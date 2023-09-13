@@ -33,7 +33,7 @@ td span {
   height: 1rem;
   width: 1rem;
 
-  
+
 }
 @media (max-width: 768px) {
   .table-responsive {
@@ -42,7 +42,7 @@ td span {
   .table {
     width: 100%;
   }
-  
+
   .table th,
   .table td {
     white-space: nowrap;
@@ -53,7 +53,7 @@ td span {
     align-items: center;
   }
 
- 
- 
+
+
 }
 
