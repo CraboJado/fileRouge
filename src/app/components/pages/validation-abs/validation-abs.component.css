@@ -6,23 +6,21 @@
     visibility: visible;
 }
 
-
 .table {
     width: 100%;
-    /* border-collapse: collapse; */
+    border-collapse: collapse;
   }
   
   .table th,
   .table td {
-    /* padding: 8px; */
     border: 1px solid #ccc;
   }
   
-
 
 
   @media screen and (max-width: 1200px) {
     section{
       overflow: auto;
     }
+
   }
