@@ -54,7 +54,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 1000px){
   .color-instruction > div{
     margin: 0.1rem 0rem !important;
   }
