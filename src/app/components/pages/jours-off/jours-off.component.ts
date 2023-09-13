@@ -5,7 +5,7 @@ import { CalendarOptions } from '@fullcalendar/core';
 import frLocale from '@fullcalendar/core/locales/fr';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
-import {NgbOffcanvas} from '@ng-bootstrap/ng-bootstrap';
+import {NgbAlert, NgbOffcanvas} from '@ng-bootstrap/ng-bootstrap';
 import { JoursOff } from "../../../shared/model/jours-off";
 import { JoursOffService } from "../../../shared/service/jours-off.service";
 import {LoginService} from "../../../shared/service/login.service";
@@ -19,6 +19,8 @@ import {ToastrService} from "ngx-toastr";
 
 export class JoursOffComponent implements OnInit {
   @ViewChild('content') content: TemplateRef<any> | undefined;
+  @ViewChild('staticAlert', { static: false }) staticAlert!: NgbAlert;
+  @ViewChild('selfClosingAlert', { static: false }) selfClosingAlert!: NgbAlert;
 
   roles: string [] | undefined = [];
   joursOffs: JoursOff[] = [];
@@ -65,6 +67,7 @@ export class JoursOffComponent implements OnInit {
   ngOnInit(): void {
     this._init();
     this.roles =  this.loginService.roles ;
+    //setTimeout(() => this.staticAlert.close(), 20000);
   }
 
   reInitJourOff() {
