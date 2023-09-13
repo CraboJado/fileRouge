@@ -214,6 +214,7 @@ export class CalendrierComponent implements OnInit {
   }
 
   annulerAction(){
+    console.log('test commit')
     this.showForm = false;
     this.showButton = false;
     this.editable =false;
