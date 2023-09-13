@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {JoursOffComponent} from "./components/pages/jours-off/jours-off.component";
 import {LoginComponent} from "./components/pages/login/login.component";
 import {NotFoundComponent} from "./components/pages/not-found/not-found.component";
-import {ValidationAbsComponent} from "./components/pages/rapports-vue-two/validation-abs/validation-abs.component";
+import {ValidationAbsComponent} from "./components/pages/validation-abs/validation-abs.component";
 import {DemandeAbsComponent} from "./components/pages/demande-abs/demande-abs.component";
 import {RapportsComponent} from "./components/pages/rapports/rapports.component";
 import {RapportsVueOneComponent} from "./components/pages/rapports-vue-one/rapports-vue-one.component";
