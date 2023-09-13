@@ -9,10 +9,13 @@ li {
 }
 
 .navbar-nav > li{
-  margin-left:8px;
-  margin-right:8px;
+  margin-left:6px;
+  margin-right:6px;
+  font-size: 0.9em;
 }
-
+.navbar-nav > li > a:hover, .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+  color:#0d6efd;
+}
 .fc .fc-bg-event {
   opacity: unset;
   background: none;
@@ -54,13 +57,14 @@ li {
 
 
 @media (max-width: 768px) {
-h2{
-  font-size: 1.5rem !important;
-  margin: 1rem 1rem !important;
+  h2 {
+    font-size: 1.5rem !important;
+    margin: 1rem 1rem !important;
   }
-.dateDuJour, .initiale, .conge-valide, .rtt-valide, .en-attente, .refuse{
-   font-size: 0.7rem !important;
-}
+
+  .dateDuJour, .initiale, .conge-valide, .rtt-valide, .en-attente, .refuse {
+    font-size: 0.7rem !important;
+  }
 
 .fc-today-button{
  margin-bottom: 1rem;

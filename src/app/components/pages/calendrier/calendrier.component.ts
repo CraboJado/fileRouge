@@ -13,7 +13,6 @@ import { Absence } from 'src/app/shared/model/absence';
 import { AbsenceService } from 'src/app/shared/service/absence.service';
 import {DatePipe} from "@angular/common";
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
-import {Employe} from "../../../shared/model/employe";
 import {EmployeService} from "../../../shared/service/employe.service";
 @Component({
   selector: 'app-departements',
@@ -21,8 +20,6 @@ import {EmployeService} from "../../../shared/service/employe.service";
   styleUrls: ['./calendrier.component.css'],
 })
 export class CalendrierComponent implements OnInit {
-
-  @ViewChild('fullcalendar') calendarComponent!: FullCalendarComponent;
 
   showForm = false;
   showButton = false;
@@ -35,7 +32,6 @@ export class CalendrierComponent implements OnInit {
   soldeConge: number | undefined = 0;
   soldeRtt: number | undefined = 0;
   errorMsg="";
-
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
@@ -59,6 +55,7 @@ export class CalendrierComponent implements OnInit {
       this.absences = absencesReceived;
       this.calendarOptions.events = this.absences.map((abs) => {
         let color = '#ffd2e1';
+        if(abs.typeAbsence =='RTT_EMPLOYEUR') color = '#77baed';
         if (abs.statut == 'EN_ATTENTE') color = '#2B1B7B';
         if (abs.statut == 'VALIDEE' && abs.typeAbsence =='RTT') color = '#FEDD00';
         if (abs.statut == 'VALIDEE' && abs.typeAbsence =='CONGE_PAYE') color = '#35FDBE';
@@ -100,10 +97,8 @@ export class CalendrierComponent implements OnInit {
 
   handleDateClick(arg: any) {
     if(this.event.id){
-
       this.showButton = true;
-      console.log(this.event.extendedProps.statut)
-      if(this.event.extendedProps.statut == 'INITIALE' || this.event.extendedProps.statut == 'REJETEE'){
+      if((this.event.extendedProps.statut == 'INITIALE' || this.event.extendedProps.statut == 'REJETEE') && this.event.extendedProps.type != 'RTT_EMPLOYEUR'){
         this.editable = true;
       }
     }else{
@@ -136,15 +131,18 @@ export class CalendrierComponent implements OnInit {
 
 
   handleSubmit(data:any){
-
     // ajoute une absence
     if(!this.event.id){
+      let motif = '';
+      if(data.value.motif && data.value.motif.replace(/ /g,'') != ''){
+        motif = data.value.motif;
+      }
+
       const absence = {
         dateDebut:data.value.start,
         dateFin:data.value.end,
         typeAbsence:data.value.type,
-        motif:data.value.motif,
-        employeId:1,
+        motif:motif,
         statut:"INITIALE"
       }
 
@@ -156,7 +154,6 @@ export class CalendrierComponent implements OnInit {
           },
         complete : ()=> {}
       })
-
 
       this.showForm = false;
       this.event = {};
@@ -204,7 +201,6 @@ export class CalendrierComponent implements OnInit {
   }
 
   annulerAction(){
-    console.log('test commit')
     this.showForm = false;
     this.showButton = false;
     this.editable =false;

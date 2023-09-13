@@ -5,11 +5,11 @@
 class="d-flex flex-column gap-2">
     <div>
         <label class ="me-1 mb-1" for="start">Date de début:</label>
-        <input type="date" id="start" name="start" min="2023-01-01" max="2023-12-31" [(ngModel)]="start" />
+        <input type="date" id="start" name="start" min="2023-01-01" max="2050-12-31" [(ngModel)]="start" />
     </div>
     <div>
         <label class ="me-1 mb-1" for="end">Date de fin:</label>
-        <input type="date" id="end" name="end" min="2023-01-01" max="2023-12-31" [(ngModel)]="end" />
+        <input type="date" id="end" name="end" min="2023-01-01" max="2050-12-31" [(ngModel)]="end" />
     </div>
     <div class="type ">
         <label class ="mb-1" for="type-select">Choisir le type de congé:</label>
