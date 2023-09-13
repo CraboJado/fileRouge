@@ -11,8 +11,6 @@ th, td{
   text-align: center;
 }
 
-
-
 /* Style for empty cells */
 td span {
   display: inline-block;
@@ -26,11 +24,12 @@ td span {
 }
 
 .we{
-  background-color: rgb(163, 226, 227);
+  background-color: grey;
 }
 
 .carre{
-  background-color: rgb(163, 226, 227);
+  background-color: grey;
+  ;
   height: 1rem;
   width: 1rem;
 
@@ -54,10 +53,7 @@ td span {
     align-items: center;
   }
 
-  /* .selects{
-  justify-content: flex-start !important;
-  } */
-
+ 
  
 }
 
