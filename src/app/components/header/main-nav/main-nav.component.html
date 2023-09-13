@@ -18,7 +18,7 @@
         <li class="nav-item">
           <a (click)="isMenuCollapsed = true" [routerLink]="'/calendrier'" class="nav-link">Calendrier</a>
         </li>
-        <li *ngIf="roles?.includes('ADMIN')" class="nav-item">
+        <li class="nav-item">
           <a (click)="isMenuCollapsed = true" [routerLink]="'/jours-off'" class="nav-link">Jours officiels</a>
         </li>
         <li class="nav-item">
