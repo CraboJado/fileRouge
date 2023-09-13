@@ -16,10 +16,11 @@
     border: 1px solid #ccc;
   }
   
+
+
   @media screen and (max-width: 1200px) {
     section{
       overflow: auto;
-      font-size: 0.9rem;
     }
 
   }
