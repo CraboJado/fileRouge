@@ -15,12 +15,13 @@
     <ng-template #content let-offcanvas>
       <div *ngIf="showForm">
         <div class="offcanvas-header">
-          <h5
-            class="offcanvas-title">{{ editable && selectedEvent ? 'Modifier le jour officiel' : 'Créer un jour officiel' }}</h5>
+          <div></div>
           <button (click)="hidePanel()" aria-label="Close" class="btn-close rounded-circle" type="button"></button>
         </div>
         <div *ngIf="roles?.includes('ADMIN')" class="form-container">
           <div class="offcanvas-body row">
+            <h5
+              class="offcanvas-title">{{ editable && selectedEvent ? 'Modifier le jour officiel' : 'Créer un jour officiel' }}</h5>
             <div class="col-md-12">
               <form #form="ngForm" (ngSubmit)="createOrUpdateJourOff()" class="form">
                 <label class="pt-3" for="floatingTextarea">Description (facultatif)</label>
