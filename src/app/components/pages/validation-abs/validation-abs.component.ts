@@ -19,6 +19,7 @@ export class ValidationAbsComponent {
   ngOnInit(): void {
     this._init()
   }
+
   private _init() {
     this._absenceService
       .findAllByManager()
@@ -27,6 +28,7 @@ export class ValidationAbsComponent {
         ;
       })
   }
+  
   validStatut(absence: Absence) {
     absence.statut = "VALIDEE";
   }
@@ -77,7 +79,7 @@ export class ValidationAbsComponent {
 
   updateAbs() {
       this.absences.forEach(absence => {
-        this._absenceService.update(absence).subscribe(reponse => this._init());
+        this._absenceService.update(absence).subscribe(() => this._init());
         this.okMessage = "Les absences ont bien été enregistrées.";
         this.clearMessages();
       });
