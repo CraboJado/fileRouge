@@ -100,12 +100,14 @@ export class CalendrierComponent implements OnInit {
     let clickedDate = new Date(arg.dateStr);
     let dateNow = new Date()
 
-    if(clickedDate < dateNow ){
+    if( (clickedDate.getDate() < dateNow.getDate())
+      || (clickedDate.getMonth() < dateNow.getMonth())
+    || (clickedDate.getFullYear()<dateNow.getFullYear())){
       this.showError = true;
       if(this.event.id){
         this.errorMsg = "Vous ne pouvez pas modifier une demande d'absence passée"
       }else{
-        this.errorMsg = "Vous ne pouvez pas faire une demande d'absence aux jours passé"
+        this.errorMsg = "Vous ne pouvez pas faire une demande d'absence aux jours passés"
       }
       return
     }
