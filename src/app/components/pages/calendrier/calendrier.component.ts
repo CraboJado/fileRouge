@@ -97,12 +97,10 @@ export class CalendrierComponent implements OnInit {
 
   handleDateClick(arg: any) {
 
-    let clickedDate = new Date(arg.dateStr);
-    let dateNow = new Date()
+    let clickedDate = new Date(arg.dateStr).setHours(0, 0, 0, 0);
+    let dateNow = new Date().setHours(0, 0, 0, 0)
 
-    if( (clickedDate.getDate() < dateNow.getDate())
-      || (clickedDate.getMonth() < dateNow.getMonth())
-    || (clickedDate.getFullYear()<dateNow.getFullYear())){
+    if( clickedDate < dateNow ){
       this.showError = true;
       if(this.event.id){
         this.errorMsg = "Vous ne pouvez pas modifier une demande d'absence passée"
