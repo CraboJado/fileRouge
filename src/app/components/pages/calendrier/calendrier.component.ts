@@ -96,11 +96,26 @@ export class CalendrierComponent implements OnInit {
   }
 
   handleDateClick(arg: any) {
+
+    let clickedDate = new Date(arg.dateStr);
+    let dateNow = new Date()
+
+    if(clickedDate < dateNow ){
+      this.showError = true;
+      if(this.event.id){
+        this.errorMsg = "vous ne pouvez pas modifier une demande d'absence passée"
+      }else{
+        this.errorMsg = "vous ne pouvez pas faire une demande d'absence aux jours passé"
+      }
+      return
+    }
+
     if(this.event.id){
       this.showButton = true;
       if((this.event.extendedProps.statut == 'INITIALE' || this.event.extendedProps.statut == 'REJETEE') && this.event.extendedProps.type != 'RTT_EMPLOYEUR'){
         this.editable = true;
       }
+
     }else{
       this.event.start = arg.dateStr;
       this.showForm = true;
