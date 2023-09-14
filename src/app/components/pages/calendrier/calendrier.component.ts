@@ -103,10 +103,16 @@ export class CalendrierComponent implements OnInit {
     if(clickedDate < dateNow ){
       this.showError = true;
       if(this.event.id){
-        this.errorMsg = "vous ne pouvez pas modifier une demande d'absence passée"
+        this.errorMsg = "Vous ne pouvez pas modifier une demande d'absence passée"
       }else{
-        this.errorMsg = "vous ne pouvez pas faire une demande d'absence aux jours passé"
+        this.errorMsg = "Vous ne pouvez pas faire une demande d'absence aux jours passé"
       }
+      return
+    }
+
+    if(this.event.extendedProps?.type == 'RTT_EMPLOYEUR'){
+      this.showError = true;
+      this.errorMsg = "Vous ne pouvez pas modifier une demande d'absence du type RTT_EMPLOYEUR";
       return
     }
 
@@ -115,7 +121,6 @@ export class CalendrierComponent implements OnInit {
       if((this.event.extendedProps.statut == 'INITIALE' || this.event.extendedProps.statut == 'REJETEE') && this.event.extendedProps.type != 'RTT_EMPLOYEUR'){
         this.editable = true;
       }
-
     }else{
       this.event.start = arg.dateStr;
       this.showForm = true;
@@ -147,9 +152,9 @@ export class CalendrierComponent implements OnInit {
 
 
   traitementdeNuit(){
-
-    this._absenceService.traitementNuit().subscribe()
-
+    this._absenceService.traitementNuit().subscribe(()=>{
+      this._init()
+    })
   }
 
   handleSubmit(data:any){
