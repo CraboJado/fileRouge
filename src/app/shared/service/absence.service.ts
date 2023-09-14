@@ -39,6 +39,10 @@ export class AbsenceService{
     return this._http.put<Absence>(this._baseUrl + "/" +  absence.id, absence,{withCredentials:true})
   }
 
+  public traitementNuit(){
+    return this._http.post(this._baseUrl+"/traitement",{},{withCredentials:true})
+  }
+
   public update(updated: Absence) {
 
     const newAbsence={
@@ -50,7 +54,7 @@ export class AbsenceService{
       statut:updated.statut,
       employeId:updated.employe?.id
     }
-    
+
     const headers = { 'content-type': 'application/json'}
     return  this._http
    .put(`${this._baseUrl}/statut/${updated.id}`, newAbsence,{headers: headers,withCredentials:true,responseType: "text"})

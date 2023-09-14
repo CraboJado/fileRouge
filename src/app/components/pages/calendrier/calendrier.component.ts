@@ -131,6 +131,12 @@ export class CalendrierComponent implements OnInit {
   }
 
 
+  traitementdeNuit(){
+
+    this._absenceService.traitementNuit().subscribe()
+
+  }
+
   handleSubmit(data:any){
 
     // ajoute une absence
@@ -177,6 +183,8 @@ export class CalendrierComponent implements OnInit {
       this.editable = false;
       return
     }
+
+
 
     // modifier une absence
     const absence = {
