@@ -19,7 +19,7 @@
             <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
                 <div class="form-floating mb-3">
                     <input type="email" name="email" class="form-control" id="floatingInput"
-                        placeholder="name@example.com" value="exampletout@gmail.com" #email>
+                        placeholder="redwireback@gmail.com" value="redwireback@gmail.com" #email>
                     <label for="floatingInput">Email</label>
                 </div>
                 <div class="form-floating mb-3">
@@ -30,7 +30,10 @@
                 <button type="button" class="w-100 btn btn-lg btn-outline-primary"
                     (click)="signIn(email.value,password.value)">Se Connecter
                 </button>
+              <p class=" text-danger text-center pt-3">{{messageErr}}</p>
             </form>
+
         </div>
+
     </div>
 </section>

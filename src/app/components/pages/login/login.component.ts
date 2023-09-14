@@ -9,6 +9,8 @@ import {LoginService} from "../../../shared/service/login.service";
 })
 export class LoginComponent {
 
+  messageErr ='';
+
   constructor(
     private router: Router,
     private loginService: LoginService
@@ -18,7 +20,7 @@ export class LoginComponent {
   signIn(email: string, password: string) {
     this.loginService.login(email,password).subscribe({
       next:(value)=>{this.router.navigate(['/home'])},
-      error:(err)=>{console.log("err à traiter si on a temps")}
+      error:(err)=>{ this.messageErr = "Identifiants incorrects, veuillez réessayer ! "}
     })
   }
 
